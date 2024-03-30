@@ -8,12 +8,12 @@ namespace ElStore.Controllers;
 public class WatchesController : Controller
 {
 
-    //private readonly ApplicationDbContext _db;
+    private readonly ApplicationDbContext _db;
     private readonly IWebHostEnvironment _webHostEnvironment;
 
     public WatchesController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)
     {
-        //_db = db;
+        _db = db;
         _webHostEnvironment = webHostEnvironment;
     }
 
@@ -21,6 +21,7 @@ public class WatchesController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        IEnumerable<Product> watch = _db.Products.Where(u => u.CategoryId == 3);
+        return View(watch);
     }
 }
