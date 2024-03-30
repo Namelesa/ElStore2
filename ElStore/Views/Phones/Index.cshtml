@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Product>
+
+<p class="text-center">Phones</p>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var phones in Model)
+                       {
+                           <div class="col">
+                           <div class="card" style="width: 18rem;">
+                               <img src="@phones.Images" class="card-img-top" alt="first">
+                               <div class="card-body">
+                                   <h5 class="card-title">@phones.Brand @phones.Model</h5>
+                                   <p class="card-text">@phones.ShortDesc</p>
+                                   <a href="#" class="btn btn-primary">Buy</a>
+                               </div>
+                           </div>
+                           </div>
+                       }
+</div>
