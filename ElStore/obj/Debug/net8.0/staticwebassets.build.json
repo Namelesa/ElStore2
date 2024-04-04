@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "K5TsCH9egPrf5X7ExYxRJsnyz9NOpY23RwW8O5gxcqM=",
+  "Hash": "lpTzuUvxDmuRDXXxgrtqY1vGE0jkYQBPKJuRkdiWhf4=",
   "Source": "ElStore",
   "BasePath": "_content/ElStore",
   "Mode": "Default",
@@ -243,6 +243,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Images/title2.png"
+    },
+    {
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/unnamed.png",
+      "SourceId": "ElStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
+      "BasePath": "_content/ElStore",
+      "RelativePath": "Images/unnamed.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/unnamed.png"
     },
     {
       "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/watches.jpg",

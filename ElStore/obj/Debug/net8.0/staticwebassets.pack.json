@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets/Images/title2.png"
     },
     {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/unnamed.png",
+      "PackagePath": "staticwebassets/Images/unnamed.png"
+    },
+    {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/watches.jpg",
       "PackagePath": "staticwebassets/Images/watches.jpg"
     },

@@ -1,17 +1,12 @@
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ElStore.Models;
 
 public class Category
 {
-    [Key] public int Id { get; set; }
-    
-    [Required]
-    public string Name { get; set; }
+    [Key]
+    public int Id { get; set; }
 
-    [DisplayName("Display Order")]
-    [Required]
-    [Range(1, int.MaxValue, ErrorMessage = "Must be > 0")]
+    public string Name { get; set; }
     public int DisplayOrder { get; set; }
 }

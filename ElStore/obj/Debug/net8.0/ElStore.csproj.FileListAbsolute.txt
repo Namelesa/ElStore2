@@ -252,3 +252,4 @@
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/obj/Debug/net8.0/ElStore.sourcelink.json

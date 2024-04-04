@@ -1,18 +1,20 @@
-﻿@model IEnumerable<Product>
+﻿@model List<ElStore.Models.ViewModel.ProductVM>
 
-<p class="text-center">Hearphones</p>
 @if (Model.Count() != 0)
 {
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach (var hearphone in Model)
+        @foreach (var product in Model)
         {
             <div class="col">
                 <div class="card" style="width: 18rem;">
-                    <img src="@hearphone.Images" class="card-img-top" alt="first">
+                    <h5 class="card-title text-center">@product.Product.Brand @product.Product.Model</h5>
+                    @foreach (var imageUrl in product.Image)
+                    {
+                        <img src="@imageUrl" class="card-img-top" alt="Image">
+                    }
                     <div class="card-body">
-                        <h5 class="card-title">@hearphone.Brand @hearphone.Model</h5>
-                        <p class="card-text">@hearphone.ShortDesc</p>
-                        <p class="card-text">@hearphone.Price $</p>
+                        <h5 class="card-title">@product.Product.ShortDescription</h5>
+                        <p class="card-text">@product.Product.Price $</p>
                         <a href="#" class="btn btn-primary">Buy</a>
                     </div>
                 </div>
@@ -22,6 +24,6 @@
 }
 else
 {
+    <p class="text-center">Hearphones</p>
     <p class="text-center">No product in this category :(</p> 
 }
-

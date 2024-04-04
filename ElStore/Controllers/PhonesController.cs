@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ElStore.Data;
 using ElStore.Models;
+using ElStore.Models.ViewModel;
 using NuGet.Common;
 
 namespace ElStore.Controllers;
@@ -21,7 +22,22 @@ public class PhonesController : Controller
 
     public IActionResult Index()
     {
-        IEnumerable<Product> phone = _db.Products.Where(u=>u.CategoryId == 1);
-        return View(phone);
+        IQueryable<ProductVM> productVMQuery = from product in _db.Product
+            join category in _db.Category on product.CategoryId equals category.Id
+            where category.Id == 1
+            select new ProductVM
+            {
+                Product = product,
+                Category = category.Name,
+                Image = product.Images.Image,
+                Video = product.Images.Video,
+                DescriptionPc = product.DescriptionPC
+            };
+        
+        List<ProductVM> productVM = productVMQuery.ToList();
+
+        return View(productVM);
     }
+
+
 }

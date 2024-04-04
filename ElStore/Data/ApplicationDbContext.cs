@@ -1,3 +1,4 @@
+
 using ElStore.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +11,10 @@ namespace ElStore.Data
 
         }
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<DescriptionPC> DescriptionPC { get; set; }
+        public DbSet<HearphoneDescriptions> HearphoneDescriptions { get; set; }
         public DbSet<Images> Images { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Description> Descriptions { get; set; }
     }
 }
