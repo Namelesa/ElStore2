@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ElStore.Data;
-using ElStore.Models;
 using ElStore.Models.ViewModel;
-using NuGet.Common;
 
 namespace ElStore.Controllers;
 
@@ -17,9 +15,7 @@ public class PhonesController : Controller
         _db = db;
         _webHostEnvironment = webHostEnvironment;
     }
-
-
-
+    
     public IActionResult Index()
     {
         IQueryable<ProductVM> productVMQuery = from product in _db.Product
@@ -39,5 +35,9 @@ public class PhonesController : Controller
         return View(productVM);
     }
 
+    public IActionResult Details()
+    {
+        return View();
+    }
 
 }
