@@ -7,12 +7,32 @@
         {
             <div class="col">
                 <div class="card" style="width: 18rem;">
-                    @foreach (var imageUrl in product.Image)
-                    {
-                        <div class="p-3">
-                            <img src="@imageUrl" class="card-img-top img-fluid" style="max-height: 200px; object-fit: contain;" alt="Image">
+                    <div id="carousel-@product.Product.Id" class="carousel slide" data-bs-interval="false">
+                        <div class="carousel-indicators">
+                            @for (var i = 0; i < product.Image.Count(); i++)
+                            {
+                                <button type="button" data-bs-target="#carousel-@product.Product.Id" data-bs-slide-to="@i" class="@((i == 0) ? "active" : "")" aria-current="true" aria-label="Slide @(i + 1)"></button>
+                            }
                         </div>
-                    }
+                        <div class="carousel-inner">
+                            @foreach (var imageUrl in product.Image)
+                            {
+                                <div class="carousel-item @(imageUrl == product.Image.First() ? "active" : "")">
+                                    <div class="p-3">
+                                        <img src="@imageUrl" class="d-block w-100" style="max-width: 500px; max-height: 500px; object-fit: contain;" alt="Image">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@product.Product.Id" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-@product.Product.Id" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title text-center">
                             <a href="#" class="text-decoration-none text-dark">@product.Product.Brand @product.Product.Model</a>
@@ -32,4 +52,4 @@ else
 {
     <p class="text-center">Phones</p>
     <p class="text-center">No product in this category :(</p> 
-}
+} 
