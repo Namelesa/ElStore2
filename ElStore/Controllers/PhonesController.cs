@@ -54,10 +54,13 @@ public class PhonesController : Controller
             .Select(i => i.Image)
             .ToList();
 
+        var video = _db.Images.Where(u=> u.Id == id).Select(i => i.Video).FirstOrDefault();
+        
         DetailsVM detailsVm = new DetailsVM()
         {
             Product = product,
             Image = images,
+            Video = video,
             DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => d != null && d.Id == id),
             HearphoneDescriptions = null
         };

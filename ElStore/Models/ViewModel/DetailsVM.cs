@@ -8,7 +8,7 @@ public class DetailsVM
     [ValidateNever]
     public IEnumerable<IEnumerable<string>> Image { get; set; }
     [ValidateNever]
-    public string Video { get; set; }
+    public string? Video { get; set; }
     [ValidateNever]
     public DescriptionPC? DescriptionPc { get; set; }
     [ValidateNever]
