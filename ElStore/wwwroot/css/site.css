@@ -77,3 +77,11 @@ li:hover::after {
 .my-navbar{
   margin:auto;
 }
+
+.carousel-control-prev-icon {
+  filter: invert(90%);
+}
+
+.carousel-control-next-icon {
+  filter: invert(90%);
+}

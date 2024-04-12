@@ -1,4 +1,4 @@
-@using Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ElStore.Models.ViewModel.DetailsVM
 
 <div class="">
@@ -9,7 +9,6 @@
         <p>@Model.DescriptionPc?.FrontCamera</p>
         <p>@Model.DescriptionPc?.BackCamera</p>
 
-        <!-- Вывод изображений -->
         @foreach (var imageUrl in Model.Image.SelectMany(imageList => imageList))
         {
             <div class="p-3">
@@ -17,16 +16,6 @@
             </div>
         }
 
-        <!-- Видеоплеер -->
-        @if (!string.IsNullOrEmpty(Model.Video))
-        {
-            <div class="p-3 embed-responsive embed-responsive-16by9">
-                <video controls class="embed-responsive-item">
-                    <source src="@Model.Video" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        }
-
+        <p>@Model.Video</p>
     </form>
 </div>

@@ -1,17 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
+
 using ElStore.Data;
 using ElStore.Models.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElStore.Controllers;
 
-public class WatchesController : Controller
+public class HeadphonesController : Controller
 {
 
     private readonly ApplicationDbContext _db;
     private readonly IWebHostEnvironment _webHostEnvironment;
 
-    public WatchesController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)
+    public HeadphonesController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)
     {
         _db = db;
         _webHostEnvironment = webHostEnvironment;
@@ -22,13 +23,13 @@ public class WatchesController : Controller
     public IActionResult Index()
     {
         IQueryable<ProductVM> productVmQuery = from product in _db.Product
-            join category in _db.Category on product.CategoryId equals category.Id
-            where category.Id == 3
-            select new ProductVM
-            {
-                Product = product,
-                Image = product.Images.Image,
-            };
+                                               join category in _db.Category on product.CategoryId equals category.Id
+                                               where category.Id == 2
+                                               select new ProductVM
+                                               {
+                                                   Product = product,
+                                                   Image = product.Images.Image,
+                                               };
         
         var productVm = productVmQuery.ToList();
 
@@ -60,8 +61,8 @@ public class WatchesController : Controller
         {
             Product = product,
             Image = images,
-            DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => d != null && d.Id == id),
-            HearphoneDescriptions = null
+            DescriptionPc = null,
+            HearphoneDescriptions = _db.HearphoneDescriptions.FirstOrDefault(h => h != null && h.Id == id)
         };
 
         return View(detailsVm);

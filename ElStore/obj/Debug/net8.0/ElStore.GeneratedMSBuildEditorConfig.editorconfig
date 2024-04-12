@@ -26,8 +26,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/maksimbilyk/RiderProjects/ElStore/ElStore
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Hearphones/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSGVhcnBob25lcy9JbmRleC5jc2h0bWw=
+[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Headphones/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSGVhZHBob25lcy9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Headphones/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSGVhZHBob25lcy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Headphones/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSGVhZHBob25lcy9VcHNlcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Home/Index.cshtml]
@@ -38,8 +46,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Laptops/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGFwdG9wcy9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Laptops/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGFwdG9wcy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Laptops/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGFwdG9wcy9VcHNlcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Phones/Details.cshtml]
@@ -50,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGhvbmVzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Phones/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGhvbmVzL1Vwc2VydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,8 +78,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Watches/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvV2F0Y2hlcy9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Watches/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvV2F0Y2hlcy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Watches/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvV2F0Y2hlcy9VcHNlcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/_ViewImports.cshtml]

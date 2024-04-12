@@ -1,7 +1,7 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ElStore.Data;
 using ElStore.Models.ViewModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElStore.Controllers;
 
@@ -21,20 +21,55 @@ public class LaptopsController : Controller
 
     public IActionResult Index()
     {
-        IQueryable<ProductVM> productVMQuery = from product in _db.Product
+        IQueryable<ProductVM> productVmQuery = from product in _db.Product
             join category in _db.Category on product.CategoryId equals category.Id
             where category.Id == 4
             select new ProductVM
             {
                 Product = product,
-                Category = category.Name,
                 Image = product.Images.Image,
-                Video = product.Images.Video,
-                DescriptionPc = product.DescriptionPC
             };
         
-        var productVM = productVMQuery.ToList();
+        var productVm = productVmQuery.ToList();
 
-        return View(productVM);
+        return View(productVm);
+    }
+    
+    public IActionResult Upsert()
+    {
+        return View();
+    }
+
+    public IActionResult Details(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+        
+        var product = _db.Product
+            .Include(u => u.Category)
+            .FirstOrDefault(u => u.Id == id);
+        
+        var images = _db.Images
+            .Where(i => i.Id == id)
+            .Select(i => i.Image)
+            .ToList();
+
+        DetailsVM detailsVm = new DetailsVM()
+        {
+            Product = product,
+            Image = images,
+            DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => d != null && d.Id == id),
+            HearphoneDescriptions = null
+        };
+
+        return View(detailsVm);
+    }
+
+    [HttpPost, ActionName("Details")]
+    public IActionResult DetailsPost(int id, DetailsVM detailsVm)
+    {
+        return View(detailsVm);
     }
 }

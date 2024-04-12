@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElStore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ce3cabeb6e253f2ffb91057bca2e7050145fc82")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+548abf70cf395c4aaf08053b2e3bffb4cf226ee1")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElStore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElStore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
