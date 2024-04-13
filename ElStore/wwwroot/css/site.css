@@ -85,3 +85,33 @@ li:hover::after {
 .carousel-control-next-icon {
   filter: invert(90%);
 }
+
+.carousel-image {
+  height: 300px; 
+  object-fit: cover;
+}
+
+.carousel-item-details img {
+  width: 100%; 
+  height: auto; 
+}
+
+.carousel-item-details img {
+  width: 450px; 
+  height: 550px; 
+}
+
+.text-description{
+  border-radius: 15px;
+  background-color: #FFFAFA;
+}
+
+.image-back{
+  background-color: #F5FFFA;
+  border-radius: 15px;
+}
+
+
+
+
+

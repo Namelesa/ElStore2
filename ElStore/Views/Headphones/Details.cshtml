@@ -1,21 +1,50 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ElStore.Models.ViewModel.DetailsVM
 
+
 <div class="">
     <form method="post">
-        <p>@Model.Product?.Brand @Model.Product?.Model</p>
-        <p>@Model.DescriptionPc?.Text</p>
-        <p>@Model.DescriptionPc?.RAM</p>
-        <p>@Model.DescriptionPc?.FrontCamera</p>
-        <p>@Model.DescriptionPc?.BackCamera</p>
-
-        @foreach (var imageUrl in Model.Image.SelectMany(imageList => imageList))
-        {
-            <div class="p-3">
-                <img src="@imageUrl" class="d-block w-100" style="max-width: 500px; max-height: 500px; object-fit: contain;" alt="Image">
+        
+        <div class="row g-0 position-relative">
+            <div class="col-md-6 mb-md-0 p-md-4">
+                <div class="image-block p-3 image-back">
+                    <div id="carousel-@Model.Product?.Id" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            @foreach (var imageUrl in Model.Image.SelectMany(imageList => imageList))
+                            {
+                                <div class="carousel-item carousel-item-details @(imageUrl == Model.Image.SelectMany(imageList => imageList).First() ? "active" : "")">
+                                    <div class="p-3">
+                                        <img src="@imageUrl" class="d-block w-100 img-fluid rounded" alt="Image">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@Model.Product?.Id" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-@Model.Product?.Id" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-        }
+            <div class="col-md-6 p-4 ps-md-0">
+                <div class="text-block p-3 text-description">
+                    <h5 class="mt-0">@Model.Product?.Brand @Model.Product?.Model</h5>
+                    <p>@Model.HearphoneDescriptions?.speaker</p>
+                    <p>@Model.HearphoneDescriptions?.TypeConnections</p>
+                    <p>@Model.HearphoneDescriptions?.Text</p>
+                </div>
+            </div>
+        </div>
 
-        <p>@Model.Video</p>
+        <div id="player" class="text-description"></div>
+        
     </form>
 </div>
+
+@section Scripts{
+    <partial name="VideoPlayerPartial"/>
+}

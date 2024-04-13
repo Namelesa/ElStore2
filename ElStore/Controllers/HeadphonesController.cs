@@ -57,12 +57,15 @@ public class HeadphonesController : Controller
             .Select(i => i.Image)
             .ToList();
 
+        var video = _db.Images.Where(u=> u.Id == id).Select(i => i.Video).FirstOrDefault();
+        
         DetailsVM detailsVm = new DetailsVM()
         {
             Product = product,
             Image = images,
+            Video = video,
             DescriptionPc = null,
-            HearphoneDescriptions = _db.HearphoneDescriptions.FirstOrDefault(h => h != null && h.Id == id)
+            HearphoneDescriptions = _db.HearphoneDescriptions.FirstOrDefault(u=> u != null && u.Id == id)
         };
 
         return View(detailsVm);

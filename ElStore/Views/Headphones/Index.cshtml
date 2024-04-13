@@ -8,20 +8,12 @@
         {
             <div class="col">
                 <div class="card">
-                    <div id="carousel-@product.Product.Id" class="carousel slide" data-bs-interval="false">
-                        <div class="carousel-indicators">
-                            @for (var i = 0; i < Math.Min(3, product.Image.Count()); i++)
-                            {
-                                <button type="button" data-bs-target="#carousel-@product.Product.Id" data-bs-slide-to="@i" class="@((i == 0) ? "active" : "")" aria-current="true" aria-label="Slide @(i + 1)"></button>
-                            }
-                        </div>
+                    <div id="carousel-@product.Product.Id" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             @foreach (var imageUrl in product.Image.Take(3))
                             {
                                 <div class="carousel-item @(imageUrl == product.Image.First() ? "active" : "")">
-                                    <div class="p-3">
-                                        <img src="@imageUrl" class="d-block w-100 img-fluid rounded" style="max-width: 100%; max-height: 100%; object-fit: cover;" alt="Image">
-                                    </div>
+                                    <img src="@imageUrl" class="d-block w-100 img-fluid rounded carousel-image" alt="Image">
                                 </div>
                             }
                         </div>
