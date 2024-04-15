@@ -7,6 +7,7 @@ public class DescriptionPC
     [Key]
     public int Id { get; set; }
     public int RAM { get; set; }
+    public double Display { get; set; }
     public int ROM { get; set; }
     public string FrontCamera { get; set; }
     public string BackCamera { get; set; }

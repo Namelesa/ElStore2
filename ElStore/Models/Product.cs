@@ -11,6 +11,7 @@ public class Product
     public string Brand { get; set; }
     public string Model { get; set; }
     public string ShortDescription { get; set; }
+    public int Battery { get; set; }
     [Range(1,int.MaxValue)]
     public double Price { get; set; }
     

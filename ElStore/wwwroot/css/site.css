@@ -19,7 +19,7 @@ body {
 }
 
 
-li {
+.custom li {
   position: relative;
   list-style: none;
   color: silver;
@@ -28,7 +28,7 @@ li {
   padding: 0 10px;
 }
 
-li::after {
+.custom li::after {
   content: "";
   position: absolute;
   background-color: #0ef;
@@ -39,7 +39,7 @@ li::after {
   transition: all 0.5s ease;
 }
 
-li:hover::after {
+.custom li:hover::after {
   width: 100%;
 }
 
@@ -104,6 +104,8 @@ li:hover::after {
 .text-description{
   border-radius: 15px;
   background-color: #FFFAFA;
+  overflow: auto;
+  max-height: 300px;
 }
 
 .image-back{
@@ -111,7 +113,11 @@ li:hover::after {
   border-radius: 15px;
 }
 
+.no-style {
+  list-style-type: circle;
+}
 
-
-
-
+.custom-player{
+  width: 609px;
+  margin-left: 20px;
+}

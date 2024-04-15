@@ -105,3 +105,7 @@ build_metadata.AdditionalFiles.CssScope =
 [/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-r2rwk09csv
+
+[/Users/maksimbilyk/RiderProjects/ElStore/ElStore/Views/Shared/_PaymentAndDelivery.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QYXltZW50QW5kRGVsaXZlcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-99b3bfu3iy

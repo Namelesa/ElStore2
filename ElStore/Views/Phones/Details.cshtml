@@ -1,7 +1,6 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ElStore.Models.ViewModel.DetailsVM
 
-
 <div class="">
     <form method="post">
         
@@ -32,16 +31,25 @@
             </div>
             <div class="col-md-6 p-4 ps-md-0">
                 <div class="text-block p-3 text-description">
-                    <h5 class="mt-0">@Model.Product?.Brand @Model.Product?.Model</h5>
-                    <p>@Model.DescriptionPc?.Text</p>
-                    <p>@Model.DescriptionPc?.RAM</p>
-                    <p>@Model.DescriptionPc?.FrontCamera</p>
-                    <p>@Model.DescriptionPc?.BackCamera</p>
+                    <h4 class="mt-0 text-center">@Model.Product?.Brand @Model.Product?.Model</h4>
+                    <p>@Model.Product?.ShortDescription</p>
+                    <h5>Characteristics: </h5>
+                    <ul class="no-style">
+                        <li>RAM - @Model.DescriptionPc?.RAM</li>
+                        <li>ROM - @Model.DescriptionPc?.ROM</li>
+                        <li>Front camera - @Model.DescriptionPc?.FrontCamera</li>
+                        <li>Back camera - @Model.DescriptionPc?.BackCamera</li>
+                    </ul>
+                    <p>Text - @Model.DescriptionPc?.Text</p>
+                </div>
+                <br/>
+                <div class="text-block p-3 text-description">
+                    <partial name="_PaymentAndDelivery"/>
                 </div>
             </div>
         </div>
         
-        <div id="player" class="text-description"></div>
+        <div id="player" class="text-description custom-player"></div>
         
     </form>
 </div>
