@@ -39,6 +39,8 @@
                         <li>ROM - @Model.DescriptionPc?.ROM</li>
                         <li>Front camera - @Model.DescriptionPc?.FrontCamera</li>
                         <li>Back camera - @Model.DescriptionPc?.BackCamera</li>
+                        <li>Battery - @Model.Product?.Battery</li>
+                        <li>Battery - @Model.DescriptionPc?.Display</li>
                     </ul>
                     <p>Text - @Model.DescriptionPc?.Text</p>
                 </div>
@@ -52,6 +54,7 @@
         <div id="player" class="text-description custom-player"></div>
         
     </form>
+    
 </div>
 
 @section Scripts{

@@ -31,6 +31,12 @@
                             <a asp-action="Details" asp-route-id="@product.Product.Id" class="text-decoration-none text-dark">@product.Product.Brand @product.Product.Model</a>
                         </h5>
                         <div class="d-flex justify-content-between align-items-center">
+                            <a asp-route-Id="@product.Product.Id" asp-action="Upsert">
+                                <i class="fas fa-edit custom-icon"></i>
+                            </a>
+                            <a asp-route-Id="@product.Product.Id" asp-action="">
+                                
+                            </a>
                             <p class="card-text">@product.Product.Price$</p>
                             <button class="btn btn-primary">Buy</button>
                         </div>

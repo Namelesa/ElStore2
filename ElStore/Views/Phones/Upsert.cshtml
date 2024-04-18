@@ -1,1 +1,132 @@
-﻿<p>Upsert Phones</p>
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ElStore.Models.ViewModel.DetailsVM
+
+@{
+    var title = "Create a product";
+}
+
+<form method="post" enctype="multipart/form-data">
+   
+    @if (Model.Product?.Id != 0)
+    {
+        title = "Edit product";
+        <input asp-for="@Model.Product.Id" hidden/>
+    }
+    
+    <div class="border p-3 bg-white">
+            <div class="form-group row">
+                <h2 class="text-info pl-3">@title</h2>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group row py-2">
+                        <div class="col-4">
+                            <label asp-for="@Model.Product.Brand">Brand</label>
+                            <label asp-for="@Model.Product.Model">Model</label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="@Model.Product.Brand" class="form-control" />
+                            <span asp-validation-for="@Model.Product.Brand" class="text-danger"></span>
+                            <input asp-for="@Model.Product.Model" class="form-control" />
+                            <span asp-validation-for="@Model.Product.Model" class="text-danger"></span>
+                        </div>
+    
+                    </div>
+                    <div class="form-group row py-2">
+                        <div class="col-4">
+                            <label asp-for="@Model.Product.Price">Price</label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="@Model.Product.Price" class="form-control" />
+                            <span asp-validation-for="@Model.Product.Price" class="text-danger"></span>
+                        </div>
+    
+                    </div>
+                    <div class="form-group row py-2">
+                        <div class="col-4">
+                            <label asp-for="@Model.Product.ShortDescription">Short description</label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="@Model.Product.ShortDescription" class="form-control" />
+                            <span asp-validation-for="@Model.Product.ShortDescription" class="text-danger"></span>
+                        </div>
+    
+                    </div>
+                    <div class="form-group row py-2">
+                        <div class="col-4">
+                            <label asp-for="@Model.Product.DescriptionPC">Description Text</label>
+                        </div>
+                        <div class="col-8">
+                            <textarea asp-for="@Model.Product.DescriptionPC.Text" class="form-control summernote"></textarea>
+                            <span asp-validation-for="@Model.Product.DescriptionPC.Text" class="text-danger"></span>
+                        </div>
+    
+                    </div>
+                    <div class="form-group row py-2">
+                        <div class="col-4">
+                            Images
+                        </div>
+                        <div class="col-8">
+                            <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                        </div>
+    
+                    </div>
+                    
+                    <div class="form-group row py-2">
+                        <div class="col-8 offset-4 row">
+    
+                            <div class="col">
+                                @if (Model.Product?.Id != 0)
+                                {
+                                    //update
+                                    <input type="submit" class="btn btn-info w-100" value="Update" />
+                                }
+                                else
+                                {
+                                    //create
+                                    <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Create" />
+                                }
+    
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i>Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    @if (Model.Product?.Id != 0)
+                    {
+                        <img src="@Model.Image" width="100%" style="border-radius:5px; border:1px solid #bbb" alt="Images"/>
+                    }
+                </div>
+            </div>
+        </div>
+
+    
+    
+</form>
+
+@section Scripts{
+
+        <partial name="_ValidationScriptsPartial" />
+        <script>
+            $(document).ready(function () {
+                $('.summernote').summernote({
+                    height: 250
+                });
+            });
+            function validateInput() {
+                if (document.getElementById("uploadBox").value === "") {
+                    Swal.fire(
+                        'Error!',
+                        'Please upload some images!',
+                        'Error'
+                    )
+                    return false;
+                }
+                return true;
+            }
+        </script>
+}
+

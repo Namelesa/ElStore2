@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ElStore.Data;
+using ElStore.Models;
 using ElStore.Models.ViewModel;
-using Microsoft.EntityFrameworkCore;
 
 namespace ElStore.Controllers;
 
@@ -33,9 +33,45 @@ public class PhonesController : Controller
         return View(productVm);
     }
 
-    public IActionResult Upsert()
+    
+    public IActionResult Upsert(int? id)
     {
-        return View();
+        if (id == null)
+        {
+            DetailsVM phone = new DetailsVM();
+            return View(phone);
+        }
+        else
+        {
+            Product? product = _db.Product.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+            var video = _db.Images.Where(u=> u.Id == id).Select(i => i.Video).FirstOrDefault();
+            var images = _db.Images
+                .Where(i => i.Id == id)
+                .Select(i => i.Image)
+                .ToList();
+            DetailsVM phone = new DetailsVM
+            {
+                Product = product,
+                DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => d != null && d.Id == id),
+                HearphoneDescriptions = null,
+                Video = video,
+                Image = images
+                
+            };
+            return View(phone);
+        }
+    }
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Upsert(DetailsVM phone)
+    {
+        return View(phone);
     }
     
     public IActionResult Details(int? id)
@@ -44,10 +80,8 @@ public class PhonesController : Controller
         {
             return NotFound();
         }
-        
-        var product = _db.Product
-            .Include(u => u.Category)
-            .FirstOrDefault(u => u.Id == id);
+
+        var product = _db.Product.Find(id);
         
         var images = _db.Images
             .Where(i => i.Id == id)
@@ -67,10 +101,7 @@ public class PhonesController : Controller
 
         return View(detailsVm);
     }
-
-
-
-
+    
     [HttpPost, ActionName("Details")]
     public IActionResult DetailsPost(int id, DetailsVM detailsVm)
     {

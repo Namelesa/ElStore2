@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ElStore.styles.css" asp-append-version="true" />
     <link rel="icon" type="image/png" href="~/images/title2.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -23,17 +24,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
                     <ul class="navbar-nav custom">
-                       <li class="nav-item dropdown">
-                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               Manage product
-                           </a>
-                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                               <a class="dropdown-item" asp-area="" asp-controller="Phones" asp-action="Upsert">Phones</a>
-                               <a class="dropdown-item" asp-area="" asp-controller="Headphones" asp-action="Upsert">Headphones</a>
-                               <a class="dropdown-item" asp-area="" asp-controller="Watches" asp-action="Upsert">Watches</a>
-                               <a class="dropdown-item" asp-area="" asp-controller="Laptops" asp-action="Upsert">Laptops</a>
-                           </div>
-                       </li>
                         <li class="nav-item">
                             <a class="nav-link text-white-50" asp-area="" asp-controller="Phones" asp-action="Index">Phones</a>
                         </li>

@@ -8,7 +8,7 @@
         {
             <div class="col">
                 <div class="card">
-                    <div id="carousel-@product.Product.Id" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carousel-@product.Product.Id" class="carousel slide">
                         <div class="carousel-inner">
                             @foreach (var imageUrl in product.Image.Take(3))
                             {
@@ -44,4 +44,13 @@ else
 {
     <p class="text-center">Headphones</p>
     <p class="text-center">No product in this category :(</p> 
-} 
+}
+
+<script>
+    $(document).ready(function() {
+        // Инициализация каждой карусели
+        $('.carousel').each(function() {
+            $(this).carousel();
+        });
+    });
+</script>
