@@ -34,9 +34,6 @@
                             <a asp-route-Id="@product.Product.Id" asp-action="Upsert">
                                 <i class="fas fa-edit custom-icon"></i>
                             </a>
-                            <a asp-route-Id="@product.Product.Id" asp-action="">
-                                
-                            </a>
                             <p class="card-text">@product.Product.Price$</p>
                             <button class="btn btn-primary">Buy</button>
                         </div>
@@ -49,5 +46,8 @@
 else
 {
     <p class="text-center">Phones</p>
-    <p class="text-center">No product in this category :(</p> 
+    <p class="text-center">No product in this category :(</p>
+    <a asp-action="Upsert" class="text-center">
+        <i class="fas fa-edit custom-icon"></i>              
+    </a>
 } 

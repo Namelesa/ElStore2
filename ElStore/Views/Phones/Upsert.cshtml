@@ -1,132 +1,117 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ElStore.Models.ViewModel.DetailsVM
 
-@{
-    var title = "Create a product";
-}
-
 <form method="post" enctype="multipart/form-data">
-   
-    @if (Model.Product?.Id != 0)
-    {
-        title = "Edit product";
-        <input asp-for="@Model.Product.Id" hidden/>
-    }
-    
-    <div class="border p-3 bg-white">
-            <div class="form-group row">
-                <h2 class="text-info pl-3">@title</h2>
-            </div>
-            <div class="row">
-                <div class="col-8">
-                    <div class="form-group row py-2">
-                        <div class="col-4">
-                            <label asp-for="@Model.Product.Brand">Brand</label>
-                            <label asp-for="@Model.Product.Model">Model</label>
-                        </div>
-                        <div class="col-8">
-                            <input asp-for="@Model.Product.Brand" class="form-control" />
-                            <span asp-validation-for="@Model.Product.Brand" class="text-danger"></span>
-                            <input asp-for="@Model.Product.Model" class="form-control" />
-                            <span asp-validation-for="@Model.Product.Model" class="text-danger"></span>
-                        </div>
-    
-                    </div>
-                    <div class="form-group row py-2">
-                        <div class="col-4">
-                            <label asp-for="@Model.Product.Price">Price</label>
-                        </div>
-                        <div class="col-8">
-                            <input asp-for="@Model.Product.Price" class="form-control" />
-                            <span asp-validation-for="@Model.Product.Price" class="text-danger"></span>
-                        </div>
-    
-                    </div>
-                    <div class="form-group row py-2">
-                        <div class="col-4">
-                            <label asp-for="@Model.Product.ShortDescription">Short description</label>
-                        </div>
-                        <div class="col-8">
-                            <input asp-for="@Model.Product.ShortDescription" class="form-control" />
-                            <span asp-validation-for="@Model.Product.ShortDescription" class="text-danger"></span>
-                        </div>
-    
-                    </div>
-                    <div class="form-group row py-2">
-                        <div class="col-4">
-                            <label asp-for="@Model.Product.DescriptionPC">Description Text</label>
-                        </div>
-                        <div class="col-8">
-                            <textarea asp-for="@Model.Product.DescriptionPC.Text" class="form-control summernote"></textarea>
-                            <span asp-validation-for="@Model.Product.DescriptionPC.Text" class="text-danger"></span>
-                        </div>
-    
-                    </div>
-                    <div class="form-group row py-2">
-                        <div class="col-4">
-                            Images
-                        </div>
-                        <div class="col-8">
-                            <input type="file" name="files" id="uploadBox" multiple class="form-control" />
-                        </div>
-    
-                    </div>
+    <h2 class="text-info pl-3">Update</h2>
+    <div class="">
+         <input type="hidden" asp-for="Product.Id" />
+         <div class="row g-0 position-relative">
+             <div class="col-md-6 mb-md-0 p-md-4">
+                 <div class="image-block p-3 image-back">
+                     <div id="carousel-@Model.Product?.Id" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                         <div class="carousel-inner">
+                             @if (Model.Image != null)
+                             {
+                                 @foreach (var imageUrl in Model.Image.SelectMany(imageList => imageList))
+                                 {
+                                     <div class="carousel-item carousel-item-details @(imageUrl == Model.Image.SelectMany(imageList => imageList).First() ? "active" : "")">
+                                         <div class="p-3">
+                                             <img src="@imageUrl" class="d-block w-100 img-fluid rounded" alt="Image">
+                                         </div>
+                                     </div>
+                                 }
+                             }
+                         </div>
+                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@Model.Product?.Id" data-bs-slide="prev">
+                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                             <span class="visually-hidden">Previous</span>
+                         </button>
+                         <button class="carousel-control-next" type="button" data-bs-target="#carousel-@Model.Product?.Id" data-bs-slide="next">
+                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                             <span class="visually-hidden">Next</span>
+                         </button>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-6 p-4 ps-md-0">
+                 <div class="text-block p-3 text-description">
+                     <label asp-for="Product.Brand">Brand</label>
+                     <input asp-for="Product.Brand" class="form-control"/>
+                     <span asp-validation-for="Product.Brand" class="text-danger"></span>
+                     <label asp-for="Product.Model">Model</label>
+                     <input asp-for="Product.Model" class="form-control"/>
+                     <span asp-validation-for="Product.Model" class="text-danger"></span>
                     
-                    <div class="form-group row py-2">
-                        <div class="col-8 offset-4 row">
-    
-                            <div class="col">
-                                @if (Model.Product?.Id != 0)
-                                {
-                                    //update
-                                    <input type="submit" class="btn btn-info w-100" value="Update" />
-                                }
-                                else
-                                {
-                                    //create
-                                    <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Create" />
-                                }
-    
-                            </div>
-                            <div class="col">
-                                <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i>Back</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    @if (Model.Product?.Id != 0)
-                    {
-                        <img src="@Model.Image" width="100%" style="border-radius:5px; border:1px solid #bbb" alt="Images"/>
-                    }
-                </div>
-            </div>
-        </div>
+                     <label asp-for="Product.ShortDescription">ShortDescription</label>
+                     <input asp-for="Product.ShortDescription" class="form-control"/>
+                     <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
+                    
+                     <label asp-for="Product.Battery">Battery</label>
+                     <input asp-for="Product.Battery" class="form-control"/>
+                     <span asp-validation-for="Product.Battery" class="text-danger"></span>
+                     <label asp-for="Product.Price">Price</label>
+                     <input asp-for="Product.Price" class="form-control"/>
+                     <span asp-validation-for="Product.Price" class="text-danger"></span>
+                    
+                     <label asp-for="Product.DescriptionPC.RAM">RAM</label>
+                     <input asp-for="Product.DescriptionPC.RAM" class="form-control"/>
+                     <span asp-validation-for="Product.DescriptionPC.RAM" class="text-danger"></span>
 
-    
-    
-</form>
+                     <label asp-for="Product.DescriptionPC.ROM">ROM</label>
+                     <input asp-for="Product.DescriptionPC.ROM" class="form-control"/>
+                     <span asp-validation-for="Product.DescriptionPC.ROM" class="text-danger"></span>
 
+                     <label asp-for="Product.DescriptionPC.FrontCamera">Front Camera</label>
+                     <input asp-for="Product.DescriptionPC.FrontCamera" class="form-control"/>
+                     <span asp-validation-for="Product.DescriptionPC.FrontCamera" class="text-danger"></span>
+
+                     <label asp-for="Product.DescriptionPC.BackCamera">Back Camera</label>
+                     <input asp-for="Product.DescriptionPC.BackCamera" class="form-control"/>
+                     <span asp-validation-for="Product.DescriptionPC.BackCamera" class="text-danger"></span>
+
+                     <label asp-for="Product.DescriptionPC.Display">Display</label>
+                     <input asp-for="Product.DescriptionPC.Display" class="form-control"/>
+                     <span asp-validation-for="Product.DescriptionPC.Display" class="text-danger"></span>
+
+                     <label asp-for="Product.DescriptionPC.Text">Text</label>
+                     <textarea asp-for="Product.DescriptionPC.Text" class="form-control"></textarea>
+                     <span asp-validation-for="Product.DescriptionPC.Text" class="text-danger"></span>
+                 </div>
+                 <br/>
+                 <div class="text-block p-3 text-description">
+                     <label for="videoFile">Video (File or Link)</label>
+                     <input type="file" name="videoFile" id="videoFile" class="form-control" />
+                     <input type="text" name="Video" id="video" class="form-control" placeholder="Or provide a video link" value="@Model.Video" />
+                     @if (string.IsNullOrWhiteSpace(Model.Video))
+                     {
+                         <span class="text-danger">Please provide a video or video link.</span>
+                     }
+                     
+                     @if (Model.Image == null || !Model.Image.Any())
+                     {
+                         <span class="text-danger">Please provide at least one image or image link.</span>
+                     }
+                 </div>
+                 <br/>
+                 <!-- Кнопка для отправки формы -->
+                 @if (Model.Product.Id != 0)
+                 {
+                     <input type="submit" class="btn btn-info w-100" value="Update" />
+                 }
+                 else
+                 {
+                     <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Create" />
+                 }
+             </div>
+         </div>
+         
+         <div id="player" class="text-description custom-player"></div>
+         
+    </div>
+</form> 
 @section Scripts{
-
+    @{
+        <partial name="VideoPlayerPartial"/>
         <partial name="_ValidationScriptsPartial" />
-        <script>
-            $(document).ready(function () {
-                $('.summernote').summernote({
-                    height: 250
-                });
-            });
-            function validateInput() {
-                if (document.getElementById("uploadBox").value === "") {
-                    Swal.fire(
-                        'Error!',
-                        'Please upload some images!',
-                        'Error'
-                    )
-                    return false;
-                }
-                return true;
-            }
-        </script>
+    }
 }
-
