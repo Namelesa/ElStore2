@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets/Images/ElStore_Logo4.png"
     },
     {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/821f6d25-de79-4804-8bb0-8247e128088a.jpeg",
+      "PackagePath": "staticwebassets/Images/Product/821f6d25-de79-4804-8bb0-8247e128088a.jpeg"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/97b0ebbb-4858-4819-8973-db999e64ea1c.jpeg",
+      "PackagePath": "staticwebassets/Images/Product/97b0ebbb-4858-4819-8973-db999e64ea1c.jpeg"
+    },
+    {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/hearphones.jpg",
       "PackagePath": "staticwebassets/Images/hearphones.jpg"
     },
@@ -43,6 +51,10 @@
     {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/watches.jpg",
       "PackagePath": "staticwebassets/Images/watches.jpg"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Video/Phones/Hello.mp4",
+      "PackagePath": "staticwebassets/Video/Phones/Hello.mp4"
     },
     {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/site.css",

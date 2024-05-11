@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "tSKi+iu3fTV+Vu0vbQKmosTkbhL8Hw3QVlCVU9+h2I/O2kceFSOZ3NokfvraNXWe67CtlGvIeaIMyyMpYr2cIA==",
+  "dgSpecHash": "bq20plusz71AwZwJez0ZJ8Zg3YZx/y6z6Sn3lwmKv1Y636tCPZXfhzXesl6ruvdw1Rs/jL+hgdX3diI6LU6f2w==",
   "success": true,
   "projectFilePath": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/ElStore.csproj",
   "expectedPackageFiles": [
     "/Users/maksimbilyk/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/maksimbilyk/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
+    "/Users/maksimbilyk/.nuget/packages/fluentvalidation/11.9.1/fluentvalidation.11.9.1.nupkg.sha512",
+    "/Users/maksimbilyk/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.9.1/fluentvalidation.dependencyinjectionextensions.11.9.1.nupkg.sha512",
     "/Users/maksimbilyk/.nuget/packages/humanizer/2.14.1/humanizer.2.14.1.nupkg.sha512",
     "/Users/maksimbilyk/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/maksimbilyk/.nuget/packages/humanizer.core.af/2.14.1/humanizer.core.af.2.14.1.nupkg.sha512",

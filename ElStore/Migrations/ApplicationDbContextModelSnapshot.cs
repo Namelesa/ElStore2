@@ -53,8 +53,8 @@ namespace ElStore.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("Display")
-                        .HasColumnType("double precision");
+                    b.Property<float>("Display")
+                        .HasColumnType("real");
 
                     b.Property<string>("FrontCamera")
                         .IsRequired()
@@ -142,12 +142,6 @@ namespace ElStore.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("DescriptioHId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("DescriptioPCId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("DescriptionHId")
                         .HasColumnType("integer");
 
@@ -172,9 +166,9 @@ namespace ElStore.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("DescriptioHId");
+                    b.HasIndex("DescriptionHId");
 
-                    b.HasIndex("DescriptioPCId");
+                    b.HasIndex("DescriptionPCId");
 
                     b.HasIndex("ImageId");
 
@@ -191,13 +185,13 @@ namespace ElStore.Migrations
 
                     b.HasOne("ElStore.Models.HearphoneDescriptions", "HearphoneDescriptions")
                         .WithMany()
-                        .HasForeignKey("DescriptioHId")
+                        .HasForeignKey("DescriptionHId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ElStore.Models.DescriptionPC", "DescriptionPC")
                         .WithMany()
-                        .HasForeignKey("DescriptioPCId")
+                        .HasForeignKey("DescriptionPCId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

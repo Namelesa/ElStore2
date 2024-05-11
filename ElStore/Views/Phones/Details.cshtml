@@ -50,9 +50,17 @@
                 </div>
             </div>
         </div>
-        
-        <div id="player" class="text-description custom-player"></div>
-        
+        @if (Model.Video != null && Model.Video.Contains(".mp4"))
+        {
+            <video class="text-description custom-player" controls>
+                <source src="~/Video/Phones/Hello.mp4" type="video/mp4">
+                Video not found :(
+            </video>
+        }
+        else
+        {
+            <div id="player" class="text-description custom-player"></div>
+        }
     </form>
     
 </div>

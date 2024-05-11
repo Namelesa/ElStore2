@@ -4,114 +4,129 @@
 <form method="post" enctype="multipart/form-data">
     <h2 class="text-info pl-3">Update</h2>
     <div class="">
-         <input type="hidden" asp-for="Product.Id" />
-         <div class="row g-0 position-relative">
-             <div class="col-md-6 mb-md-0 p-md-4">
-                 <div class="image-block p-3 image-back">
-                     <div id="carousel-@Model.Product?.Id" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-                         <div class="carousel-inner">
-                             @if (Model.Image != null)
-                             {
-                                 @foreach (var imageUrl in Model.Image.SelectMany(imageList => imageList))
-                                 {
-                                     <div class="carousel-item carousel-item-details @(imageUrl == Model.Image.SelectMany(imageList => imageList).First() ? "active" : "")">
-                                         <div class="p-3">
-                                             <img src="@imageUrl" class="d-block w-100 img-fluid rounded" alt="Image">
-                                         </div>
-                                     </div>
-                                 }
-                             }
-                         </div>
-                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@Model.Product?.Id" data-bs-slide="prev">
-                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                             <span class="visually-hidden">Previous</span>
-                         </button>
-                         <button class="carousel-control-next" type="button" data-bs-target="#carousel-@Model.Product?.Id" data-bs-slide="next">
-                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                             <span class="visually-hidden">Next</span>
-                         </button>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-6 p-4 ps-md-0">
-                 <div class="text-block p-3 text-description">
-                     <label asp-for="Product.Brand">Brand</label>
-                     <input asp-for="Product.Brand" class="form-control"/>
-                     <span asp-validation-for="Product.Brand" class="text-danger"></span>
-                     <label asp-for="Product.Model">Model</label>
-                     <input asp-for="Product.Model" class="form-control"/>
-                     <span asp-validation-for="Product.Model" class="text-danger"></span>
-                    
-                     <label asp-for="Product.ShortDescription">ShortDescription</label>
-                     <input asp-for="Product.ShortDescription" class="form-control"/>
-                     <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
-                    
-                     <label asp-for="Product.Battery">Battery</label>
-                     <input asp-for="Product.Battery" class="form-control"/>
-                     <span asp-validation-for="Product.Battery" class="text-danger"></span>
-                     <label asp-for="Product.Price">Price</label>
-                     <input asp-for="Product.Price" class="form-control"/>
-                     <span asp-validation-for="Product.Price" class="text-danger"></span>
-                    
-                     <label asp-for="Product.DescriptionPC.RAM">RAM</label>
-                     <input asp-for="Product.DescriptionPC.RAM" class="form-control"/>
-                     <span asp-validation-for="Product.DescriptionPC.RAM" class="text-danger"></span>
+        <input type="hidden" asp-for="Product.Id" />
+        <div class="row g-0 position-relative">
+            <div class="col-md-6 mb-md-0 p-md-4">
+                <div class="image-block p-3 image-back">
+                    <div id="carousel-@Model.Product?.Id" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            @if (Model.Image != null)
+                            {
+                                @foreach (var imageUrl in Model.Image.SelectMany(imageList => imageList))
+                                {
+                                    <div class="carousel-item carousel-item-details @(imageUrl == Model.Image.SelectMany(imageList => imageList).First() ? "active" : "")">
+                                        <div class="p-3">
+                                            <img src="@imageUrl" class="d-block w-100 img-fluid rounded" alt="Image">
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@Model.Product?.Id" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-@Model.Product?.Id" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 p-4 ps-md-0">
+                <div class="text-block p-3 text-description">
+                    <label asp-for="Product.Brand">Brand</label>
+                    <input asp-for="Product.Brand" class="form-control" />
+                    <span asp-validation-for="Product.Brand" class="text-danger"></span>
+                    <label asp-for="Product.Model">Model</label>
+                    <input asp-for="Product.Model" class="form-control"/>
+                    <span asp-validation-for="Product.Model" class="text-danger"></span>
+                                       
+                    <label asp-for="Product.ShortDescription">ShortDescription</label>
+                    <input asp-for="Product.ShortDescription" class="form-control"/>
+                    <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
+                                       
+                    <label asp-for="Product.Battery">Battery</label>
+                    <input asp-for="Product.Battery" class="form-control"/>
+                    <span asp-validation-for="Product.Battery" class="text-danger"></span>
+                    <label asp-for="Product.Price">Price</label>
+                    <input asp-for="Product.Price" class="form-control"/>
+                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                                       
+                    <label asp-for="Product.DescriptionPC.RAM">RAM</label>
+                    <input asp-for="Product.DescriptionPC.RAM" class="form-control"/>
+                    <span asp-validation-for="Product.DescriptionPC.RAM" class="text-danger"></span>
+                   
+                    <label asp-for="Product.DescriptionPC.ROM">ROM</label>
+                    <input asp-for="Product.DescriptionPC.ROM" class="form-control"/>
+                    <span asp-validation-for="Product.DescriptionPC.ROM" class="text-danger"></span>
+                   
+                    <label asp-for="Product.DescriptionPC.FrontCamera">Front Camera</label>
+                    <input asp-for="Product.DescriptionPC.FrontCamera" class="form-control"/>
+                    <span asp-validation-for="Product.DescriptionPC.FrontCamera" class="text-danger"></span>
+                   
+                    <label asp-for="Product.DescriptionPC.BackCamera">Back Camera</label>
+                    <input asp-for="Product.DescriptionPC.BackCamera" class="form-control"/>
+                    <span asp-validation-for="Product.DescriptionPC.BackCamera" class="text-danger"></span>
+                   
+                    <label asp-for="Product.DescriptionPC.Display">Display</label>
+                    <input asp-for="Product.DescriptionPC.Display" class="form-control" type="number"/>
+                    <span asp-validation-for="Product.DescriptionPC.Display" class="text-danger"></span>
+                   
+                    <label asp-for="Product.DescriptionPC.Text">Text</label>
+                    <textarea asp-for="Product.DescriptionPC.Text" class="form-control"></textarea>
+                    <span asp-validation-for="Product.DescriptionPC.Text" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="text-block p-3 text-description">
+                    <label for="videoSource">Video Source</label>
+                    <div class="btn-group" role="group" aria-label="Video Source">
+                        <button type="button" class="btn btn-primary" id="videoFileBtn">Upload File</button>
+                        <button type="button" class="btn btn-primary" id="videoLinkBtn">Enter Link</button>
+                    </div>
 
-                     <label asp-for="Product.DescriptionPC.ROM">ROM</label>
-                     <input asp-for="Product.DescriptionPC.ROM" class="form-control"/>
-                     <span asp-validation-for="Product.DescriptionPC.ROM" class="text-danger"></span>
+                    <div id="videoFileUpload" style="display: none;">
+                        <label for="videoFile">Video (File)</label>
+                        <input type="file" name="videoFile" id="videoFile" class="form-control" />
+                    </div>
 
-                     <label asp-for="Product.DescriptionPC.FrontCamera">Front Camera</label>
-                     <input asp-for="Product.DescriptionPC.FrontCamera" class="form-control"/>
-                     <span asp-validation-for="Product.DescriptionPC.FrontCamera" class="text-danger"></span>
+                    <div id="videoLinkInput" style="display: none;">
+                        <label for="videoLink">Video Link</label>
+                        <input type="text" name="Video" id="videoLink" class="form-control" placeholder="Enter Video Link" />
+                    </div>
+                </div>
+                <br />
+                <!-- Кнопка для отправки формы -->
+                @if (Model.Product?.Id != 0 && Model.Product != null)
+                {
+                    <input type="submit" class="btn btn-info w-100" value="Update" />
+                }
+                else
+                {
+                    <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Create" />
+                }
+            </div>
+        </div>
 
-                     <label asp-for="Product.DescriptionPC.BackCamera">Back Camera</label>
-                     <input asp-for="Product.DescriptionPC.BackCamera" class="form-control"/>
-                     <span asp-validation-for="Product.DescriptionPC.BackCamera" class="text-danger"></span>
+        <div id="player" class="text-description custom-player"></div>
 
-                     <label asp-for="Product.DescriptionPC.Display">Display</label>
-                     <input asp-for="Product.DescriptionPC.Display" class="form-control"/>
-                     <span asp-validation-for="Product.DescriptionPC.Display" class="text-danger"></span>
-
-                     <label asp-for="Product.DescriptionPC.Text">Text</label>
-                     <textarea asp-for="Product.DescriptionPC.Text" class="form-control"></textarea>
-                     <span asp-validation-for="Product.DescriptionPC.Text" class="text-danger"></span>
-                 </div>
-                 <br/>
-                 <div class="text-block p-3 text-description">
-                     <label for="videoFile">Video (File or Link)</label>
-                     <input type="file" name="videoFile" id="videoFile" class="form-control" />
-                     <input type="text" name="Video" id="video" class="form-control" placeholder="Or provide a video link" value="@Model.Video" />
-                     @if (string.IsNullOrWhiteSpace(Model.Video))
-                     {
-                         <span class="text-danger">Please provide a video or video link.</span>
-                     }
-                     
-                     @if (Model.Image == null || !Model.Image.Any())
-                     {
-                         <span class="text-danger">Please provide at least one image or image link.</span>
-                     }
-                 </div>
-                 <br/>
-                 <!-- Кнопка для отправки формы -->
-                 @if (Model.Product.Id != 0)
-                 {
-                     <input type="submit" class="btn btn-info w-100" value="Update" />
-                 }
-                 else
-                 {
-                     <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Create" />
-                 }
-             </div>
-         </div>
-         
-         <div id="player" class="text-description custom-player"></div>
-         
     </div>
-</form> 
+</form>
+
 @section Scripts{
     @{
-        <partial name="VideoPlayerPartial"/>
-        <partial name="_ValidationScriptsPartial" />
+            <partial name="VideoPlayerPartial"/>
+            <partial name="_ValidationScriptsPartial" />
     }
+    <script>
+        document.getElementById("videoFileBtn").addEventListener("click", function () {
+            document.getElementById("videoFileUpload").style.display = "block";
+            document.getElementById("videoLinkInput").style.display = "none";
+        });
+
+        document.getElementById("videoLinkBtn").addEventListener("click", function () {
+            document.getElementById("videoFileUpload").style.display = "none";
+            document.getElementById("videoLinkInput").style.display = "block";
+        });
+    </script>
 }

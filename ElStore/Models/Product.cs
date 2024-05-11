@@ -6,6 +6,7 @@ namespace ElStore.Models;
 public class Product
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     public string Brand { get; set; }
@@ -27,12 +28,12 @@ public class Product
     
     [Display(Name ="DescriptionPC Type")]
     public int DescriptionPCId { get; set; }
-    [ForeignKey("DescriptioPCId")]
+    [ForeignKey("DescriptionPCId")]
     public virtual DescriptionPC DescriptionPC { get; set; }
     
     [Display(Name ="DescriptionH Type")]
     public int DescriptionHId { get; set; }
-    [ForeignKey("DescriptioHId")]
+    [ForeignKey("DescriptionHId")]
     public virtual HearphoneDescriptions HearphoneDescriptions { get; set; }
     
     [NotMapped]

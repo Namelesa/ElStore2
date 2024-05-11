@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using ElStore.Data;
 using ElStore.Models;
 using ElStore.Models.ViewModel;
-using Microsoft.EntityFrameworkCore;
 
 namespace ElStore.Controllers;
 
@@ -18,6 +17,7 @@ public class PhonesController : Controller
         _webHostEnvironment = webHostEnvironment;
     }
     
+    //Index - get
     public IActionResult Index()
     {
         IQueryable<ProductVM> productVmQuery = from product in _db.Product
@@ -38,103 +38,120 @@ public class PhonesController : Controller
     //Upsert - get
     public IActionResult Upsert(int? id)
     {
-        
-        var video = _db.Images.Where(u => u.Id == id).Select(i => i.Video).FirstOrDefault();
-        var images = _db.Images.Where(i => i.Id == id).Select(i => i.Image).ToList();
-        Product? product = _db.Product.Find(id);
-        DetailsVM phone = new DetailsVM
-        {
-            Product = product,
-            DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => d != null && d.Id == id),
-            HearphoneDescriptions = null,
-            Video = video,
-            Image = images
-        };
-        
+        DetailsVM phone = new DetailsVM();
         if (id == null)
         {
             return View(phone);
         }
-        else
+
+        Product? product = _db.Product.Find(id);
+        if (product == null)
         {
-            phone.Product = _db.Product.Find(id);
-            if (phone.Product == null)
-            {
-                return NotFound();
-            }
-            return View(phone);
+            return NotFound();
         }
+
+        var video = _db.Images.Where(u => u.Id == product.ImageId).Select(i => i.Video).FirstOrDefault();
+        var images = _db.Images.Where(i => i.Id == product.ImageId).Select(i => i.Image).ToList();
+
+        phone.Product = product;
+        phone.DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => d.Id == product.DescriptionPCId);
+        phone.HearphoneDescriptions = null;
+        phone.Video = video;
+        phone.Image = images;
+
+        return View(phone);
     }
 
+    //Upsert - post
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Upsert(DetailsVM phone, List<IFormFile> imageFiles, IFormFile videoFile, int? id)
+    public IActionResult Upsert(DetailsVM phone)
     {
-        var video = _db.Images.Where(u => u.Id == id).Select(i => i.Video).FirstOrDefault();
-        var images = _db.Images.Where(i => i.Id == id).Select(i => i.Image).ToList();
-        Product? product = _db.Product.Find(id);
-        DetailsVM phones = new DetailsVM
+    
+        if (phone.Product != null)
         {
-            Product = product,
-            DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => d != null && d.Id == id),
-            HearphoneDescriptions = null,
-            Video = video,
-            Image = images
-        };
-        
-        if (!ModelState.IsValid)
-        {
-            if (phone.Product != null && phone.Product.Id == 0)
+            var files = HttpContext.Request.Form.Files;
+            string webRootPath = _webHostEnvironment.WebRootPath;
+            var imgPaths = new List<string>();
+            
+            if (phone.Product.Id == 0)
             {
-                //create a product
-                Console.WriteLine("Create");
-                var existingCategory = _db.Category.Find(phone.Product.CategoryId);
-                if (existingCategory != null)
+                //create
+                phone.Product.CategoryId = 1;
+                phone.Product.DescriptionHId = 1;
+                
+                foreach (var file in files)
                 {
-                    _db.Product.Add(phone.Product);
-                    _db.SaveChanges();
+                    if (file.Length > 0)
+                    {
+                        string upload = Path.Combine(webRootPath, WC.ImagePath);
+                        string fileName = Guid.NewGuid().ToString();
+                        string extension = Path.GetExtension(file.FileName);
+                        string filePath = Path.Combine(upload, fileName + extension);
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            file.CopyTo(fileStream);
+                        }
+
+                        imgPaths.Add(Path.Combine(WC.ImagePath, fileName + extension));
+                    }
                 }
-                else
+
+                Images image = new Images { Image = imgPaths };
+
+                if (phone.Video != null) 
                 {
-                    return NotFound();
+                    image.Video = phone.Video;
                 }
+
+                _db.Images.Add(image);
+                _db.SaveChanges();
+
+                phone.Product.ImageId = image.Id;
+                _db.Product.Add(phone.Product);
             }
+            
             else
             {
                 //update
-                Console.WriteLine("Update");
-                if (phones.Product != null && phones.DescriptionPc != null)
-                {
-                    phones.Product.Brand = phone.Product.Brand;
-                    phones.Product.Model = phone.Product.Model;
-                    phones.Product.ShortDescription = phone.Product.ShortDescription;
-                    phones.Product.Battery = phone.Product.Battery;
-                    phones.Product.Price = phone.Product.Price;
-                    phones.DescriptionPc.RAM = phone.Product.DescriptionPC.RAM;
-                    phones.DescriptionPc.ROM = phone.Product.DescriptionPC.ROM;
-                    phones.DescriptionPc.Display = phone.Product.DescriptionPC.Display;
-                    phones.DescriptionPc.FrontCamera = phone.Product.DescriptionPC.FrontCamera;
-                    phones.DescriptionPc.BackCamera = phone.Product.DescriptionPC.BackCamera;
-                    phones.DescriptionPc.Text = phone.Product.DescriptionPC.Text;
-                    phones.Video = "n0b4y9snzCQ";
-                    _db.SaveChanges();
-                }
-                
-
-                _db.SaveChanges();
+                var existingProduct = _db.Product.Find(phone.Product.Id);
+            
+                    if (existingProduct != null)
+                    {
+                        var existingProductDescription = _db.DescriptionPC.Find(existingProduct.DescriptionPCId);
+                        var existingProductImages = _db.Images.Find(existingProduct.ImageId);
+                        if (existingProductDescription != null && existingProductImages != null)
+                        {
+                            existingProduct.Brand = phone.Product.Brand;
+                            existingProduct.Model = phone.Product.Model;
+                            existingProduct.Battery = phone.Product.Battery;
+                            existingProduct.Price = phone.Product.Price;
+                            
+                            existingProductDescription.RAM = phone.Product.DescriptionPC.RAM;
+                            existingProductDescription.ROM = phone.Product.DescriptionPC.ROM;
+                            existingProductDescription.Display = phone.Product.DescriptionPC.Display;
+                            existingProductDescription.FrontCamera = phone.Product.DescriptionPC.FrontCamera;
+                            existingProductDescription.BackCamera = phone.Product.DescriptionPC.BackCamera;
+                            existingProductDescription.Text = phone.Product.DescriptionPC.Text;
+                                
+                            if (phone.Video != null) existingProductImages.Video = phone.Video;
+                            
+                            
+                            
+                        }
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
             }
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        else
-        {
-            return NotFound();
-        }
+        return View(phone);
     }
 
-
-    
-    
     //Details - get
     public IActionResult Details(int? id)
     {
@@ -146,18 +163,18 @@ public class PhonesController : Controller
         var product = _db.Product.Find(id);
         
         var images = _db.Images
-            .Where(i => i.Id == id)
+            .Where(i => product != null && i.Id == product.ImageId)
             .Select(i => i.Image)
             .ToList();
 
-        var video = _db.Images.Where(u=> u.Id == id).Select(i => i.Video).FirstOrDefault();
+        var video = _db.Images.Where(u=> product != null && u.Id == product.ImageId).Select(i => i.Video).FirstOrDefault();
         
         DetailsVM detailsVm = new DetailsVM()
         {
             Product = product,
             Image = images,
             Video = video,
-            DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => d != null && d.Id == id),
+            DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => product != null && d.Id == product.DescriptionPCId),
             HearphoneDescriptions = null
         };
 
