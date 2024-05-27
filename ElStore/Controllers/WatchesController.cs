@@ -1,18 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
-
 using ElStore.Data;
 using ElStore.Models;
 using ElStore.Models.ViewModel;
 
 namespace ElStore.Controllers;
 
-public class HeadphonesController : Controller
+public class WatchesController : Controller
 {
 
     private readonly ApplicationDbContext _db;
     private readonly IWebHostEnvironment _webHostEnvironment;
 
-    public HeadphonesController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)
+    public WatchesController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)
     {
         _db = db;
         _webHostEnvironment = webHostEnvironment;
@@ -23,7 +22,7 @@ public class HeadphonesController : Controller
     {
         IQueryable<ProductVM> productVmQuery = from product in _db.Product
             join category in _db.Category on product.CategoryId equals category.Id
-            where category.Id == 2
+            where category.Id == 3
             select new ProductVM
             {
                 Product = product,
@@ -54,7 +53,7 @@ public class HeadphonesController : Controller
         var images = _db.Images.Where(i => i.Id == product.ImageId).Select(i => i.Image).ToList();
 
         phone.Product = product;
-        phone.HearphoneDescriptions = _db.HearphoneDescriptions.FirstOrDefault(d=> d.Id == product.DescriptionHId);
+        phone.DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => d.Id == product.DescriptionPCId);
         phone.HearphoneDescriptions = null;
         phone.Video = video;
         phone.Image = images;
@@ -73,8 +72,8 @@ public class HeadphonesController : Controller
             if (phone.Product.Id == 0)
             {
                 //create
-                phone.Product.CategoryId = 2;
-                phone.Product.DescriptionPCId = 1;
+                phone.Product.CategoryId = 3;
+                phone.Product.DescriptionHId = 1;
                 var files = HttpContext.Request.Form.Files.Where(file => file.Name.StartsWith("imageFiles"));
                 string webRootPath = _webHostEnvironment.WebRootPath;
                 var imgPaths = new List<string>();
@@ -141,7 +140,7 @@ public class HeadphonesController : Controller
             
                     if (existingProduct != null)
                     {
-                        var existingProductDescription = _db.HearphoneDescriptions.Find(existingProduct.DescriptionHId);
+                        var existingProductDescription = _db.DescriptionPC.Find(existingProduct.DescriptionPCId);
                         var existingProductImages = _db.Images.Find(existingProduct.ImageId);
                         if (existingProductDescription != null && existingProductImages != null)
                         {
@@ -150,12 +149,16 @@ public class HeadphonesController : Controller
                             existingProduct.Battery = phone.Product.Battery;
                             existingProduct.Price = phone.Product.Price;
                             
-                            existingProductDescription.speaker = phone.Product.HearphoneDescriptions.speaker;
-                            existingProductDescription.Design = phone.Product.HearphoneDescriptions.Design;
-                            existingProductDescription.TypeConnections = phone.Product.HearphoneDescriptions.TypeConnections;
-                            existingProductDescription.Text = phone.Product.HearphoneDescriptions.Text;
+                            existingProductDescription.RAM = phone.Product.DescriptionPC.RAM;
+                            existingProductDescription.ROM = phone.Product.DescriptionPC.ROM;
+                            existingProductDescription.Display = phone.Product.DescriptionPC.Display;
+                            existingProductDescription.FrontCamera = phone.Product.DescriptionPC.FrontCamera;
+                            existingProductDescription.BackCamera = phone.Product.DescriptionPC.BackCamera;
+                            existingProductDescription.Text = phone.Product.DescriptionPC.Text;
                                 
                             if (phone.Video != null) existingProductImages.Video = phone.Video;
+                            
+                            
                             
                         }
                     }

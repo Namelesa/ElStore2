@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "89zx17jqmQWSgBj6uZqZA15Hd1LmpKVL5IRV46lzacA=",
+  "Hash": "lpTzuUvxDmuRDXXxgrtqY1vGE0jkYQBPKJuRkdiWhf4=",
   "Source": "ElStore",
   "BasePath": "_content/ElStore",
   "Mode": "Default",
@@ -205,44 +205,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Images/phone.jpg"
-    },
-    {
-      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/821f6d25-de79-4804-8bb0-8247e128088a.jpeg",
-      "SourceId": "ElStore",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
-      "BasePath": "_content/ElStore",
-      "RelativePath": "Images/Product/821f6d25-de79-4804-8bb0-8247e128088a.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/Product/821f6d25-de79-4804-8bb0-8247e128088a.jpeg"
-    },
-    {
-      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/97b0ebbb-4858-4819-8973-db999e64ea1c.jpeg",
-      "SourceId": "ElStore",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
-      "BasePath": "_content/ElStore",
-      "RelativePath": "Images/Product/97b0ebbb-4858-4819-8973-db999e64ea1c.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/Product/97b0ebbb-4858-4819-8973-db999e64ea1c.jpeg"
     },
     {
       "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/tile.png",
@@ -1421,25 +1383,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
-    },
-    {
-      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Video/Phones/Hello.mp4",
-      "SourceId": "ElStore",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
-      "BasePath": "_content/ElStore",
-      "RelativePath": "Video/Phones/Hello.mp4",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Video/Phones/Hello.mp4"
     }
   ]
 }

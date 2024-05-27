@@ -28,6 +28,7 @@
       <Folder Include="wwwroot\Images\Product\" />
       <Folder Include="wwwroot\Video\Headphones\" />
       <Folder Include="wwwroot\Video\Laptops\" />
+      <Folder Include="wwwroot\Video\Phones\" />
       <Folder Include="wwwroot\Video\Watches\" />
     </ItemGroup>
 

@@ -41,12 +41,19 @@
             </div>
         }
     </div>
+    <div class="text-center mt-3">
+        <a asp-action="Upsert">
+            <button class="custom-button">+</button>
+        </a>
+    </div>
 }
 else
 {
     <p class="text-center">Phones</p>
     <p class="text-center">No product in this category :(</p>
-    <a asp-action="Upsert" class="text-center">
-        <button class="custom-button">Create</button>              
-    </a>
+    <div class="text-center mt-3">
+        <a asp-action="Upsert">
+            <button class="custom-button">+</button>
+        </a>
+    </div>
 }

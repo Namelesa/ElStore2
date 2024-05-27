@@ -70,24 +70,21 @@ public class PhonesController : Controller
     
         if (phone.Product != null)
         {
-            var files = HttpContext.Request.Form.Files;
-            string webRootPath = _webHostEnvironment.WebRootPath;
-            var imgPaths = new List<string>();
-            
             if (phone.Product.Id == 0)
             {
                 //create
                 phone.Product.CategoryId = 1;
                 phone.Product.DescriptionHId = 1;
-                
+                var files = HttpContext.Request.Form.Files.Where(file => file.Name.StartsWith("imageFiles"));
+                string webRootPath = _webHostEnvironment.WebRootPath;
+                var imgPaths = new List<string>();
                 foreach (var file in files)
                 {
                     if (file.Length > 0)
                     {
-                        string upload = Path.Combine(webRootPath, WC.ImagePath);
                         string fileName = Guid.NewGuid().ToString();
                         string extension = Path.GetExtension(file.FileName);
-                        string filePath = Path.Combine(upload, fileName + extension);
+                        string filePath = Path.Combine(webRootPath, WC.ImagePath, fileName + extension);
 
                         using (var fileStream = new FileStream(filePath, FileMode.Create))
                         {
@@ -100,16 +97,22 @@ public class PhonesController : Controller
 
                 Images image = new Images { Image = imgPaths };
 
-                if (phone.Video != null) 
+                if (phone.Video != null)
                 {
-                    image.Video = phone.Video;
+                    if (phone.Video.Contains("https"))
+                    {
+                        string[] parts = phone.Video.Split('=');
+                        string videoId = parts[^1];
+                        image.Video = videoId;
+                    }
                 }
-
+                
                 _db.Images.Add(image);
                 _db.SaveChanges();
 
                 phone.Product.ImageId = image.Id;
                 _db.Product.Add(phone.Product);
+                _db.SaveChanges();
             }
             
             else

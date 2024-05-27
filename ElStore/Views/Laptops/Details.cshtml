@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ElStore.Models.ViewModel.DetailsVM
 
-
 <div class="">
     <form method="post">
         
@@ -14,7 +13,7 @@
                             {
                                 <div class="carousel-item carousel-item-details @(imageUrl == Model.Image.SelectMany(imageList => imageList).First() ? "active" : "")">
                                     <div class="p-3">
-                                        <img src="@imageUrl" class="d-block w-100 img-fluid rounded" alt="Image">
+                                        <img src="~/@imageUrl" class="d-block w-100 img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
                             }
@@ -34,27 +33,38 @@
                 <div class="text-block p-3 text-description">
                     <h4 class="mt-0 text-center">@Model.Product?.Brand @Model.Product?.Model</h4>
                     <p>@Model.Product?.ShortDescription</p>
-                    <h5>Characteristics:</h5>
+                    <h5>Characteristics: </h5>
                     <ul class="no-style">
-                        <li>@Model.DescriptionPc?.RAM</li>
-                        <li>@Model.DescriptionPc?.ROM</li>
-                        <li>@Model.DescriptionPc?.FrontCamera</li>
-                        <li>@Model.DescriptionPc?.BackCamera</li>
-                        <li>@Model.DescriptionPc?.Display</li>
-                        <li>@Model.Product?.Battery</li>
+                        <li>RAM - @Model.DescriptionPc?.RAM</li>
+                        <li>ROM - @Model.DescriptionPc?.ROM</li>
+                        <li>Front camera - @Model.DescriptionPc?.FrontCamera</li>
+                        <li>Back camera - @Model.DescriptionPc?.BackCamera</li>
+                        <li>Battery - @Model.Product?.Battery</li>
+                        <li>Display - @Model.DescriptionPc?.Display</li>
                     </ul>
-                    <p>@Model.DescriptionPc?.Text</p>
+                    <p>Text - @Model.DescriptionPc?.Text</p>
                 </div>
                 <br/>
-                        <div class="text-block p-3 text-description">
-                            <partial name="_PaymentAndDelivery"/>
-                        </div>
+                <div class="text-block p-3 text-description">
+                    <partial name="_PaymentAndDelivery"/>
+                </div>
             </div>
         </div>
-        
-        <div id="player" class="text-description custom-player"></div>
-        
+        @if (Model.Video != null && Model.Video.Contains(".mp4"))
+        {
+            <div class="text-description custom-player">
+                <video controls style="width: 100%; height: 100%;">
+                    <source src="@Model.Video" type="video/mp4">
+                    Video not found :(
+                </video>
+            </div>
+        }
+        else
+        {
+            <div id="player" class="text-description custom-player"></div>
+        }
     </form>
+    
 </div>
 
 @section Scripts{

@@ -13,7 +13,7 @@
                             {
                                 <div class="carousel-item carousel-item-details @(imageUrl == Model.Image.SelectMany(imageList => imageList).First() ? "active" : "")">
                                     <div class="p-3">
-                                        <img src="@imageUrl" class="d-block w-100 img-fluid rounded" alt="Image">
+                                        <img src="~/@imageUrl" class="d-block w-100 img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
                             }
@@ -52,10 +52,12 @@
         </div>
         @if (Model.Video != null && Model.Video.Contains(".mp4"))
         {
-            <video class="text-description custom-player" controls>
-                <source src="~/Video/Phones/Hello.mp4" type="video/mp4">
-                Video not found :(
-            </video>
+            <div class="text-description custom-player">
+                <video controls style="width: 100%; height: 100%;">
+                    <source src="@Model.Video" type="video/mp4">
+                    Video not found :(
+                    </video>
+            </div>
         }
         else
         {
