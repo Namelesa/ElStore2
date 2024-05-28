@@ -17,6 +17,30 @@
       "PackagePath": "staticwebassets/Images/ElStore_Logo4.png"
     },
     {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/3a34a94c-013c-4230-b958-f12284b94265.png",
+      "PackagePath": "staticwebassets/Images/Product/3a34a94c-013c-4230-b958-f12284b94265.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/96e04129-348c-44bd-bcfc-9a40427c79ee.png",
+      "PackagePath": "staticwebassets/Images/Product/96e04129-348c-44bd-bcfc-9a40427c79ee.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/b892b2b4-97e7-4274-8238-c4605cc3472d.png",
+      "PackagePath": "staticwebassets/Images/Product/b892b2b4-97e7-4274-8238-c4605cc3472d.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/f35dc484-4695-4e01-b1db-dc9353844e4d.png",
+      "PackagePath": "staticwebassets/Images/Product/f35dc484-4695-4e01-b1db-dc9353844e4d.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/f542e539-b02a-4960-8b03-142872878bbc.png",
+      "PackagePath": "staticwebassets/Images/Product/f542e539-b02a-4960-8b03-142872878bbc.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/fa35a23e-5038-44dd-b1c8-9d3ec4586297.png",
+      "PackagePath": "staticwebassets/Images/Product/fa35a23e-5038-44dd-b1c8-9d3ec4586297.png"
+    },
+    {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/hearphones.jpg",
       "PackagePath": "staticwebassets/Images/hearphones.jpg"
     },

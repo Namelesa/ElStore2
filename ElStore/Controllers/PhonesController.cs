@@ -140,8 +140,6 @@ public class PhonesController : Controller
                                 
                             if (phone.Video != null) existingProductImages.Video = phone.Video;
                             
-                            
-                            
                         }
                     }
                     else
