@@ -77,7 +77,7 @@ public class PhonesController : Controller
                 phone.Product.DescriptionHId = 1;
                 var files = HttpContext.Request.Form.Files.Where(file => file.Name.StartsWith("imageFiles"));
                 string webRootPath = _webHostEnvironment.WebRootPath;
-                var imgPaths = new List<string>();
+                var imgPaths = new List<string?>();
                 foreach (var file in files)
                 {
                     if (file.Length > 0)
@@ -130,15 +130,50 @@ public class PhonesController : Controller
                             existingProduct.Model = phone.Product.Model;
                             existingProduct.Battery = phone.Product.Battery;
                             existingProduct.Price = phone.Product.Price;
-                            
+        
                             existingProductDescription.RAM = phone.Product.DescriptionPC.RAM;
                             existingProductDescription.ROM = phone.Product.DescriptionPC.ROM;
                             existingProductDescription.Display = phone.Product.DescriptionPC.Display;
                             existingProductDescription.FrontCamera = phone.Product.DescriptionPC.FrontCamera;
                             existingProductDescription.BackCamera = phone.Product.DescriptionPC.BackCamera;
                             existingProductDescription.Text = phone.Product.DescriptionPC.Text;
-                                
-                            if (phone.Video != null) existingProductImages.Video = phone.Video;
+                            
+                            List<string?> deletedImages = HttpContext.Request.Form["deletedImages"]
+                                .Select(di => di != null && di.StartsWith("/") ? di.Substring(1) : di)
+                                .ToList();
+    
+                            List<IFormFile> updatedImages = HttpContext.Request.Form.Files
+                                .Where(file => file.Name.StartsWith("updatedImages"))
+                                .ToList();
+
+                            string webRootPath = _webHostEnvironment.WebRootPath;
+                            
+                            
+                            if (!deletedImages.Equals(null))
+                            {
+                                existingProductImages.Image = existingProductImages.Image
+                                    .Where(image => !deletedImages.Any(deletedImage => image != null && image.Equals(deletedImage, StringComparison.OrdinalIgnoreCase)))
+                                    .ToList();
+
+                                foreach (var image in deletedImages)
+                                {
+                                    if (image != null)
+                                    {
+                                        var fullPath = Path.Combine(webRootPath, image);
+                                        if (System.IO.File.Exists(fullPath))
+                                        {
+                                            System.IO.File.Delete(fullPath);
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            if (phone.Video != null && phone.Video.Contains("https"))
+                            {
+                                string[] parts = phone.Video.Split('=');
+                                string videoId = parts[^1];
+                                existingProductImages.Video = videoId;
+                            }
                             
                         }
                     }

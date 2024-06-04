@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EPt3c3KjLm6IJjbBb0r0av1eDsNFq8iNrX0DWG0VdvM=",
+  "Hash": "pjaBYIZQ/3g6+wa5sstdSujiQFl7YVrlJ3FCHPiHwOs=",
   "Source": "ElStore",
   "BasePath": "_content/ElStore",
   "Mode": "Default",
@@ -207,12 +207,12 @@
       "OriginalItemSpec": "wwwroot/Images/phone.jpg"
     },
     {
-      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/3a34a94c-013c-4230-b958-f12284b94265.png",
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/1be9d95c-7576-4124-913b-bfcc6d21be86.png",
       "SourceId": "ElStore",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
       "BasePath": "_content/ElStore",
-      "RelativePath": "Images/Product/3a34a94c-013c-4230-b958-f12284b94265.png",
+      "RelativePath": "Images/Product/1be9d95c-7576-4124-913b-bfcc6d21be86.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -223,15 +223,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/Product/3a34a94c-013c-4230-b958-f12284b94265.png"
+      "OriginalItemSpec": "wwwroot/Images/Product/1be9d95c-7576-4124-913b-bfcc6d21be86.png"
     },
     {
-      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/96e04129-348c-44bd-bcfc-9a40427c79ee.png",
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/358f34ad-6584-46db-b61a-2b0412b84d4d.png",
       "SourceId": "ElStore",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
       "BasePath": "_content/ElStore",
-      "RelativePath": "Images/Product/96e04129-348c-44bd-bcfc-9a40427c79ee.png",
+      "RelativePath": "Images/Product/358f34ad-6584-46db-b61a-2b0412b84d4d.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -242,15 +242,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/Product/96e04129-348c-44bd-bcfc-9a40427c79ee.png"
+      "OriginalItemSpec": "wwwroot/Images/Product/358f34ad-6584-46db-b61a-2b0412b84d4d.png"
     },
     {
-      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/b892b2b4-97e7-4274-8238-c4605cc3472d.png",
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/3fd12696-e11d-4568-8caf-d5d655438d1b.png",
       "SourceId": "ElStore",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
       "BasePath": "_content/ElStore",
-      "RelativePath": "Images/Product/b892b2b4-97e7-4274-8238-c4605cc3472d.png",
+      "RelativePath": "Images/Product/3fd12696-e11d-4568-8caf-d5d655438d1b.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -261,15 +261,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/Product/b892b2b4-97e7-4274-8238-c4605cc3472d.png"
+      "OriginalItemSpec": "wwwroot/Images/Product/3fd12696-e11d-4568-8caf-d5d655438d1b.png"
     },
     {
-      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/f35dc484-4695-4e01-b1db-dc9353844e4d.png",
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/bbacc66c-4a04-45ed-a1b3-a29b993af2cc.png",
       "SourceId": "ElStore",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
       "BasePath": "_content/ElStore",
-      "RelativePath": "Images/Product/f35dc484-4695-4e01-b1db-dc9353844e4d.png",
+      "RelativePath": "Images/Product/bbacc66c-4a04-45ed-a1b3-a29b993af2cc.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -280,15 +280,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/Product/f35dc484-4695-4e01-b1db-dc9353844e4d.png"
+      "OriginalItemSpec": "wwwroot/Images/Product/bbacc66c-4a04-45ed-a1b3-a29b993af2cc.png"
     },
     {
-      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/f542e539-b02a-4960-8b03-142872878bbc.png",
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/dbeee94e-61fb-44da-ac1b-aa11dfaa4cb3.png",
       "SourceId": "ElStore",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
       "BasePath": "_content/ElStore",
-      "RelativePath": "Images/Product/f542e539-b02a-4960-8b03-142872878bbc.png",
+      "RelativePath": "Images/Product/dbeee94e-61fb-44da-ac1b-aa11dfaa4cb3.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -299,26 +299,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/Product/f542e539-b02a-4960-8b03-142872878bbc.png"
-    },
-    {
-      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/fa35a23e-5038-44dd-b1c8-9d3ec4586297.png",
-      "SourceId": "ElStore",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
-      "BasePath": "_content/ElStore",
-      "RelativePath": "Images/Product/fa35a23e-5038-44dd-b1c8-9d3ec4586297.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/Product/fa35a23e-5038-44dd-b1c8-9d3ec4586297.png"
+      "OriginalItemSpec": "wwwroot/Images/Product/dbeee94e-61fb-44da-ac1b-aa11dfaa4cb3.png"
     },
     {
       "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/tile.png",

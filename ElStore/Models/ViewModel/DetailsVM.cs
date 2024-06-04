@@ -6,7 +6,7 @@ public class DetailsVM
 {
     public Product? Product { get; set; }
     [ValidateNever]
-    public IEnumerable<IEnumerable<string>> Image { get; set; }
+    public List<List<string?>> Image { get; set; }
     [ValidateNever]
     public string? Video { get; set; }
     [ValidateNever]

@@ -1,19 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ElStore.Models.ViewModel.DetailsVM
 
-<link rel="stylesheet" href="sweetalert2.min.css">
 @{
-    var title = "Create";
+    var title = Model.Product != null ? "Update" : "Create";
 }
 
 <form id="phoneForm" method="post" enctype="multipart/form-data" onsubmit="return validateInput()">
-    @if (Model.Product != null)
-    {
-        title = "Update";
-    }
     <h2 class="text-info pl-3">@title</h2>
     <div class="">
-        <input type="hidden" asp-for="Product.Id"/>
+        <input type="hidden" asp-for="Product.Id" />
         <div class="row g-0 position-relative">
             <div class="col-md-6 mb-md-0 p-md-4">
                 <div class="image-block p-3 image-back">
@@ -21,6 +16,7 @@
                         <div class="carousel-inner">
                             @if (Model.Image != null)
                             {
+                                <input type="hidden" name="existingImages" value="@string.Join(',', Model.Image.SelectMany(imageList => imageList))" />
                                 @foreach (var imageUrl in Model.Image.SelectMany(imageList => imageList))
                                 {
                                     <div class="carousel-item carousel-item-details @(imageUrl == Model.Image.SelectMany(imageList => imageList).First() ? "active" : "")">
@@ -45,46 +41,46 @@
             <div class="col-md-6 p-4 ps-md-0">
                 <div class="text-block p-3 text-description">
                     <label asp-for="Product.Brand">Brand</label> <span asp-validation-for="Product.Brand" class="text-danger"></span>
-                    <input asp-for="Product.Brand" class="form-control" placeholder="Enter Brand Name"/>
-                    
+                    <input asp-for="Product.Brand" class="form-control" placeholder="Enter Brand Name" />
+
                     <label asp-for="Product.Model">Model</label> <span asp-validation-for="Product.Model" class="text-danger"></span>
-                    <input asp-for="Product.Model" class="form-control" placeholder="Enter Model"/>
-                    
+                    <input asp-for="Product.Model" class="form-control" placeholder="Enter Model" />
+
                     <label asp-for="Product.ShortDescription">ShortDescription</label> <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
-                    <input asp-for="Product.ShortDescription" class="form-control" placeholder="Enter Short Description"/>
-                    
+                    <input asp-for="Product.ShortDescription" class="form-control" placeholder="Enter Short Description" />
+
                     <label asp-for="Product.Battery">Battery</label> <span asp-validation-for="Product.Battery" class="text-danger"></span>
-                    <input asp-for="Product.Battery" class="form-control" placeholder="Enter Battery"/>
-                    
+                    <input asp-for="Product.Battery" class="form-control" placeholder="Enter Battery" />
+
                     <label asp-for="Product.Price">Price</label> <span asp-validation-for="Product.Price" class="text-danger"></span>
-                    <input asp-for="Product.Price" class="form-control" placeholder="Enter Price"/>
-                    
+                    <input asp-for="Product.Price" class="form-control" placeholder="Enter Price" />
+
                     <label asp-for="Product.DescriptionPC.RAM">RAM</label> <span asp-validation-for="Product.DescriptionPC.RAM" class="text-danger"></span>
-                    <input asp-for="Product.DescriptionPC.RAM" class="form-control" placeholder="Enter RAM"/>
-                    
+                    <input asp-for="Product.DescriptionPC.RAM" class="form-control" placeholder="Enter RAM" />
+
                     <label asp-for="Product.DescriptionPC.ROM">ROM</label> <span asp-validation-for="Product.DescriptionPC.ROM" class="text-danger"></span>
-                    <input asp-for="Product.DescriptionPC.ROM" class="form-control" placeholder="Enter ROM"/>
-                    
+                    <input asp-for="Product.DescriptionPC.ROM" class="form-control" placeholder="Enter ROM" />
+
                     <label asp-for="Product.DescriptionPC.FrontCamera">Front Camera</label> <span asp-validation-for="Product.DescriptionPC.FrontCamera" class="text-danger"></span>
-                    <input asp-for="Product.DescriptionPC.FrontCamera" class="form-control" placeholder="Enter Front Camera"/>
-                    
+                    <input asp-for="Product.DescriptionPC.FrontCamera" class="form-control" placeholder="Enter Front Camera" />
+
                     <label asp-for="Product.DescriptionPC.BackCamera">Back Camera</label> <span asp-validation-for="Product.DescriptionPC.BackCamera" class="text-danger"></span>
-                    <input asp-for="Product.DescriptionPC.BackCamera" class="form-control" placeholder="Enter Back Camera"/>
-                    
+                    <input asp-for="Product.DescriptionPC.BackCamera" class="form-control" placeholder="Enter Back Camera" />
+
                     <label asp-for="Product.DescriptionPC.Display">Display</label> <span asp-validation-for="Product.DescriptionPC.Display" class="text-danger"></span>
-                    <input asp-for="Product.DescriptionPC.Display" class="form-control" type="number" placeholder="Enter Display"/>
-                    
+                    <input asp-for="Product.DescriptionPC.Display" class="form-control" type="number" placeholder="Enter Display" />
+
                     <label asp-for="Product.DescriptionPC.Text">Text</label> <span asp-validation-for="Product.DescriptionPC.Text" class="text-danger"></span>
                     <textarea asp-for="Product.DescriptionPC.Text" class="form-control" placeholder="Enter Description"></textarea>
-                    
+
                 </div>
-                <br/>
+                <br />
                 <div class="text-block p-3 text-description">
-                    
+
                     @if (title == "Create")
                     {
                         <label for="imageFiles">Images</label>
-                        <input type="file" name="imageFiles" id="imageFiles" class="form-control" multiple/>
+                        <input type="file" name="imageFiles" id="imageFiles" class="form-control" multiple />
                     }
                     else
                     {
@@ -95,39 +91,38 @@
                         <button type="button" class="btn btn-primary video-btn" data-target="#videoFileUpload">Upload File</button>
                         <button type="button" class="btn btn-primary video-btn" data-target="#videoLinkInput">Enter Link</button>
                     </div>
-                    
+
                     <div id="videoFileUpload" style="display: none;">
                         <label for="videoFile">Video (File)</label>
-                        <input type="file" name="videoFile" id="videoFile" class="form-control"/>
+                        <input type="file" name="videoFile" id="videoFile" class="form-control" />
                     </div>
-                    
+
                     <div id="videoLinkInput" style="display: none;">
                         <label for="videoLink">Video Link</label>
                         @if (title == "Update")
                         {
-                            <input type="text" name="Video" id="videoLink" class="form-control" value="https://www.youtube.com/watch?v=@Model.Video"/>
+                            <input type="text" name="Video" id="videoLink" class="form-control" value="https://www.youtube.com/watch?v=@Model.Video" />
                         }
                         else
                         {
-                            <input type="text" name="Video" id="videoLink" class="form-control" placeholder="Enter Video Link"/>
+                            <input type="text" name="Video" id="videoLink" class="form-control" placeholder="Enter Video Link" />
                         }
                     </div>
                 </div>
-                <br/>
+                <br />
                 <!-- Кнопка для отправки формы -->
                 @if (Model.Product?.Id != 0 && Model.Product != null)
                 {
-                    <input type="submit" class="btn btn-info w-100" value="Update"/>
+                    <input type="submit" class="btn btn-info w-100" value="Update" />
                 }
                 else
                 {
-                    <input type="submit" class="btn btn-primary w-100" value="Create"/>
+                    <input type="submit" class="btn btn-primary w-100" value="Create" />
                 }
             </div>
         </div>
-            <div id="player" class="text-description custom-player"></div>
-        </div>
-    
+        <div id="player" class="text-description custom-player"></div>
+    </div>
 </form>
 
 <!-- Модальное окно -->
@@ -142,35 +137,50 @@
                 @foreach (var imageUrl in Model.Image.SelectMany(imageList => imageList))
                 {
                     <div class="image-item">
-                        <img src="~/@imageUrl" class="img-thumbnail" alt="Image" style="width: 10%; height: 10%;">
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                        <button type="button" class="btn btn-secondary btn-sm">Edit</button>
+                        <img src="~/@imageUrl" class="img-thumbnail" alt="Image" style="width: 20%; height: 20%;">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger btn-sm delete-btn">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-sm edit-btn">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="input-file-container" style="display: none;">
+                            <input type="file" name="updatedImages[]" class="form-control file-input" />
+                        </div>
                     </div>
                 }
+                <div>
+                    <button class="custom-button">+</button>
+                </div>
             }
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="confirmImages" class="btn btn-success">Confirm</button>
         </div>
     </div>
 </div>
 
+
 @section Scripts{
-     @{
-                <partial name="VideoPlayerPartial"/>
-                <partial name="_ValidationScriptsPartial" />
-     }
+    @{
+        <partial name="VideoPlayerPartial" />
+        <partial name="_ValidationScriptsPartial" />
+    }
     <script>
         $(document).ready(function () {
             // Открытие модального окна
             $("#openModalBtn").click(function () {
-                            $("#imageModal").css("display", "block");
+                $("#imageModal").css("display", "block");
             });
-
-            
+        
             $(window).click(function (event) {
-                 if (event.target == $("#imageModal")[0]) {
-                      $("#imageModal").css("display", "none");
-                 }
+                if (event.target == $("#imageModal")[0]) {
+                    $("#imageModal").css("display", "none");
+                }
             });
-            
+        
             // Показать или скрыть поля для загрузки видео
             document.querySelectorAll('.video-btn').forEach(function(btn) {
                 btn.addEventListener('click', function() {
@@ -180,33 +190,100 @@
                     document.querySelector(target).style.display = 'block';
                 });
             });
-        });
-
-        // Валидация ввода перед отправкой формы
-        function validateInput() {
-            var imageFiles = document.getElementById("imageFiles");
-            var videoFile = document.getElementById("videoFile");
-            var videoLink = document.getElementById("videoLink");
-
-            if (imageFiles && imageFiles.files.length === 0) {
-                Swal.fire({
-                  title: 'Error!',
-                  text: 'Please upload some images',
-                  icon: 'error',
-                })
-                return false;
+        
+            // Валидация ввода перед отправкой формы
+            function validateInput() {
+                var imageFiles = document.getElementById("imageFiles");
+                var videoFile = document.getElementById("videoFile");
+                var videoLink = document.getElementById("videoLink");
+        
+                if (imageFiles && imageFiles.files.length === 0) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Please upload some images',
+                        icon: 'error',
+                    });
+                    return false;
                 }
-            
-            if (videoLink && videoLink.value.trim() === '') {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Please provide a video link',
-                    icon: 'error',
-                });
-                return false;
+        
+                if (videoLink && videoLink.value.trim() === '') {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Please provide a video link',
+                        icon: 'error',
+                    });
+                    return false;
+                }
+        
+                return true;
             }
-
-            return true;
-        }
+        
+            // Показать поле для загрузки изображения при нажатии на кнопку редактирования
+            $(".edit-btn").click(function() {
+                $(this).closest('.image-item').find('.input-file-container').toggle();
+            });
+        
+            // Добавление нового поля для загрузки изображения
+            $(".custom-button").click(function() {
+                var newInput = $('<div class="image-item"><input type="file" name="addImages[]" class="form-control file-input" /></div>');
+                $(this).parent().before(newInput);
+            });
+        
+            // Удаление изображения
+            $(".delete-btn").click(function() {
+                var imageItem = $(this).closest('.image-item');
+                var imageUrl = imageItem.find('img').attr('src').replace('~/', '');
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'deletedImages',
+                    value: imageUrl
+                }).appendTo('#phoneForm');
+                imageItem.remove();
+            });
+        
+            // Подтверждение изображений и добавление их в форму
+            $("#confirmImages").click(function () {
+                var files = [];
+                var addFiles = [];
+                $(".file-input").each(function () {
+                    if (this.files.length > 0) {
+                        if ($(this).attr('name') === 'addImages[]') {
+                            addFiles.push(this.files[0]);
+                        } else {
+                            files.push(this.files[0]);
+                        }
+                    }
+                });
+        
+                // Сохранение редактированных файлов в скрытом элементе формы
+                files.forEach(function (file, index) {
+                    var dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    var input = $('<input>').attr({
+                        type: 'file',
+                        name: 'editImages[]',
+                        style: 'display: none;'
+                    }).prop('files', dataTransfer.files);
+                    $('#phoneForm').append(input);
+                });
+        
+                // Сохранение новых файлов в скрытом элементе формы
+                addFiles.forEach(function (file, index) {
+                    var dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    var input = $('<input>').attr({
+                        type: 'file',
+                        name: 'addImages[]',
+                        style: 'display: none;'
+                    }).prop('files', dataTransfer.files);
+                    $('#phoneForm').append(input);
+                });
+        
+                $("#imageModal").css("display", "none");
+            });
+        
+            // Форма валидации перед отправкой
+            $("#phoneForm").submit(validateInput);
+        });
     </script>
 }
