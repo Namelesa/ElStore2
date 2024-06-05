@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-
 using ElStore.Data;
 using ElStore.Models;
 using ElStore.Models.ViewModel;
@@ -34,6 +33,7 @@ public class HeadphonesController : Controller
 
         return View(productVm);
     }
+
     
     //Upsert - get
     public IActionResult Upsert(int? id)
@@ -54,8 +54,8 @@ public class HeadphonesController : Controller
         var images = _db.Images.Where(i => i.Id == product.ImageId).Select(i => i.Image).ToList();
 
         phone.Product = product;
-        phone.HearphoneDescriptions = _db.HearphoneDescriptions.FirstOrDefault(d=> d.Id == product.DescriptionHId);
-        phone.HearphoneDescriptions = null;
+        phone.DescriptionPc = null;
+        phone.HearphoneDescriptions = _db.HearphoneDescriptions.FirstOrDefault(d => d.Id == product.DescriptionHId);;
         phone.Video = video;
         phone.Image = images;
 
@@ -77,7 +77,7 @@ public class HeadphonesController : Controller
                 phone.Product.DescriptionPCId = 1;
                 var files = HttpContext.Request.Form.Files.Where(file => file.Name.StartsWith("imageFiles"));
                 string webRootPath = _webHostEnvironment.WebRootPath;
-                var imgPaths = new List<string>();
+                var imgPaths = new List<string?>();
                 foreach (var file in files)
                 {
                     if (file.Length > 0)
@@ -99,25 +99,6 @@ public class HeadphonesController : Controller
 
                 if (phone.Video != null)
                 {
-                    if (phone.Video.Contains(".mp4"))
-                    {
-                        var video = HttpContext.Request.Form.Files.FirstOrDefault(file => file.Name == "videoFile");
-                        string fileName = Guid.NewGuid().ToString();
-                        if (video != null)
-                        {
-                            string extension = Path.GetExtension(video.FileName);
-                            string uploadVideo = Path.Combine(webRootPath, WC.VideoPath);
-                            string videoFilePath = Path.Combine(uploadVideo, fileName + extension);
-
-                            using (var fileStream = new FileStream(videoFilePath, FileMode.Create))
-                            {
-                                video.CopyTo(fileStream);
-                            }
-
-                            image.Video = Path.Combine(WC.VideoPath, fileName + extension);
-                        }
-                    }
-                    
                     if (phone.Video.Contains("https"))
                     {
                         string[] parts = phone.Video.Split('=');
@@ -149,13 +130,102 @@ public class HeadphonesController : Controller
                             existingProduct.Model = phone.Product.Model;
                             existingProduct.Battery = phone.Product.Battery;
                             existingProduct.Price = phone.Product.Price;
-                            
+        
                             existingProductDescription.speaker = phone.Product.HearphoneDescriptions.speaker;
                             existingProductDescription.Design = phone.Product.HearphoneDescriptions.Design;
                             existingProductDescription.TypeConnections = phone.Product.HearphoneDescriptions.TypeConnections;
                             existingProductDescription.Text = phone.Product.HearphoneDescriptions.Text;
+                            
+                            List<string?> deletedImages = HttpContext.Request.Form["deletedImages"]
+                                .Select(di => di != null && di.StartsWith("/") ? di.Substring(1) : di)
+                                .ToList();
+    
+                            List<IFormFile> editImages = HttpContext.Request.Form.Files
+                                .Where(file => file.Name.StartsWith("editImages"))
+                                .ToList();
+                            
+                            List<IFormFile> addImages = HttpContext.Request.Form.Files
+                                .Where(file => file.Name.StartsWith("addImages"))
+                                .ToList();
+                            
+                            List<string?> index = HttpContext.Request.Form["replaceIndexes"].ToList();
+                            var indices = Array.ConvertAll(index.ToArray(), int.Parse);
+                            string webRootPath = _webHostEnvironment.WebRootPath;
+                            
+                            
+                            if (!deletedImages.Equals(null))
+                            {
+                                existingProductImages.Image = existingProductImages.Image
+                                    .Where(image => !deletedImages.Any(deletedImage => image != null && image.Equals(deletedImage, StringComparison.OrdinalIgnoreCase)))
+                                    .ToList();
+
+                                foreach (var image in deletedImages)
+                                {
+                                    if (image != null)
+                                    {
+                                        var fullPath = Path.Combine(webRootPath, image);
+                                        if (System.IO.File.Exists(fullPath))
+                                        {
+                                            System.IO.File.Delete(fullPath);
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (!addImages.Equals(null))
+                            {
+                                foreach (var image in addImages)
+                                {
+                                    string fileName = Guid.NewGuid().ToString();
+                                    string extension = Path.GetExtension(image.FileName);
+                                    string filePath = Path.Combine(webRootPath, WC.ImagePath, fileName + extension);
+
+                                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                                    {
+                                        image.CopyTo(fileStream);
+                                    }
+
+                                    existingProductImages.Image.Add(Path.Combine(WC.ImagePath, fileName + extension));
+                                }
+                            }
+
+                            if (!editImages.Equals(null))
+                            {
+                                var imgPaths = new List<string?>();
                                 
-                            if (phone.Video != null) existingProductImages.Video = phone.Video;
+                                foreach (var image in editImages)
+                                {
+                                    string fileName = Guid.NewGuid().ToString();
+                                    string extension = Path.GetExtension(image.FileName);
+                                    string filePath = Path.Combine(webRootPath, WC.ImagePath, fileName + extension);
+
+                                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                                    {
+                                        image.CopyTo(fileStream);
+                                    }
+                                    imgPaths.Add(Path.Combine(WC.ImagePath, fileName + extension));
+                                }
+                                for (int i = 0; i < indices.Length; i++)
+                                {
+                                    int l = indices[i];
+            
+                                    if (l >= 0 && l < existingProductImages.Image.Count)
+                                    {
+                                        existingProductImages.Image[l] = imgPaths[i];
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            
+                            if (phone.Video != null && phone.Video.Contains("https"))
+                            {
+                                string[] parts = phone.Video.Split('=');
+                                string videoId = parts[^1];
+                                existingProductImages.Video = videoId;
+                            }
                             
                         }
                     }
@@ -169,7 +239,7 @@ public class HeadphonesController : Controller
         }
         return View(phone);
     }
-    
+
     //Details - get
     public IActionResult Details(int? id)
     {
@@ -192,8 +262,8 @@ public class HeadphonesController : Controller
             Product = product,
             Image = images,
             Video = video,
-            DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => product != null && d.Id == product.DescriptionPCId),
-            HearphoneDescriptions = null
+            DescriptionPc = null,
+            HearphoneDescriptions = _db.HearphoneDescriptions.FirstOrDefault(d => product != null && d.Id == product.DescriptionHId)
         };
 
         return View(detailsVm);
@@ -204,5 +274,43 @@ public class HeadphonesController : Controller
     public IActionResult DetailsPost(int id, DetailsVM detailsVm)
     {
         return View(detailsVm);
+    }
+    
+    //Delete
+    public IActionResult Delete(int? id)
+    {
+        string webRootPath = _webHostEnvironment.WebRootPath;
+        var product = _db.Product.Find(id);
+        if (product != null)
+        {
+            var descriptions = _db.HearphoneDescriptions.FirstOrDefault(u => u.Id == product.DescriptionHId);
+            var imageDb = _db.Images.Find(product.ImageId);
+        
+            if (descriptions != null)
+            {
+                _db.HearphoneDescriptions.Remove(descriptions);
+            }
+            
+            var imagesForProduct = _db.Images.Where(u => u.Id == product.ImageId).ToList();
+            
+            var imagePaths = imagesForProduct.SelectMany(u => u.Image).ToList();
+        
+            foreach (var imagePath in imagePaths)
+            {
+                if (imagePath != null)
+                {
+                    var fullPath = Path.Combine(webRootPath, imagePath);
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                }
+            }
+
+            if (imageDb != null) _db.Images.Remove(imageDb);
+            _db.Product.Remove(product);
+            _db.SaveChanges();
+        }
+        return RedirectToAction(nameof(Index));
     }
 }

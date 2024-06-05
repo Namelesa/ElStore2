@@ -142,10 +142,16 @@ public class PhonesController : Controller
                                 .Select(di => di != null && di.StartsWith("/") ? di.Substring(1) : di)
                                 .ToList();
     
-                            List<IFormFile> updatedImages = HttpContext.Request.Form.Files
-                                .Where(file => file.Name.StartsWith("updatedImages"))
+                            List<IFormFile> editImages = HttpContext.Request.Form.Files
+                                .Where(file => file.Name.StartsWith("editImages"))
                                 .ToList();
-
+                            
+                            List<IFormFile> addImages = HttpContext.Request.Form.Files
+                                .Where(file => file.Name.StartsWith("addImages"))
+                                .ToList();
+                            
+                            List<string?> index = HttpContext.Request.Form["replaceIndexes"].ToList();
+                            var indices = Array.ConvertAll(index.ToArray(), int.Parse);
                             string webRootPath = _webHostEnvironment.WebRootPath;
                             
                             
@@ -164,6 +170,54 @@ public class PhonesController : Controller
                                         {
                                             System.IO.File.Delete(fullPath);
                                         }
+                                    }
+                                }
+                            }
+
+                            if (!addImages.Equals(null))
+                            {
+                                foreach (var image in addImages)
+                                {
+                                    string fileName = Guid.NewGuid().ToString();
+                                    string extension = Path.GetExtension(image.FileName);
+                                    string filePath = Path.Combine(webRootPath, WC.ImagePath, fileName + extension);
+
+                                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                                    {
+                                        image.CopyTo(fileStream);
+                                    }
+
+                                    existingProductImages.Image.Add(Path.Combine(WC.ImagePath, fileName + extension));
+                                }
+                            }
+
+                            if (!editImages.Equals(null))
+                            {
+                                var imgPaths = new List<string?>();
+                                
+                                foreach (var image in editImages)
+                                {
+                                    string fileName = Guid.NewGuid().ToString();
+                                    string extension = Path.GetExtension(image.FileName);
+                                    string filePath = Path.Combine(webRootPath, WC.ImagePath, fileName + extension);
+
+                                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                                    {
+                                        image.CopyTo(fileStream);
+                                    }
+                                    imgPaths.Add(Path.Combine(WC.ImagePath, fileName + extension));
+                                }
+                                for (int i = 0; i < indices.Length; i++)
+                                {
+                                    int l = indices[i];
+            
+                                    if (l >= 0 && l < existingProductImages.Image.Count)
+                                    {
+                                        existingProductImages.Image[l] = imgPaths[i];
+                                    }
+                                    else
+                                    {
+                                        break;
                                     }
                                 }
                             }
@@ -224,4 +278,41 @@ public class PhonesController : Controller
         return View(detailsVm);
     }
     
+    //Delete
+    public IActionResult Delete(int? id)
+    {
+        string webRootPath = _webHostEnvironment.WebRootPath;
+        var product = _db.Product.Find(id);
+        if (product != null)
+        {
+            var descriptions = _db.DescriptionPC.FirstOrDefault(u => u.Id == product.DescriptionPCId);
+            var imageDb = _db.Images.Find(product.ImageId);
+        
+            if (descriptions != null)
+            {
+                _db.DescriptionPC.Remove(descriptions);
+            }
+            
+            var imagesForProduct = _db.Images.Where(u => u.Id == product.ImageId).ToList();
+            
+            var imagePaths = imagesForProduct.SelectMany(u => u.Image).ToList();
+        
+            foreach (var imagePath in imagePaths)
+            {
+                if (imagePath != null)
+                {
+                    var fullPath = Path.Combine(webRootPath, imagePath);
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                }
+            }
+
+            if (imageDb != null) _db.Images.Remove(imageDb);
+            _db.Product.Remove(product);
+            _db.SaveChanges();
+        }
+        return RedirectToAction(nameof(Index));
+    }
 }

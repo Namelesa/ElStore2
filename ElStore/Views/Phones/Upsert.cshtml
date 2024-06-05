@@ -110,15 +110,24 @@
                     </div>
                 </div>
                 <br />
+                
                 <!-- Кнопка для отправки формы -->
                 @if (Model.Product?.Id != 0 && Model.Product != null)
                 {
-                    <input type="submit" class="btn btn-info w-100" value="Update" />
+                    <input type="submit" class="btn btn-info w-100 mb-2" value="Update" />
                 }
                 else
                 {
-                    <input type="submit" class="btn btn-primary w-100" value="Create" />
+                    <input type="submit" class="btn btn-primary w-100 mb-2" value="Create" />
                 }
+                
+                <!-- Кнопка для удаления товара -->
+                @if (Model.Product?.Id != 0 && Model.Product != null && title == "Update")
+                {       
+                   
+                        <button type="submit" class="btn btn-danger w-100" asp-route-Id="@Model.Product.Id" asp-action="Delete">Delete</button>
+                }
+                
             </div>
         </div>
         <div id="player" class="text-description custom-player"></div>
@@ -148,6 +157,7 @@
                         </div>
                         <div class="input-file-container" style="display: none;">
                             <input type="file" name="updatedImages[]" class="form-control file-input" />
+                            <input type="hidden" name="replaceIndex[]" value="@Model.Image.SelectMany(imageList => imageList).ToList().IndexOf(imageUrl)" />
                         </div>
                     </div>
                 }
@@ -225,8 +235,9 @@
         
             // Добавление нового поля для загрузки изображения
             $(".custom-button").click(function() {
-                var newInput = $('<div class="image-item"><input type="file" name="addImages[]" class="form-control file-input" /></div>');
+                var newInput = $('<div class="image-item"><input type="file" name="addImages[]" class="form-control file-input" multiple/></div>');
                 $(this).parent().before(newInput);
+                $(this).hide();
             });
         
             // Удаление изображения
@@ -245,18 +256,24 @@
             $("#confirmImages").click(function () {
                 var files = [];
                 var addFiles = [];
+                var replaceIndexes = [];
                 $(".file-input").each(function () {
                     if (this.files.length > 0) {
                         if ($(this).attr('name') === 'addImages[]') {
-                            addFiles.push(this.files[0]);
+                            for (var i = 0; i < this.files.length; i++) {
+                                addFiles.push(this.files[i]);
+                            }
                         } else {
-                            files.push(this.files[0]);
+                            for (var i = 0; i < this.files.length; i++) {
+                                files.push(this.files[i]);
+                            }
+                            replaceIndexes.push($(this).siblings('input[name="replaceIndex[]"]').val());
                         }
                     }
                 });
         
                 // Сохранение редактированных файлов в скрытом элементе формы
-                files.forEach(function (file, index) {
+                files.forEach(function (file) {
                     var dataTransfer = new DataTransfer();
                     dataTransfer.items.add(file);
                     var input = $('<input>').attr({
@@ -266,9 +283,18 @@
                     }).prop('files', dataTransfer.files);
                     $('#phoneForm').append(input);
                 });
+                
+                // Сохранение индексов редактированных файлов
+                replaceIndexes.forEach(function (index) {
+                    $('<input>').attr({
+                        type: 'hidden',
+                        name: 'replaceIndexes',
+                        value: index
+                    }).appendTo('#phoneForm');
+                });
         
                 // Сохранение новых файлов в скрытом элементе формы
-                addFiles.forEach(function (file, index) {
+                addFiles.forEach(function (file) {
                     var dataTransfer = new DataTransfer();
                     dataTransfer.items.add(file);
                     var input = $('<input>').attr({
