@@ -5,6 +5,11 @@ namespace ElStore.Models;
 
 public class Product
 {
+    public Product()
+    {
+        Count = 1;
+    }
+    
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
@@ -37,6 +42,6 @@ public class Product
     public virtual HearphoneDescriptions HearphoneDescriptions { get; set; }
     
     [NotMapped]
-    [Range(1, 10000, ErrorMessage ="Count must be > than 0")]
+    [Range(1, 10000, ErrorMessage = "Count must be > than 0")]
     public int Count { get; set; }
 }

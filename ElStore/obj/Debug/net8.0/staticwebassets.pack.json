@@ -17,6 +17,58 @@
       "PackagePath": "staticwebassets/Images/ElStore_Logo4.png"
     },
     {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/07b79987-4c67-41ec-84f3-2207c32eb262.png",
+      "PackagePath": "staticwebassets/Images/Product/07b79987-4c67-41ec-84f3-2207c32eb262.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/22e4d9f6-d9ce-4bc8-87de-e89a543f216e.png",
+      "PackagePath": "staticwebassets/Images/Product/22e4d9f6-d9ce-4bc8-87de-e89a543f216e.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/244aec29-9a37-46d9-a720-0c6895db01f2.png",
+      "PackagePath": "staticwebassets/Images/Product/244aec29-9a37-46d9-a720-0c6895db01f2.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/406809cb-5b0b-4e46-8d7c-e457324484d7.jpeg",
+      "PackagePath": "staticwebassets/Images/Product/406809cb-5b0b-4e46-8d7c-e457324484d7.jpeg"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/4f11af35-edfe-429d-8a41-c5ccd88abf37.jpeg",
+      "PackagePath": "staticwebassets/Images/Product/4f11af35-edfe-429d-8a41-c5ccd88abf37.jpeg"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/55e4a05e-a9e6-48f8-b32e-a402cf6b65d4.jpeg",
+      "PackagePath": "staticwebassets/Images/Product/55e4a05e-a9e6-48f8-b32e-a402cf6b65d4.jpeg"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/715d2605-799a-4223-b9a4-8179c4b5563a.png",
+      "PackagePath": "staticwebassets/Images/Product/715d2605-799a-4223-b9a4-8179c4b5563a.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/86254768-f4e2-4a41-9fba-bcc71d89f5af.png",
+      "PackagePath": "staticwebassets/Images/Product/86254768-f4e2-4a41-9fba-bcc71d89f5af.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/a3416978-373e-4962-baf1-497fba8b188d.png",
+      "PackagePath": "staticwebassets/Images/Product/a3416978-373e-4962-baf1-497fba8b188d.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/b67d165e-0647-49d9-9ba0-aeb27398aa7e.png",
+      "PackagePath": "staticwebassets/Images/Product/b67d165e-0647-49d9-9ba0-aeb27398aa7e.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/bee780a4-f67d-48a3-9cfa-81ae128010c2.png",
+      "PackagePath": "staticwebassets/Images/Product/bee780a4-f67d-48a3-9cfa-81ae128010c2.png"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/d8153de8-a001-44f4-a554-2398e574e345.jpeg",
+      "PackagePath": "staticwebassets/Images/Product/d8153de8-a001-44f4-a554-2398e574e345.jpeg"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/dac032e3-281d-4c5c-83b7-14239bfba430.png",
+      "PackagePath": "staticwebassets/Images/Product/dac032e3-281d-4c5c-83b7-14239bfba430.png"
+    },
+    {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/hearphones.jpg",
       "PackagePath": "staticwebassets/Images/hearphones.jpg"
     },
@@ -43,6 +95,10 @@
     {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/watches.jpg",
       "PackagePath": "staticwebassets/Images/watches.jpg"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/shopping_cart.css",
+      "PackagePath": "staticwebassets/css/shopping_cart.css"
     },
     {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/site.css",

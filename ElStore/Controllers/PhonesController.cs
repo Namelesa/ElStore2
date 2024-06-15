@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ElStore.Data;
 using ElStore.Models;
 using ElStore.Models.ViewModel;
+using ElStore.Utility;
 
 namespace ElStore.Controllers;
 
@@ -11,7 +12,7 @@ public class PhonesController : Controller
     private readonly ApplicationDbContext _db;
     private readonly IWebHostEnvironment _webHostEnvironment;
 
-    public PhonesController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)
+    public PhonesController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment, IConfiguration configuration)
     {
         _db = db;
         _webHostEnvironment = webHostEnvironment;
@@ -33,7 +34,6 @@ public class PhonesController : Controller
 
         return View(productVm);
     }
-
     
     //Upsert - get
     public IActionResult Upsert(int? id)
@@ -154,7 +154,6 @@ public class PhonesController : Controller
                             var indices = Array.ConvertAll(index.ToArray(), int.Parse);
                             string webRootPath = _webHostEnvironment.WebRootPath;
                             
-                            
                             if (!deletedImages.Equals(null))
                             {
                                 existingProductImages.Image = existingProductImages.Image
@@ -249,33 +248,73 @@ public class PhonesController : Controller
         {
             return NotFound();
         }
-
-        var product = _db.Product.Find(id);
         
-        var images = _db.Images
-            .Where(i => product != null && i.Id == product.ImageId)
-            .Select(i => i.Image)
-            .ToList();
-
-        var video = _db.Images.Where(u=> product != null && u.Id == product.ImageId).Select(i => i.Video).FirstOrDefault();
+        List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+        if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null &&
+            HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart).Any())
+        {
+            shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
+        } 
+        
+        var product = _db.Product.Find(id);
         
         DetailsVM detailsVm = new DetailsVM()
         {
             Product = product,
-            Image = images,
-            Video = video,
+            Image = _db.Images
+                .Where(i => product != null && i.Id == product.ImageId)
+                .Select(i => i.Image)
+                .ToList(),
+            Video = _db.Images.Where(u=> product != null && u.Id == product.ImageId).Select(i => i.Video).FirstOrDefault(),
             DescriptionPc = _db.DescriptionPC.FirstOrDefault(d => product != null && d.Id == product.DescriptionPCId),
             HearphoneDescriptions = null
         };
+
+        foreach (var item in shoppingCartList)
+        {
+            if (item.ProductId == id)
+            {
+                detailsVm.ExistInCard = true;
+            }
+        }
 
         return View(detailsVm);
     }
     
     //Details - post
     [HttpPost, ActionName("Details")]
-    public IActionResult DetailsPost(int id, DetailsVM detailsVm)
+    public IActionResult DetailsPost(int id)
     {
-        return View(detailsVm);
+        List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+        if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null &&
+            HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart).Any())
+        {
+            shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
+        }
+        shoppingCartList.Add(new ShoppingCart{ProductId = id});
+        HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+        return RedirectToAction(nameof(Index));
+    }
+    
+    //Remove from Cart
+    public IActionResult RemoveFromCart(int id)
+    {
+        List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+        if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null &&
+            HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart).Any())
+        {
+            shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
+        }
+
+        var itemToRemove = shoppingCartList.SingleOrDefault(u => u.ProductId == id);
+
+        if (itemToRemove != null)
+        {
+            shoppingCartList.Remove(itemToRemove);
+        }
+        
+        HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+        return RedirectToAction(nameof(Index));
     }
     
     //Delete

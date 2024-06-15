@@ -1,4 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http
+@using ElStore.Models
+@inject IHttpContextAccessor HttpContextAccessor
+@using ElStore.Utility
+@using System.Security.Claims
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +40,42 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white-50" asp-area="" asp-controller="Laptops" asp-action="Index">Laptops</a>
+                        </li>
+                        <li>
+                            @if (HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null)
+                            {
+                                <a asp-action="Index" asp-controller="Cart" class="nav-link">
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart).Count; 
+                                    }
+                                    <i class="fa fa-shopping-cart"></i> (@count)
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index" asp-controller="Cart" class="nav-link">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            }
+                        </li>
+                        <li class="nav-item">
+                            
+                                @if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+                                {
+                                    <span>@HttpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email)</span>
+                                    <a asp-controller="User" asp-action="Login" class="nav-link text-white-50">
+                                       <i class="fa fa-user-circle-o"></i> 
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="User" asp-action="Register" class="nav-link text-white-50">
+                                        <i class="fa fa-user-circle-o"></i> 
+                                    </a>
+                                    <a asp-controller="User" asp-action="Login" class="nav-link text-white-50">
+                                        <i class="fa fa-user-circle-o"></i> 
+                                    </a>
+                                }
                         </li>
                     </ul>
                 </div>

@@ -1,10 +1,10 @@
-
 using ElStore.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElStore.Data
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -16,5 +16,7 @@ namespace ElStore.Data
         public DbSet<DescriptionPC> DescriptionPC { get; set; }
         public DbSet<HearphoneDescriptions> HearphoneDescriptions { get; set; }
         public DbSet<Images> Images { get; set; }
+        
+        public DbSet<Users> Users { get; set; }
     }
 }

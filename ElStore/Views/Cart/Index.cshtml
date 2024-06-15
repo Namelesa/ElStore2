@@ -1,0 +1,94 @@
+@model List<ElStore.Models.ViewModel.ProductVM>
+<link rel="stylesheet" href="~/css/shopping_cart.css" asp-append-version="true" />
+
+@if (Model.Any())
+{
+    <form id="phoneForm" method="post" asp-action="UpdateQuantities">
+        <h2 class="text-info pl-3">Shopping Cart</h2>
+        <div class="container padding-bottom-3x mb-1">
+            <div class="table-responsive shopping-cart">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Subtotal</th>
+                        <th class="text-center"><a class="btn btn-sm btn-outline-danger" asp-action="ClearCart">Clear Cart</a></th>
+                    </tr>
+                    </thead>
+                    @for (int i = 0; i < Model.Count; i++)
+                    { 
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="product-item">
+                                        <a class="product-thumb" asp-controller="@GetControllerName(Model[i].Product.CategoryId)" asp-action="Details" asp-route-id="@Model[i].Product.Id">
+                                            <img src="~/@Model[i].Image.First()" alt="Product" class="product-image">
+                                        </a>
+                                        <div class="product-info">
+                                            <h4 class="product-title">
+                                                <a asp-controller="@GetControllerName(Model[i].Product.CategoryId)" asp-action="Details" asp-route-id="@Model[i].Product.Id">@Model[i].Product.Brand @Model[i].Product.Model</a>
+                                            </h4>
+                                            <span>@Model[i].Product.ShortDescription</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="count-input">
+                                        <input class="form-control form-control-sm" type="number" name="Quantities[@i]" value="@Model[i].Count" required="" min="1" max="100">
+                                        <input type="hidden" name="ProductIds[@i]" value="@Model[i].Product.Id" />
+                                    </div>
+                                </td>
+                                <td class="text-center text-lg text-medium">$@Model[i].Product.Price</td>
+                                <td class="text-center text-lg text-medium">$@(Model[i].Product.Price * Model[i].Count)</td>
+                                <td class="text-center">
+                                    <a class="remove-from-cart" asp-action="Remove" asp-route-id="@Model[i].Product.Id" data-toggle="tooltip" title="" data-original-title="Remove item">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                </table>
+            </div>
+            <div class="shopping-cart-footer">
+                <div class="column text-lg">Subtotal: <span class="text-medium">$@ViewBag.TotalSum</span></div>
+            </div>
+            <div class="shopping-cart-footer">
+                <div class="column">
+                    <a class="btn btn-outline-secondary" asp-action="Index" asp-controller="Home">
+                        <i class="icon-arrow-left"></i>&nbsp;Back to Shopping
+                    </a>
+                </div>
+                <div class="column">
+                    <button type="submit" class="btn btn-primary" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</button>
+                    <a class="btn btn-success" href="#">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <p class="text-center">No products in your cart :(</p>
+}
+
+@functions {
+    private string GetControllerName(int categoryId)
+    {
+        switch (categoryId)
+        {
+            case 1:
+                return "Phones";
+            case 2:
+                return "Headphones";
+            case 3:
+                return "Watches";
+            case 4:
+                return "Laptops";
+            default:
+                return "Home";
+        }
+    }
+}

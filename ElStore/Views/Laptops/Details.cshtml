@@ -3,7 +3,6 @@
 
 <div class="">
     <form method="post">
-        
         <div class="row g-0 position-relative">
             <div class="col-md-6 mb-md-0 p-md-4">
                 <div class="image-block p-3 image-back">
@@ -47,6 +46,16 @@
                 <br/>
                 <div class="text-block p-3 text-description">
                     <partial name="_PaymentAndDelivery"/>
+                </div>
+                <div class="text-center mt-1">
+                     @if (Model.ExistInCard)
+                     {
+                         <a asp-action="RemoveFromCart" asp-route-id="@if (Model.Product != null) { @Model.Product.Id }" class="btn btn-warning btn-square form-control btn-lg" style="height:50px;">Remove from Cart</a>
+                     }
+                     else
+                     {
+                         <button type="submit" asp-route-id="@if (Model.Product != null) { @Model.Product.Id }" class="btn btn-info form-control btn-lg" style="height:50px;">Add to Cart</button>
+                     }
                 </div>
             </div>
         </div>
