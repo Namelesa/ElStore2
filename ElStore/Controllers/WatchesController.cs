@@ -3,6 +3,7 @@ using ElStore.Data;
 using ElStore.Models;
 using ElStore.Models.ViewModel;
 using ElStore.Utility;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ElStore.Controllers;
 
@@ -37,6 +38,7 @@ public class WatchesController : Controller
 
     
     //Upsert - get
+    [Authorize(Roles = "Admin")]
     public IActionResult Upsert(int? id)
     {
         DetailsVM phone = new DetailsVM();
@@ -66,6 +68,7 @@ public class WatchesController : Controller
     //Upsert - post
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin")]
     public IActionResult Upsert(DetailsVM phone)
     {
     
@@ -131,12 +134,14 @@ public class WatchesController : Controller
                             existingProduct.Model = phone.Product.Model;
                             existingProduct.Battery = phone.Product.Battery;
                             existingProduct.Price = phone.Product.Price;
+                            existingProduct.Guarantee = phone.Product.Guarantee;
         
                             existingProductDescription.RAM = phone.Product.DescriptionPC.RAM;
                             existingProductDescription.ROM = phone.Product.DescriptionPC.ROM;
                             existingProductDescription.Display = phone.Product.DescriptionPC.Display;
                             existingProductDescription.FrontCamera = phone.Product.DescriptionPC.FrontCamera;
                             existingProductDescription.BackCamera = phone.Product.DescriptionPC.BackCamera;
+                            existingProductDescription.Processor = phone.Product.DescriptionPC.Processor;
                             existingProductDescription.Text = phone.Product.DescriptionPC.Text;
                             
                             List<string?> deletedImages = HttpContext.Request.Form["deletedImages"]
@@ -309,6 +314,7 @@ public class WatchesController : Controller
     }
     
     //Delete
+    [Authorize(Roles = "Admin")]
     public IActionResult Delete(int? id)
     {
         string webRootPath = _webHostEnvironment.WebRootPath;

@@ -13,5 +13,6 @@ public class DescriptionPC
     public int ROM { get; set; }
     public string FrontCamera { get; set; }
     public string BackCamera { get; set; }
+    public string Processor { get; set; }
     public string Text { get; set; }
 }

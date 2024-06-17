@@ -3,6 +3,7 @@ using ElStore.Data;
 using ElStore.Models;
 using ElStore.Models.ViewModel;
 using ElStore.Utility;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ElStore.Controllers;
 
@@ -37,6 +38,7 @@ public class HeadphonesController : Controller
 
     
     //Upsert - get
+    [Authorize(Roles = "Admin")]
     public IActionResult Upsert(int? id)
     {
         DetailsVM phone = new DetailsVM();
@@ -66,6 +68,7 @@ public class HeadphonesController : Controller
     //Upsert - post
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin")]
     public IActionResult Upsert(DetailsVM phone)
     {
     
@@ -131,8 +134,9 @@ public class HeadphonesController : Controller
                             existingProduct.Model = phone.Product.Model;
                             existingProduct.Battery = phone.Product.Battery;
                             existingProduct.Price = phone.Product.Price;
+                            existingProduct.Guarantee = phone.Product.Guarantee;
         
-                            existingProductDescription.speaker = phone.Product.HearphoneDescriptions.speaker;
+                            existingProductDescription.SpeakerSize = phone.Product.HearphoneDescriptions.SpeakerSize;
                             existingProductDescription.Design = phone.Product.HearphoneDescriptions.Design;
                             existingProductDescription.TypeConnections = phone.Product.HearphoneDescriptions.TypeConnections;
                             existingProductDescription.Text = phone.Product.HearphoneDescriptions.Text;
@@ -322,6 +326,7 @@ public class HeadphonesController : Controller
     }
     
     //Delete
+    [Authorize(Roles = "Admin")]
     public IActionResult Delete(int? id)
     {
         string webRootPath = _webHostEnvironment.WebRootPath;

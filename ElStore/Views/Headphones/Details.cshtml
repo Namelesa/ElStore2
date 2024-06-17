@@ -34,9 +34,10 @@
                     <p>@Model.Product?.ShortDescription</p>
                     <h5>Characteristics: </h5>
                     <ul class="no-style">
-                        <li>Speaker - @Model.HearphoneDescriptions?.speaker</li>
+                        <li>Speaker - @Model.HearphoneDescriptions?.SpeakerSize</li>
                         <li>Design - @Model.HearphoneDescriptions?.Design</li>
                         <li>Type Connection - @Model.HearphoneDescriptions?.TypeConnections</li>
+                        <li>Guarantee - @Model.Product?.Guarantee</li>
                     </ul>
                     <p>Text - @Model.HearphoneDescriptions?.Text</p>
                 </div>

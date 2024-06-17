@@ -2,11 +2,13 @@ using ElStore.Data;
 using ElStore.Models;
 using ElStore.Models.ViewModel;
 using ElStore.Utility;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElStore.Controllers;
-
 public class CartController : Controller
 {
     private readonly ApplicationDbContext _db;
@@ -63,7 +65,6 @@ public class CartController : Controller
         HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
         return RedirectToAction(nameof(Index));
     }
-
     public IActionResult ClearCart()
     {
         HttpContext.Session.Set(WC.SessionCart, new List<ShoppingCart>());

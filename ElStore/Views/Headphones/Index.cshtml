@@ -30,9 +30,12 @@
                             <a asp-action="Details" asp-route-id="@product.Product.Id" class="text-decoration-none text-dark">@product.Product.Brand @product.Product.Model</a>
                         </h5>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a asp-route-Id="@product.Product.Id" asp-action="Upsert">
-                                <i class="fa fa-edit"></i>
-                            </a>
+                            @if (User.IsInRole("Admin"))
+                                    {
+                                        <a asp-route-Id="@product.Product.Id" asp-action="Upsert">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    }
                             <p class="card-text">@product.Product.Price$</p>
                             <button class="btn btn-primary">Buy</button>
                         </div>
@@ -42,9 +45,12 @@
         }
     </div>
     <div class="text-center mt-3">
-        <a asp-action="Upsert">
-            <button class="custom-button">+</button>
-        </a>
+        @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Upsert">
+                        <button class="custom-button">+</button>
+                    </a>
+                }
     </div>
 }
 else
@@ -52,8 +58,11 @@ else
     <p class="text-center">Headphones</p>
     <p class="text-center">No product in this category :(</p>
     <div class="text-center mt-3">
-        <a asp-action="Upsert">
-            <button class="custom-button">+</button>
-        </a>
+        @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Upsert">
+                        <button class="custom-button">+</button>
+                    </a>
+                }
     </div>
 }

@@ -1,25 +1,25 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ElStore.Models.ViewModel;
-
-public class RegisterVM
+namespace ElStore.Models.ViewModel
 {
-    [Microsoft.Build.Framework.Required]
-    [EmailAddress]
-    public string Email { get; set; }
-    
-    [Microsoft.Build.Framework.Required]
-    [DataType(DataType.Password)]
-    public string Password { get; set; }
-    
-    [Microsoft.Build.Framework.Required]
-    [DataType(DataType.Password)]
-    [Compare("Password", ErrorMessage = "Passwords do not match.")]
-    public string ConfirmPassword { get; set; }
-    
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    
-    [DataType(DataType.PhoneNumber)]
-    public string? PhoneNumber { get; set; }
+    public class RegisterVM
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+        
+        [Required] public string Login { get; set; }
+        [Required]
+        [Phone]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Password and Confirm Password must match.")]
+        public string ConfirmPassword { get; set; }
+    }
 }

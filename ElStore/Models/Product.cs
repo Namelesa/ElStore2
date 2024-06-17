@@ -40,6 +40,8 @@ public class Product
     public int DescriptionHId { get; set; }
     [ForeignKey("DescriptionHId")]
     public virtual HearphoneDescriptions HearphoneDescriptions { get; set; }
+
+    public string Guarantee { get; set; }
     
     [NotMapped]
     [Range(1, 10000, ErrorMessage = "Count must be > than 0")]

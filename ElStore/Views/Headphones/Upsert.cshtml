@@ -4,8 +4,9 @@
 @{
     var title = Model.Product != null ? "Update" : "Create";
 }
-
-<form id="phoneForm" method="post" enctype="multipart/form-data" onsubmit="return validateInput()">
+@if (User.IsInRole("Admin"))
+{
+    <form id="phoneForm" method="post" enctype="multipart/form-data" onsubmit="return validateInput()">
     <h2 class="text-info pl-3">@title</h2>
     <div class="">
         <input type="hidden" asp-for="Product.Id" />
@@ -52,11 +53,14 @@
                     <label asp-for="Product.Battery">Battery</label> <span asp-validation-for="Product.Battery" class="text-danger"></span>
                     <input asp-for="Product.Battery" class="form-control" placeholder="Enter Battery" />
 
+                    <label asp-for="Product.Guarantee">Guarantee</label> <span asp-validation-for="Product.Guarantee" class="text-danger"></span>
+                    <input asp-for="Product.Guarantee" class="form-control" placeholder="Enter Guarantee" />
+                    
                     <label asp-for="Product.Price">Price</label> <span asp-validation-for="Product.Price" class="text-danger"></span>
                     <input asp-for="Product.Price" class="form-control" placeholder="Enter Price" />
 
-                    <label asp-for="Product.HearphoneDescriptions.speaker">Speaker</label> <span asp-validation-for="Product.HearphoneDescriptions.speaker" class="text-danger"></span>
-                    <input asp-for="Product.HearphoneDescriptions.speaker" class="form-control" placeholder="Enter Speaker"/>
+                    <label asp-for="Product.HearphoneDescriptions.SpeakerSize">Speaker</label> <span asp-validation-for="Product.HearphoneDescriptions.SpeakerSize" class="text-danger"></span>
+                    <input asp-for="Product.HearphoneDescriptions.SpeakerSize" class="form-control" placeholder="Enter Speaker"/>
                     
                     <label asp-for="Product.HearphoneDescriptions.Design">Design</label> <span asp-validation-for="Product.HearphoneDescriptions.Design" class="text-danger"></span>
                     <input asp-for="Product.HearphoneDescriptions.Design" class="form-control" placeholder="Enter Design"/>
@@ -306,4 +310,6 @@
             $("#phoneForm").submit(validateInput);
         });
     </script>
+    }
 }
+

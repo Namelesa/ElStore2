@@ -11,4 +11,5 @@ public class Images
     
     public List<string?> Image { get; set;}
     public string Video { get; set; }
+    public string? Text { get; set; }
 }

@@ -4,6 +4,7 @@
 @inject IHttpContextAccessor HttpContextAccessor
 @using ElStore.Utility
 @using System.Security.Claims
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,23 +60,18 @@
                             }
                         </li>
                         <li class="nav-item">
-                            
-                                @if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
-                                {
-                                    <span>@HttpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email)</span>
-                                    <a asp-controller="User" asp-action="Login" class="nav-link text-white-50">
-                                       <i class="fa fa-user-circle-o"></i> 
-                                    </a>
-                                }
-                                else
-                                {
-                                    <a asp-controller="User" asp-action="Register" class="nav-link text-white-50">
-                                        <i class="fa fa-user-circle-o"></i> 
-                                    </a>
-                                    <a asp-controller="User" asp-action="Login" class="nav-link text-white-50">
-                                        <i class="fa fa-user-circle-o"></i> 
-                                    </a>
-                                }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a class="nav-link" asp-controller="Users" asp-action="AccountInformation">
+                                    <i class="fa fa-user-circle-o"></i> Hello, @User.Identity.Name
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="nav-link" asp-action="Login" asp-controller="Users">
+                                    <i class="fa fa-user-circle-o"></i>
+                                </a>
+                            }
                         </li>
                     </ul>
                 </div>
