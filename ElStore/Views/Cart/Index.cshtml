@@ -20,34 +20,34 @@
                     @for (int i = 0; i < Model.Count; i++)
                     { 
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="product-item">
-                                        <a class="product-thumb" asp-controller="@GetControllerName(Model[i].Product.CategoryId)" asp-action="Details" asp-route-id="@Model[i].Product.Id">
-                                            <img src="~/@Model[i].Image.First()" alt="Product" class="product-image">
-                                        </a>
-                                        <div class="product-info">
-                                            <h4 class="product-title">
-                                                <a asp-controller="@GetControllerName(Model[i].Product.CategoryId)" asp-action="Details" asp-route-id="@Model[i].Product.Id">@Model[i].Product.Brand @Model[i].Product.Model</a>
-                                            </h4>
-                                            <span>@Model[i].Product.ShortDescription</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="count-input">
-                                        <input class="form-control form-control-sm" type="number" name="Quantities[@i]" value="@Model[i].Count" required="" min="1" max="100">
-                                        <input type="hidden" name="ProductIds[@i]" value="@Model[i].Product.Id" />
-                                    </div>
-                                </td>
-                                <td class="text-center text-lg text-medium">$@Model[i].Product.Price</td>
-                                <td class="text-center text-lg text-medium">$@(Model[i].Product.Price * Model[i].Count)</td>
-                                <td class="text-center">
-                                    <a class="remove-from-cart" asp-action="Remove" asp-route-id="@Model[i].Product.Id" data-toggle="tooltip" title="" data-original-title="Remove item">
-                                        <i class="fa fa-trash"></i>
+                        <tr>
+                            <td>
+                                <div class="product-item">
+                                    <a class="product-thumb" asp-controller="@GetControllerName(Model[i].Product.CategoryId)" asp-action="Details" asp-route-id="@Model[i].Product.Id">
+                                        <img src="~/@Model[i].Image.First()" alt="Product" class="product-image">
                                     </a>
-                                </td>
-                            </tr>
+                                    <div class="product-info">
+                                        <h4 class="product-title">
+                                            <a asp-controller="@GetControllerName(Model[i].Product.CategoryId)" asp-action="Details" asp-route-id="@Model[i].Product.Id">@Model[i].Product.Brand @Model[i].Product.Model</a>
+                                        </h4>
+                                        <span>@Model[i].Product.ShortDescription</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="count-input">
+                                    <input class="form-control form-control-sm" type="number" name="Quantities[@i]" value="@Model[i].Count" required="" min="1" max="100">
+                                    <input type="hidden" name="ProductIds[@i]" value="@Model[i].Product.Id" />
+                                </div>
+                            </td>
+                            <td class="text-center text-lg text-medium">$@Model[i].Product.Price</td>
+                            <td class="text-center text-lg text-medium">$@(Model[i].Product.Price * Model[i].Count)</td>
+                            <td class="text-center">
+                                <a class="remove-from-cart" asp-action="Remove" asp-route-id="@Model[i].Product.Id" data-toggle="tooltip" title="" data-original-title="Remove item">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
                         </tbody>
                     }
                 </table>
@@ -55,6 +55,7 @@
             <div class="shopping-cart-footer">
                 <div class="column text-lg">Subtotal: <span class="text-medium">$@ViewBag.TotalSum</span></div>
             </div>
+        
             <div class="shopping-cart-footer">
                 <div class="column">
                     <a class="btn btn-outline-secondary" asp-action="Index" asp-controller="Home">
@@ -63,7 +64,6 @@
                 </div>
                 <div class="column">
                     <button type="submit" class="btn btn-primary" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</button>
-                    <a class="btn btn-success" href="#">Checkout</a>
                 </div>
             </div>
         </div>

@@ -15,12 +15,14 @@ namespace ElStore.Controllers
         private readonly IConfiguration _config;
         private readonly SignInManager<AllUser> _signInManager;
         private readonly UserManager<AllUser> _userManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public UsersController(IConfiguration config, SignInManager<AllUser> signInManager, UserManager<AllUser> userManager)
+        public UsersController(IConfiguration config, SignInManager<AllUser> signInManager, UserManager<AllUser> userManager, IWebHostEnvironment webHostEnvironment)
         {
             _config = config;
             _userManager = userManager;
             _signInManager = signInManager;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [Authorize]
@@ -58,7 +60,7 @@ namespace ElStore.Controllers
             existingUser = await _userManager.FindByEmailAsync(registerVm.Email);
             if (existingUser != null)
             {
-                ModelState.AddModelError("Email", "Chose ");
+                ModelState.AddModelError("Email", "Chose another email");
                 return View(registerVm);
             }
 
@@ -80,11 +82,11 @@ namespace ElStore.Controllers
             {
                 if (user.Email == "pdo090318@gmail.com")
                 {
-                    await _userManager.AddToRoleAsync(user, "Admin");
+                    await _userManager.AddToRoleAsync(user, WC.AdminRole);
                 }
                 else
                 { 
-                    await _userManager.AddToRoleAsync(user, "Customer");
+                    await _userManager.AddToRoleAsync(user, WC.CustomerRole);
                 }
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction(nameof(AccountInformation));
@@ -133,7 +135,7 @@ namespace ElStore.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(Login));
         }
-
+        
         private string GenerateToken(string userName)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));

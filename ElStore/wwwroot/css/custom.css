@@ -1,0 +1,55 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.backgroundWhiteBorder {
+    background-color: #f8f9fa;
+    border-radius: 0; /* Убираем скругление рамки */
+    padding: 0; /* Убираем внутренний отступ */
+}
+
+.card {
+    height: 100%; /* Занимаем всю высоту */
+}
+
+.card-header {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+}
+
+.btn-back-to-cart {
+    float: right; /* Выравниваем кнопку вправо */
+    margin-top: 10px; /* Отступ сверху */
+}
+
+.list-group-item {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.text-info {
+    color: #17a2b8 !important;
+}
+
+.product-image-small {
+    max-height: 50px;
+    max-width: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}

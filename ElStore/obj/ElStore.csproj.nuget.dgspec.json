@@ -80,9 +80,21 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+            "NovaPoshta.Client": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "NovaPoshtaApi": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[111.3.0, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

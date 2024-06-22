@@ -161,6 +161,14 @@
       "PackagePath": "staticwebassets/Images/watches.jpg"
     },
     {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/Login.css",
+      "PackagePath": "staticwebassets/css/Login.css"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/custom.css",
+      "PackagePath": "staticwebassets/css/custom.css"
+    },
+    {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/shopping_cart.css",
       "PackagePath": "staticwebassets/css/shopping_cart.css"
     },

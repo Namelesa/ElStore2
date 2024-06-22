@@ -1,0 +1,139 @@
+@model ElStore.Models.ViewModel.ProductUserVM
+
+<link rel="stylesheet" href="~/css/custom.css" />
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .backgroundWhiteBorder {
+        background-color: #f8f9fa;
+        border-radius: 0; /* Убираем скругление рамки */
+        padding: 0; /* Убираем внутренний отступ */
+    }
+
+    .card {
+        height: 100%; /* Занимаем всю высоту */
+    }
+
+    .card-header {
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-control {
+        border-radius: 5px;
+    }
+
+    .card-footer {
+        background-color: #f8f9fa;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .btn-back-to-cart {
+        float: right; /* Выравниваем кнопку вправо */
+        margin-top: 10px; /* Отступ сверху */
+    }
+
+    .list-group-item {
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .text-info {
+        color: #17a2b8 !important;
+    }
+
+    .product-image-small {
+        max-height: 50px;
+        max-width: 50px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+</style>
+
+<form method="post" class="my-5">
+    <div class="container-fluid p-0">
+        <div class="backgroundWhiteBorder shadow-sm p-4 mb-5 bg-white">
+            <div class="card">
+                <div class="card-header bg-dark text-light row align-items-center">
+                    <div class="col-6">
+                        <i class="fa fa-shopping-cart"></i>&nbsp;
+                        Order Summary
+                    </div>
+                    <div class="col-6 text-right">
+                        <a asp-action="Index" asp-controller="Cart" class="btn btn-outline-info btn-sm btn-back-to-cart">Back to Cart</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container p-2">
+                        <div class="row">
+                            <div class="col-12 col-lg-7 pb-4">
+                                <h4 class="text-info">User Details:</h4>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Name</label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="User.Login" type="text" class="form-control" />
+                                        <span asp-validation-for="User.Login" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Phone</label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="User.PhoneNumber" type="text" class="form-control" />
+                                        <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="User.Email" type="text" class="form-control" />
+                                        <span asp-validation-for="User.Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-5">
+                                <h4 class="text-info">Summary:</h4>
+                                <ul class="list-group mb-3">
+                                    @for (int i = 0; i < Model.ProductList.Count(); i++)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/@Model.ProductList[i].Product.Images.Image.First()" alt="@Model.ProductList[i].Product.Brand @Model.ProductList[i].Product.Model" class="product-image-small mr-3" />
+                                                <div>
+                                                    <h6 class="my-0">@Model.ProductList[i].Product.Brand @Model.ProductList[i].Product.Model</h6>
+                                                    <small class="text-muted">SubTotal: $@(Model.ProductList[i].Product.Price * Model.ProductList[i].Count)</small>
+                                                </div>
+                                            </div>
+                                            <span class="text-muted">$@Model.ProductList[i].Product.Price</span>
+                                        </li>
+                                    }
+                                </ul>
+                                <h5 class="text-right">Total: <strong>$@ViewBag.TotalSum</strong></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-12 col-md-5 offset-md-7">
+                            <button type="submit" class="btn btn-primary form-control">Submit Inquiry</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

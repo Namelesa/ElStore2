@@ -1,51 +1,74 @@
 @model ElStore.Models.AllUser
 
-@{
-    ViewData["Title"] = "Account Information";
-}
-
 @if (User.Identity.IsAuthenticated)
 {
-    <h1>Account Information</h1>
-
-    @if (Model != null)
-    {
-        <div>
-            <dl class="row">
-                <dt class="col-sm-3">User ID:</dt>
-                <dd class="col-sm-9">@Model.Id</dd>
-
-                <dt class="col-sm-3">Username:</dt>
-                <dd class="col-sm-9">@Model.UserName</dd>
-
-                <dt class="col-sm-3">Email:</dt>
-                <dd class="col-sm-9">@Model.Email</dd>
-
-                <dt class="col-sm-3">First Name:</dt>
-                <dd class="col-sm-9">@Model.UserName</dd>
-            
-                <dt class="col-sm-3">Phone Number:</dt>
-                <dd class="col-sm-9">@Model.PhoneNumber</dd>
-                
-                <dt class="col-sm-3">Guid:</dt>
-                <dd class="col-sm-9">@Model.JWT</dd>
-                
-                <dt class="col-sm-3">PasswordHash:</dt>
-                <dd class="col-sm-9">@Model.PasswordHash</dd>
-            </dl>
-            
-            <form method="post" asp-action="Logout">
-                @Html.AntiForgeryToken()
-                <button type="submit">Logout</button>
-            </form>
+    <div class="container py-2">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                   class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3">@Model.UserName</h5>
+              @if (User.IsInRole("Admin"))
+              {
+                <p class="text-muted mb-1">Admin</p>
+              }
+              else
+              {
+                <p class="text-muted mb-1">Customer</p>
+              }
+              
+              <div class="d-flex justify-content-center mb-2">
+                <form method="post" asp-action="Logout">
+                  @Html.AntiForgeryToken()
+                  <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-    }
-    else
-    {
-        <p>User information is not available.</p>
-    }
-}
-else
-{
-    <p>Для просмотра информации об аккаунте необходима авторизация. Пожалуйста, <a asp-controller="Users" asp-action="Login">войдите</a> или <a asp-controller="Users" asp-action="Register">зарегистрируйтесь</a>.</p>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">@Model.UserName</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">@Model.Email</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">@Model.PhoneNumber</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">@Model.Adress</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 }

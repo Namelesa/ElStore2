@@ -31,6 +31,9 @@ namespace ElStore.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Adress")
+                        .HasColumnType("text");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
@@ -41,6 +44,9 @@ namespace ElStore.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
 
                     b.Property<string>("JWT")
                         .IsRequired()
