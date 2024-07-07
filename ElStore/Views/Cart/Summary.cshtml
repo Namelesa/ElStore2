@@ -1,131 +1,219 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ElStore.Models.ViewModel.ProductUserVM
 
-<link rel="stylesheet" href="~/css/custom.css" />
-
-<style>
-    body, html {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    .backgroundWhiteBorder {
-        background-color: #f8f9fa;
-        border-radius: 0; /* Убираем скругление рамки */
-        padding: 0; /* Убираем внутренний отступ */
-    }
-
-    .card {
-        height: 100%; /* Занимаем всю высоту */
-    }
-
-    .card-header {
-        font-size: 1.25rem;
-        font-weight: 500;
-    }
-
-    .form-group {
-        margin-bottom: 1rem;
-    }
-
-    .form-control {
-        border-radius: 5px;
-    }
-
-    .card-footer {
-        background-color: #f8f9fa;
-        border-top: 1px solid #e9ecef;
-    }
-
-    .btn-back-to-cart {
-        float: right; /* Выравниваем кнопку вправо */
-        margin-top: 10px; /* Отступ сверху */
-    }
-
-    .list-group-item {
-        border: 1px solid #dee2e6;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    .text-info {
-        color: #17a2b8 !important;
-    }
-
-    .product-image-small {
-        max-height: 50px;
-        max-width: 50px;
-        object-fit: cover;
-        border-radius: 5px;
-    }
-</style>
-
-<form method="post" class="my-5">
-    <div class="container-fluid p-0">
-        <div class="backgroundWhiteBorder shadow-sm p-4 mb-5 bg-white">
-            <div class="card">
-                <div class="card-header bg-dark text-light row align-items-center">
-                    <div class="col-6">
-                        <i class="fa fa-shopping-cart"></i>&nbsp;
-                        Order Summary
-                    </div>
-                    <div class="col-6 text-right">
-                        <a asp-action="Index" asp-controller="Cart" class="btn btn-outline-info btn-sm btn-back-to-cart">Back to Cart</a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="container p-2">
-                        <div class="row">
-                            <div class="col-12 col-lg-7 pb-4">
-                                <h4 class="text-info">User Details:</h4>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Name</label>
-                                    <div class="col-sm-9">
-                                        <input asp-for="User.Login" type="text" class="form-control" />
-                                        <span asp-validation-for="User.Login" class="text-danger"></span>
+<link rel="stylesheet" href="~/css/Test.css" />
+<form asp-action="Summary" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <ol class="activity-checkout mb-0 px-4 mt-3">
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <i class="bx bxs-receipt text-white font-size-20"></i>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Phone</label>
-                                    <div class="col-sm-9">
-                                        <input asp-for="User.PhoneNumber" type="text" class="form-control" />
-                                        <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Email</label>
-                                    <div class="col-sm-9">
-                                        <input asp-for="User.Email" type="text" class="form-control" />
-                                        <span asp-validation-for="User.Email" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-5">
-                                <h4 class="text-info">Summary:</h4>
-                                <ul class="list-group mb-3">
-                                    @for (int i = 0; i < Model.ProductList.Count(); i++)
-                                    {
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <img src="~/@Model.ProductList[i].Product.Images.Image.First()" alt="@Model.ProductList[i].Product.Brand @Model.ProductList[i].Product.Model" class="product-image-small mr-3" />
-                                                <div>
-                                                    <h6 class="my-0">@Model.ProductList[i].Product.Brand @Model.ProductList[i].Product.Model</h6>
-                                                    <small class="text-muted">SubTotal: $@(Model.ProductList[i].Product.Price * Model.ProductList[i].Count)</small>
+                                <div class="feed-item-list">
+                                    <div>
+                                        <h5 class="font-size-16 mb-1">Billing Info</h5>
+                                        <div class="mb-3">
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="billing-name">Name</label>
+                                                            <input asp-for="User.Login" type="text" class="form-control" id="billing-name" placeholder="Enter name">
+                                                            <span asp-validation-for="User.Login" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="billing-email-address">Email Address</label>
+                                                            <input asp-for="User.Email" type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
+                                                            <span asp-validation-for="User.Email" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="billing-phone">Phone</label>
+                                                            <input asp-for="User.PhoneNumber" type="text" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
+                                                            <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" id="shippingDetails" style="display: none;">
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-4 mb-lg-0">
+                                                            <label class="form-label" for="billing-city">City</label>
+                                                            <input type="text" asp-for="City" id="cityInput" class="form-control" placeholder="Write city" />
+                                                            <ul id="cityList" class="list-group mt-2" style="max-height: 150px; overflow-y: auto;"></ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-0">
+                                                            <label class="form-label" for="zip-code">Number Office</label>
+                                                            <span asp-validation-for="NumberOffice" class="text-danger"></span>
+                                                            <input type="text" asp-for="NumberOffice" id="warehouseInput" class="form-control" placeholder="Choose post office" disabled />
+                                                            <ul id="warehouseList" class="list-group mt-2" style="max-height: 150px; overflow-y: auto;"></ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <span class="text-muted">$@Model.ProductList[i].Product.Price</span>
-                                        </li>
-                                    }
-                                </ul>
-                                <h5 class="text-right">Total: <strong>$@ViewBag.TotalSum</strong></h5>
-                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <i class="bx bxs-truck text-white font-size-20"></i>
+                                    </div>
+                                </div>
+                                <div class="feed-item-list">
+                                    <div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="shipping-method">Shipping Method</label>
+                                            <select class="form-control" id="shipping-method" onchange="showFields(this)">
+                                                <option value="none">Choose delivery method</option>
+                                                <option value="pickup">Self-delivery</option>
+                                                <option value="nova-post">Nova Post</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <i class="bx bxs-wallet-alt text-white font-size-20"></i>
+                                    </div>
+                                </div>
+                                <div class="feed-item-list">
+                                    <div>
+                                        <h5 class="font-size-14 mb-3">Payment method :</h5>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-6">
+                                                <div data-bs-toggle="collapse">
+                                                    <label class="card-radio-label">
+                                                        <input type="radio" name="pay-method" id="pay-methodoption1" class="card-radio-input">
+                                                        <span class="card-radio py-3 text-center text-truncate">
+                                                            <i class="bx bx-credit-card d-block h2 mb-3 fa fa-cc-visa"></i>
+                                                            Credit / Debit Card
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-sm-6">
+                                                <div>
+                                                    <label class="card-radio-label">
+                                                        <input type="radio" name="pay-method" id="pay-methodoption2" class="card-radio-input">
+                                                        <span class="card-radio py-3 text-center text-truncate">
+                                                            <i class="bx bxl-paypal d-block h2 mb-3 fa fa-paypal"></i>
+                                                            Paypal
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-sm-6">
+                                                <div>
+                                                    <label class="card-radio-label">
+                                                        <input type="radio" name="pay-method" id="pay-methodoption3" class="card-radio-input" checked="">
+                                                        <span class="card-radio py-3 text-center text-truncate">
+                                                            <i class="bx bx-money d-block h2 mb-3 fa fa-money"></i>
+                                                            <span>Cash on Delivery</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row my-4">
+                    <div class="col">
+                        <a asp-action="Index" asp-controller="Cart" class="btn btn-link text-muted">
+                            <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
+                    </div>
+                    <div class="col">
+                        <div class="text-end mt-2 mt-sm-0">
+                            <button type="submit" class="btn btn-success">
+                                <i class="mdi mdi-cart-outline me-1">Proceed</i>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-12 col-md-5 offset-md-7">
-                            <button type="submit" class="btn btn-primary form-control">Submit Inquiry</button>
+            </div>
+            <div class="col-xl-4">
+                <div class="card checkout-order-summary">
+                    <div class="card-body">
+                        <div class="p-3 bg-light mb-3">
+                            <h5 class="font-size-16 mb-0">Order Summary</h5>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-centered mb-0 table-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0" style="width: 110px;" scope="col">Product</th>
+                                        <th class="border-top-0" scope="col">Product Desc</th>
+                                        <th class="border-top-0" scope="col">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var product in Model.ProductList)
+                                    {
+                                        <tr>
+                                            <th scope="row">
+                                                <img src="~/@product.Product.Images.Image.First()" alt="product-img" title="product-img" class="avatar-lg rounded">
+                                            </th>
+                                            <td>
+                                                <h5 class="font-size-16 text-truncate">
+                                                    <a href="#" class="text-dark">@product.Product.Brand @product.Product.Model</a>
+                                                </h5>
+
+                                                <p class="text-muted mb-0 mt-1">$ @product.Product.Price x @product.Count</p>
+                                            </td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="2">
+                                            <h5 class="font-size-14 m-0">Sub Total :</h5>
+                                        </td>
+                                        <td>
+                                            @for (int i = 0; i < Model.ProductList.Count(); i++)
+                                            {
+                                                <input type="hidden" asp-for="ProductList[i].Product"/>
+                                                <input type="hidden" asp-for="ProductList[i].Count"/>
+                                                <input type="hidden" asp-for="ProductList[i].Product.Id"/>
+                                                <input type="hidden" asp-for="ProductList[i].Product.Price"/>
+                                                <input type="hidden" asp-for="ProductList[i].Product.Brand"/>
+                                                <input type="hidden" asp-for="ProductList[i].Product.Model"/>
+                                                <small class="text-muted">@(Model.ProductList[i].Product.Price * Model.ProductList[i].Count)</small>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-light">
+                                        <td colspan="2">
+                                            <h5 class="font-size-14 m-0">Total :</h5>
+                                        </td>
+                                        <td>
+                                            <input type="hidden" asp-for="Total"/>
+                                            <div class="fw-medium">@Model.Total</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -133,7 +221,21 @@
         </div>
     </div>
 </form>
-
 @section Scripts{
+    <script src="~/js/novaposhta.js"></script>
+    <script>
+        function showFields(element) {
+            var shippingDetails = document.getElementById('shippingDetails');
+            var shippingInfo = document.getElementById('shippingInfo');
+            if (element.value === 'pickup' || element.value === 'nova-post') {
+                shippingDetails.style.display = 'block';
+                shippingInfo.style.display = 'block';
+            } else {
+                shippingDetails.style.display = 'none';
+                shippingInfo.style.display = 'none';
+            }
+        }
+    </script>
     <partial name="_ValidationScriptsPartial" />
 }
+

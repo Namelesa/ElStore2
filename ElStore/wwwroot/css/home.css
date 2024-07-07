@@ -1,0 +1,103 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Slider styles */
+.slider {
+    position: relative;
+    width: 100%;
+    max-height: 350px; /* Adjusted max height for smaller screens */
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Product section styles */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.product {
+    width: 22%; /* Adjust width to fit nicely on all screens */
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.product:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .slider {
+        max-height: 250px; /* Adjusted max height for smaller screens */
+    }
+
+    .slide {
+        height: 250px;
+    }
+
+    .product {
+        width: 45%; /* Adjusted width for smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .slider {
+        max-height: 200px; /* Adjusted max height for even smaller screens */
+    }
+
+    .slide {
+        height: 200px;
+    }
+
+    .product {
+        width: 100%; /* Full width on smaller screens */
+    }
+}

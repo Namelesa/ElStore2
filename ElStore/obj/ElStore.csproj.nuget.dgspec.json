@@ -38,6 +38,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Baroque.NovaPoshta.Client": {
+              "target": "Package",
+              "version": "[1.4.3, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[11.9.1, )"
@@ -45,6 +49,34 @@
             "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
               "version": "[11.9.1, )"
+            },
+            "Google.Apis": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "Google.Apis.Discovery.v1": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "Google.Apis.ServiceManagement.v1": {
+              "target": "Package",
+              "version": "[1.68.0.3438, )"
+            },
+            "MailChimp.Net.V3": {
+              "target": "Package",
+              "version": "[5.5.0, )"
+            },
+            "MailJet.NET": {
+              "target": "Package",
+              "version": "[1.6.1, )"
+            },
+            "Mailjet.Api": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[8.0.6, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",

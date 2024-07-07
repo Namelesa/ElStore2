@@ -3,7 +3,6 @@
 @using ElStore.Models
 @inject IHttpContextAccessor HttpContextAccessor
 @using ElStore.Utility
-@using System.Security.Claims
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,19 +30,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
                     <ul class="navbar-nav custom">
                         <li class="nav-item">
-                            <a class="nav-link text-white-50" asp-area="" asp-controller="Phones" asp-action="Index">Phones</a>
+                            <a class="nav-link text-white-50" asp-area="" asp-controller="Product" asp-action="Index" asp-route-category="Phone" >Phones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white-50" asp-area="" asp-controller="Headphones" asp-action="Index">Headphones</a>
+                            <a class="nav-link text-white-50" asp-area="" asp-controller="Product" asp-action="Index" asp-route-category="Headphone">Headphones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white-50" asp-area="" asp-controller="Watches" asp-action="Index">Watches</a>
+                            <a class="nav-link text-white-50" asp-area="" asp-controller="Product" asp-action="Index" asp-route-category="Watch">Watches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white-50" asp-area="" asp-controller="Laptops" asp-action="Index">Laptops</a>
+                            <a class="nav-link text-white-50" asp-area="" asp-controller="Product" asp-action="Index" asp-route-category="Laptop">Laptops</a>
                         </li>
                         <li>
-                            @if (HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null)
+                            @if (HttpContextAccessor.HttpContext?.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null)
                             {
                                 <a asp-action="Index" asp-controller="Cart" class="nav-link">
                                     @{
@@ -60,7 +59,7 @@
                             }
                         </li>
                         <li class="nav-item">
-                            @if (User.Identity.IsAuthenticated)
+                            @if (User.Identity is { IsAuthenticated: true })
                             {
                                 <a class="nav-link" asp-controller="Users" asp-action="AccountInformation">
                                     <i class="fa fa-user-circle-o"></i> Hello, @User.Identity.Name

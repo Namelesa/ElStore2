@@ -8,4 +8,5 @@ public class WC
     public const string AdminRole = "Admin";
     public const string CustomerRole = "Customer";
     public const string ProfileImages = "Images/ProfileImages";
+    public const string EmailAdmin = "pdo090318@gmail.com";
 }

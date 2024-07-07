@@ -1,0 +1,49 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ElStore.Models.ViewModel.RegisterVM
+
+<link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+  <div class="container py-2">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Phone image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form asp-action="CreateAdmin" method="post">
+ 
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="Email" type="email" class="form-control form-control-lg"/><span asp-validation-for="Email" class="text-danger"></span>
+            <label asp-for="Email" class="form-label">Email address</label>
+          </div>
+
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="Login" type="text" class="form-control form-control-lg"/><span asp-validation-for="Login" class="text-danger"></span>
+            <label asp-for="Login" class="form-label">Login</label>
+          </div>
+          
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="PhoneNumber" type="text" class="form-control form-control-lg"/><span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+          </div>
+
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="Password" type="password" class="form-control form-control-lg"/><span asp-validation-for="Password" class="text-danger"></span>
+            <label asp-for="Password" class="form-label">Password</label>
+          </div>
+          
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="ConfirmPassword" type="password" class="form-control form-control-lg"/><span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+          </div>
+          <div class="d-flex justify-content-around align-items-center mb-4">
+                      <a asp-action="Login" asp-controller="Users">
+                        Sing up
+                      </a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block w-100">Register</button>
+          
+        </form>
+      </div>
+    </div>
+  </div>

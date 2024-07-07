@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email from ElStore</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .email-wrapper {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #4285f4;
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: bold;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .content {
+            padding: 30px;
+            color: #333333;
+        }
+
+        .section-heading {
+            font-size: 24px;
+            color: #4285f4;
+            margin-bottom: 20px;
+        }
+
+        .customer-details {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .customer-details p {
+            margin: 5px 0;
+        }
+
+        .product-list {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .product-list img {
+            max-width: 100px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .product-details {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .product-details span {
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .subtotal,
+        .total {
+            font-size: 18px;
+            color: #333333;
+            margin-top: 20px;
+        }
+
+        .footer {
+            background-color: #4285f4;
+            padding: 15px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 14px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="email-wrapper">
+    <div class="header">
+        ElStore Pavers Inquiry
+    </div>
+    <div class="content">
+        <h2 class="section-heading">A New Inquiry has been submitted</h2>
+        <div class="customer-details">
+            <p><strong>Name:</strong> {0}</p>
+            <p><strong>Email:</strong> {1}</p>
+            <p><strong>Phone:</strong> {2}</p>
+        </div>
+        <hr style="border: none; border-top: 1px solid #e0e0e0; margin-bottom: 20px;">
+        <div class="product-list">
+            <h3 class="section-heading">Products Interested:</h3>
+            {3} <!-- This placeholder will be replaced with the actual product list -->
+        </div>
+        <div class="total">
+            <strong>Total:</strong>${4}
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2024 ElStore Pavers. All rights reserved.
+    </div>
+</div>
+</body>
+
+</html>

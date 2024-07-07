@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ElStore.Models.AllUser
 
 @if (User.Identity.IsAuthenticated)
@@ -25,6 +26,15 @@
                   <button type="submit" class="btn btn-danger">Logout</button>
                 </form>
               </div>
+              @if (User.IsInRole("Admin"))
+              {
+                <div class="d-flex justify-content-center mb-2">
+                  <form method="post" asp-action="CreateAdmin">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-success">Create admin</button>
+                  </form>
+                </div>
+              }
             </div>
           </div>
         </div>

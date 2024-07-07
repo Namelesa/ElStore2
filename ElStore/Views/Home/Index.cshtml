@@ -1,14 +1,47 @@
-﻿@{
-    ViewData["Title"] = "Home";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+</head>
+<body>
 
-<div class="container-custom">
-    <img src="~/images/phone.jpg" alt="phone" />
-    <img src="~/images/hearphones.jpg" alt="hearphone" srcset="" />
-    <img src="~/images/watches.jpg" alt="watches" srcset="" />
-    <img src="~/images/laptops.jpg" alt="laptop" srcset="" />
-</div>
+    <section class="slider">
+        <div class="slides">
+            <div class="slide" style="background-image: url('https://play-lh.googleusercontent.com/1-hPxafOxdYpYZEOKzNIkSP43HXCNftVJVttoo4ucl7rsMASXW3Xr6GlXURCubE1tA=w3840-h2160-rw');"></div>
+            <div class="slide" style="background-image: url('https://finevpn.org/wp-content/uploads/2024/02/sony.com-logo-logo.png');"></div>
+            <div class="slide" style="background-image: url('https://logos-marques.com/wp-content/uploads/2021/03/Apple-Icone.png');"></div>
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </section>
+    
+    <main>
+        <section class="products">
+            <div class="product">
+                <img src="Images/phone.jpg" alt="Phone">
+                <h3>Phone</h3>
+                <p>Latest smartphone with advanced features.</p>
+            </div>
+            <div class="product">
+                <img src="Images/hearphones.jpg" alt="Headphone">
+                <h3>Headphone</h3>
+                <p>High-quality sound and noise cancellation.</p>
+            </div>
+            <div class="product">
+                <img src="Images/watches.jpg" alt="Watch">
+                <h3>Watch</h3>
+                <p>Smartwatch with fitness tracking.</p>
+            </div>
+            <div class="product">
+                <img src="Images/laptops.jpg" alt="Laptop">
+                <h3>Laptop</h3>
+                <p>Powerful laptop for all your needs.</p>
+            </div>
+        </section>
+    </main>
 
-<div class="text-center">
-    <h1 class="display-4">Pictures, Sliders and etc.</h1>
-</div>
+    <script src="~/js/home-index.js"></script>
+</body>
+</html>

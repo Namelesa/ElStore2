@@ -1,62 +1,62 @@
-﻿@model ElStore.Models.ViewModel.LoginVM
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ElStore.Models.ViewModel.LoginVM
 <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
-  <div class="container py-2">
+
+<div class="container py-2">
     <div class="row d-flex align-items-center justify-content-center h-100">
-      <div class="col-md-8 col-lg-7 col-xl-6">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-          class="img-fluid" alt="Phone image">
-      </div>
-      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <form asp-action="Login" method="post">
-          <!-- Email input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <input asp-for="Email" type="email" class="form-control form-control-lg"/><span asp-validation-for="Email" class="text-danger"></span>
-            <label asp-for="Email" class="form-label">Email address</label>
-          </div>
+        <div class="col-md-8 col-lg-7 col-xl-6">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                 class="img-fluid" alt="Phone image">
+        </div>
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+            <form asp-action="Login" method="post">
+                <!-- Email input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input asp-for="Email" type="email" class="form-control form-control-lg" /><span asp-validation-for="Email" class="text-danger"></span>
+                    <label asp-for="Email" class="form-label">Email address</label>
+                </div>
 
-          <!-- Username input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <input asp-for="UserName" type="text" class="form-control form-control-lg"/><span asp-validation-for="UserName" class="text-danger"></span>
-            <label asp-for="UserName" class="form-label">UserName</label>
-          </div>
+                <!-- Username input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input asp-for="UserName" type="text" class="form-control form-control-lg" /><span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="UserName" class="form-label">UserName</label>
+                </div>
 
-          <!-- Password input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <input asp-for="Password" type="password" class="form-control form-control-lg"/><span asp-validation-for="Password" class="text-danger"></span>
-            <label asp-for="Password" class="form-label">Password</label>
-          </div>
-          
-          <div class="d-flex justify-content-around align-items-center mb-4">
-            <a asp-action="Register" asp-controller="Users">
-              Register
-            </a>
-            <a href="#!">Forgot password?</a>
-          </div>
+                <!-- Password input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input asp-for="Password" type="password" class="form-control form-control-lg" /><span asp-validation-for="Password" class="text-danger"></span>
+                    <label asp-for="Password" class="form-label">Password</label>
+                </div>
 
-          <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-lg btn-block w-100">Sign in</button>
+                <div class="d-flex justify-content-around align-items-center mb-4">
+                    <a asp-action="Register" asp-controller="Users">
+                        Register
+                    </a>
+                    <a href="#">Forgot password?</a>
+                </div>
 
-          <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-          </div>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-lg btn-block w-100">Sign in</button>
 
-          <!-- Social login buttons side by side -->
-          <div class="row">
-            <div class="col-6">
-              <a data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998; width: 90%;" href="#!"
-                role="button">
-                <i class="fa fa-chrome"></i> Google
-              </a>
-            </div>
-            <div class="col-6">
-              <a data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" style="background-color: #55acee; width: 90%;" href="#!"
-                role="button">
-                <i class="fa fa-twitter"></i> Twitter
-              </a>
-            </div>
-          </div>
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                </div>
 
-        </form>
-      </div>
+                <!-- Social login buttons side by side -->
+                <div class="row">
+                    <div class="col-6">
+                        <a class="btn btn-primary btn-lg btn-block" style="background-color: #db4a39; width: 90%;" asp-controller="Users" asp-action="GoogleLogin" role="button">
+                            <i class="fa fa-google"></i> Google
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a class="btn btn-primary btn-lg btn-block" style="background-color: #1da1f2; width: 90%;" href="#" role="button">
+                            <i class="fa fa-telegram"></i> Telegram
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
     </div>
-  </div>
+</div>

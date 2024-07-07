@@ -1,21 +1,22 @@
-using System;
 using System.Text;
+using Baroque.NovaPoshta.Client;
+using Baroque.NovaPoshta.Client.Services.Address;
 using ElStore.Data;
 using ElStore.Models;
-using Microsoft.AspNetCore.Authentication;
+using ElStore.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 builder.Services.AddScoped<IUserStore<AllUser>, UserStore<AllUser, IdentityRole, ApplicationDbContext>>();
 builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore<IdentityRole, ApplicationDbContext>>();
@@ -31,8 +32,15 @@ builder.Services.AddIdentity<AllUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-builder.Services.AddControllersWithViews();
+var novaPoshtaApiKey = Environment.GetEnvironmentVariable("NOVAPOSHTA_API_KEY");
+var gateway = new DefaultNovaPoshtaGateway(novaPoshtaApiKey);
+builder.Services.AddSingleton<INovaPoshtaGateway>(gateway);
+builder.Services.AddSingleton<AddressService>();
+
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(10);
@@ -41,7 +49,6 @@ builder.Services.AddSession(options =>
 });
 
 var tkConf = builder.Configuration.GetSection("Jwt");
-
 var tokenValidationParameters = new TokenValidationParameters
 {
     ValidateIssuer = true,
@@ -57,6 +64,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = tokenValidationParameters;
+    })
+    .AddGoogle(googleOptions =>
+    {
+        IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Google_Auth");
+        googleOptions.ClientId = googleAuthNSection["ClientId"];
+        googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
     });
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -66,7 +79,6 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -86,9 +98,20 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
+    name: "categoryRoute",
+    pattern: "{category}",
+    defaults: new { controller = "Product", action = "Index" }
+);
+
+app.MapControllerRoute(
     name: "accountInformation",
     pattern: "Users/AccountInformation",
     defaults: new { controller = "Users", action = "AccountInformation" })
     .RequireAuthorization();
+
+app.MapControllerRoute(
+    name: "google-login",
+    pattern: "signin-google",
+    defaults: new { controller = "Users", action = "GoogleResponse" });
 
 app.Run();

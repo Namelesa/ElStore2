@@ -8,8 +8,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Baroque.NovaPoshta.Client" Version="1.4.3" />
       <PackageReference Include="FluentValidation" Version="11.9.1" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.1" />
+      <PackageReference Include="Google.Apis" Version="1.68.0" />
+      <PackageReference Include="Google.Apis.Discovery.v1" Version="1.68.0" />
+      <PackageReference Include="Google.Apis.ServiceManagement.v1" Version="1.68.0.3438" />
+      <PackageReference Include="MailChimp.Net.V3" Version="5.5.0" />
+      <PackageReference Include="Mailjet.Api" Version="3.0.0" />
+      <PackageReference Include="MailJet.NET" Version="1.6.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.6" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
@@ -34,7 +42,6 @@
     <ItemGroup>
       <Folder Include="Migrations\" />
       <Folder Include="wwwroot\Images\Product\" />
-      <Folder Include="wwwroot\Images\ProfileImages\" />
       <Folder Include="wwwroot\Video\Headphones\" />
       <Folder Include="wwwroot\Video\Laptops\" />
       <Folder Include="wwwroot\Video\Phones\" />
@@ -45,6 +52,18 @@
       <_ContentIncludedByDefault Remove="Views\User\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\User\Register.cshtml" />
       <_ContentIncludedByDefault Remove="Views\User\Login.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Laptops\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Laptops\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Laptops\Upsert.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Phones\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Phones\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Phones\Upsert.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Headphones\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Headphones\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Headphones\Upsert.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Watches\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Watches\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Watches\Upsert.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
