@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using ElStore.Data;
-using ElStore.Models;
-using ElStore.Models.ViewModel;
-using ElStore.Utility;
+using Data_Access.Data;
+using Models;
+using Models.ViewModel;
+using Utility;
 using Microsoft.AspNetCore.Authorization;
 
 namespace ElStore.Controllers;

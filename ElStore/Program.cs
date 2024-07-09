@@ -1,15 +1,15 @@
 using System.Text;
 using Baroque.NovaPoshta.Client;
 using Baroque.NovaPoshta.Client.Services.Address;
-using ElStore.Data;
-using ElStore.Models;
-using ElStore.Utility;
+using Data_Access.Data;
+using Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 

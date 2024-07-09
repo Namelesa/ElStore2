@@ -40,7 +40,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Migrations\" />
+      <Folder Include="Models\" />
+      <Folder Include="Utility\" />
       <Folder Include="wwwroot\Images\Product\" />
       <Folder Include="wwwroot\Video\Headphones\" />
       <Folder Include="wwwroot\Video\Laptops\" />
@@ -68,6 +69,12 @@
 
     <ItemGroup>
       <UpToDateCheckInput Remove="Views\User\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Data_Access\Data_Access.csproj" />
+      <ProjectReference Include="..\Models\Models.csproj" />
+      <ProjectReference Include="..\Utility\Utility.csproj" />
     </ItemGroup>
 
 </Project>

@@ -292,3 +292,9 @@
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/System.Management.dll
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Management.dll
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/appsettings.json
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Utility.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Utility.pdb
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Models.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Models.pdb
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Data_Access.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Data_Access.pdb
