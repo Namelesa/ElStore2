@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ElStore.Migrations
+namespace Data_Access.Migrations
 {
     /// <inheritdoc />
     public partial class AddAllUsers : Migration

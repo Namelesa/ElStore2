@@ -10,6 +10,4 @@ public class AllUser : IdentityUser
 
     public string JWT { get; set; }
     public string Login { get; set; }
-    public string? Adress { get; set; }
-    public string? Image { get; set; }
 }

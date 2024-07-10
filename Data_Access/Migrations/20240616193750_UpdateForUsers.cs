@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace ElStore.Migrations
+namespace Data_Access.Migrations
 {
     /// <inheritdoc />
     public partial class UpdateForUsers : Migration

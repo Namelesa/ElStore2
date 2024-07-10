@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace ElStore.Migrations
+namespace Data_Access.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240616193750_UpdateForUsers")]

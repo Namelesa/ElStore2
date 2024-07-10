@@ -2,6 +2,8 @@ using System.Text;
 using Baroque.NovaPoshta.Client;
 using Baroque.NovaPoshta.Client.Services.Address;
 using Data_Access.Data;
+using Data_Access.Repository;
+using Data_Access.Repository.IRepository;
 using Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +19,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IDescriptionPcRepository, DescriptionPcRepository>();
+builder.Services.AddScoped<IHeadphoneDescriptionRepository, HeadphoneDescriptionRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
 
 builder.Services.AddScoped<IUserStore<AllUser>, UserStore<AllUser, IdentityRole, ApplicationDbContext>>();
 builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore<IdentityRole, ApplicationDbContext>>();

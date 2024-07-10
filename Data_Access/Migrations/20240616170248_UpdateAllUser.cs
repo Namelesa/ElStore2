@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ElStore.Migrations
+namespace Data_Access.Migrations
 {
     /// <inheritdoc />
     public partial class UpdateAllUser : Migration

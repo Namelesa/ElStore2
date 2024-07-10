@@ -66,16 +66,7 @@
         </div>
         
         <div class="col-md-12 mt-3">
-            @if (Model.Video != null && Model.Video.Contains(".mp4"))
-            {
-                <div class="text-description custom-player">
-                    <video controls class="img-fluid">
-                        <source src="@Model.Video" type="video/mp4">
-                        Video not found :(
-                    </video>
-                </div>
-            }
-            else
+            @if (Model.Video != null)
             {
                 <div id="player" class="text-description custom-player"></div>
             }

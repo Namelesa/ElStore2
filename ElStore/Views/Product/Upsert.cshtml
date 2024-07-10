@@ -121,13 +121,7 @@
                     }
                     <label for="videoSource">Video Source</label>
                     <div class="btn-group" role="group" aria-label="Video Source">
-                        <button type="button" class="btn btn-primary video-btn" data-target="#videoFileUpload">Upload File</button>
                         <button type="button" class="btn btn-primary video-btn" data-target="#videoLinkInput">Enter Link</button>
-                    </div>
-
-                    <div id="videoFileUpload" style="display: none;">
-                        <label for="videoFile">Video (File)</label>
-                        <input type="file" name="videoFile" id="videoFile" class="form-control"/>
                     </div>
 
                     <div id="videoLinkInput" style="display: none;">
@@ -228,7 +222,6 @@
 
             document.querySelectorAll('.video-btn').forEach(function(btn) {
                 btn.addEventListener('click', function() {
-                    document.getElementById('videoFileUpload').style.display = 'none';
                     document.getElementById('videoLinkInput').style.display = 'none';
                     var target = btn.getAttribute('data-target');
                     document.querySelector(target).style.display = 'block';
@@ -237,7 +230,6 @@
 
             function validateInput() {
                 var imageFiles = document.getElementById("imageFiles");
-                var videoFile = document.getElementById("videoFile");
                 var videoLink = document.getElementById("videoLink");
         
                 if (imageFiles && imageFiles.files.length === 0) {

@@ -298,3 +298,8 @@
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Models.pdb
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Data_Access.dll
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Data_Access.pdb
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Microsoft.AspNetCore.DataProtection.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/System.Security.Cryptography.Xml.dll
