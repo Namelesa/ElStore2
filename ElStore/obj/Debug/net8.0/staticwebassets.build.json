@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ui0EAEseGKgSrVLFAr/dCQmkLrJ8VHI2WfuHEBOkFC8=",
+  "Hash": "YTdUmwiUO1Ilxvb3n1f8XvZC6yj8V34pbObG1gJO2F0=",
   "Source": "ElStore",
   "BasePath": "_content/ElStore",
   "Mode": "Default",
@@ -1480,6 +1480,25 @@
       "OriginalItemSpec": "wwwroot/Images/phone.jpg"
     },
     {
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/333c2e5a-1079-466b-8ece-708baa14df2e.jpg",
+      "SourceId": "ElStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
+      "BasePath": "_content/ElStore",
+      "RelativePath": "Images/Product/333c2e5a-1079-466b-8ece-708baa14df2e.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/Product/333c2e5a-1079-466b-8ece-708baa14df2e.jpg"
+    },
+    {
       "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/3e5f2183-b3b6-4baa-b978-00ce8d7588ca.jpeg",
       "SourceId": "ElStore",
       "SourceType": "Discovered",
@@ -1613,6 +1632,25 @@
       "OriginalItemSpec": "wwwroot/Images/Product/9cc4a8d7-1cb0-4272-acac-e7c3e1ca414a.png"
     },
     {
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/aa5095de-44b2-4063-ba95-b9f1309899ff.jpeg",
+      "SourceId": "ElStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
+      "BasePath": "_content/ElStore",
+      "RelativePath": "Images/Product/aa5095de-44b2-4063-ba95-b9f1309899ff.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/Product/aa5095de-44b2-4063-ba95-b9f1309899ff.jpeg"
+    },
+    {
       "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/aa651069-1e2d-4148-a271-b6a7b871d174.webp",
       "SourceId": "ElStore",
       "SourceType": "Discovered",
@@ -1630,6 +1668,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Images/Product/aa651069-1e2d-4148-a271-b6a7b871d174.webp"
+    },
+    {
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/bb6ed8e6-9cac-4774-b561-dd3e169de5b3.jpg",
+      "SourceId": "ElStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
+      "BasePath": "_content/ElStore",
+      "RelativePath": "Images/Product/bb6ed8e6-9cac-4774-b561-dd3e169de5b3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/Product/bb6ed8e6-9cac-4774-b561-dd3e169de5b3.jpg"
     },
     {
       "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/bfd70ae8-77d0-488e-a588-e0c66ccfb433.jpg",
@@ -1687,6 +1744,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Images/Product/e137ec17-3fd0-4598-ac83-e23a578ab4c9.png"
+    },
+    {
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/e6ec79ee-616d-4478-a0e2-33c00af5cd0a.jpeg",
+      "SourceId": "ElStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
+      "BasePath": "_content/ElStore",
+      "RelativePath": "Images/Product/e6ec79ee-616d-4478-a0e2-33c00af5cd0a.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/Product/e6ec79ee-616d-4478-a0e2-33c00af5cd0a.jpeg"
     },
     {
       "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/Images/Product/ee759825-6359-432b-aca1-ede6d93602cf.jpeg",
