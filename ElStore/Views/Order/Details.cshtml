@@ -1,0 +1,150 @@
+@using Utility
+@model Models.ViewModel.OrderDetailsVm
+<link rel="stylesheet" href="~/css/OrderDetails.css" asp-append-version="true" />
+
+<script>
+    function toggleEditMode(section) {
+        var viewMode = document.getElementById("viewMode-" + section);
+        var editMode = document.getElementById("editMode-" + section);
+        if (viewMode.style.display === "none") {
+            viewMode.style.display = "block";
+            editMode.style.display = "none";
+        } else {
+            viewMode.style.display = "none";
+            editMode.style.display = "block";
+        }
+    }
+</script>
+
+<div class="container my-4">
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm" style="background-color: #fce4ec;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">User Info
+                        <i class="fa fa-edit ml-2" style="cursor:pointer;" onclick="toggleEditMode('left')"></i>
+                    </h5>
+                    <hr>
+                    <!-- View Mode -->
+                    <div id="viewMode-left">
+                        <p><strong>Order Id:</strong> @Model.OrderHeader.Id</p>
+                        <p><strong>Full Name:</strong> @Model.OrderHeader.FullName</p>
+                        <p><strong>Phone Number:</strong> @Model.OrderHeader.PhoneNumber</p>
+                        <p><strong>Order Data:</strong> @Model.OrderHeader.OrderDate</p>
+                        <p><strong>Total:</strong> @Model.OrderHeader.Total</p>
+                    </div>
+                    <!-- Edit Mode -->
+                    <div id="editMode-left" style="display:none;">
+                        <form method="post" asp-action="Update" asp-route-id="@Model.OrderHeader.Id">
+                            <div class="form-group">
+                                <label for="fullName">Full Name:</label>
+                                <input type="text" class="form-control" id="fullName" name="fullName" value="@Model.OrderHeader.FullName">
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number:</label>
+                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="@Model.OrderHeader.PhoneNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City:</label>
+                                <input type="text" class="form-control" id="city" name="city" value="@Model.OrderHeader.City">
+                            </div>
+                            <div class="form-group">
+                                <label for="warehouse">Warehouse:</label>
+                                <input type="text" class="form-control" id="warehouse" name="warehouse" value="@Model.OrderHeader.Warehouse">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Update Info</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Column -->
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm" style="background-color: #d0f0c0; height: 400px; overflow-y: auto;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Products</h5>
+                    <hr>
+                    @foreach (var orderDetail in Model.OrderDetailsList)
+                    {
+                        var product = Model.ProductList.FirstOrDefault(p => p.Id == orderDetail.ProductId);
+                        if (product != null)
+                        {
+                            <div class="product-item mb-3 p-3 border border-dark rounded">
+                                <div class="d-flex align-items-center">
+                                    <img src="~/@product.Images.Image.First()" alt="Product Image" class="product-image mr-3">
+                                    <div style="flex: 1;">
+                                        <p><strong>Product Id:</strong> @product.Id</p>
+                                        <p><strong>Product Name:</strong> @product.Brand @product.Model</p>
+                                        <p><strong>RAM ROM:</strong> @product.DescriptionPC.RAM @product.DescriptionPC.ROM</p>
+                                        <p><strong>Price:</strong> @product.Price</p>
+                                    </div>
+                                    
+                                    <form method="post" asp-action="Remove" asp-route-id="@orderDetail.Id">
+                                        <input type="hidden" name="orderId" value="@Model.OrderHeader.Id" />
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash-o"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm" style="background-color: #fce4ec;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Shipping and Payment Info
+                        <i class="fa fa-edit ml-2" style="cursor:pointer;" onclick="toggleEditMode('right')"></i>
+                    </h5>
+                    <hr>
+                    <!-- View Mode -->
+                    <div id="viewMode-right">
+                        <p><strong>Delivery Type:</strong> @Model.OrderHeader.DeliveryType</p>
+                        <p><strong>City:</strong> @Model.OrderHeader.City</p>
+                        <p><strong>Warehouse:</strong> @Model.OrderHeader.Warehouse</p>
+                        <p><strong>Payment Type:</strong> @Model.OrderHeader.PaymentType</p>
+                        <p><strong>Payment Status:</strong> @Model.OrderHeader.PaymentStatus</p>
+                    </div>
+                    <!-- Edit Mode -->
+                    <div id="editMode-right" style="display:none;">
+                        <form method="post" asp-action="Update" asp-route-id="@Model.OrderHeader.Id">
+                            <div class="form-group">
+                                <label for="deliveryStatus">Delivery Status:</label>
+                                <select class="form-control" id="deliveryStatus" name="deliveryStatus">
+                                    <option value="@WC.OrderStart">@WC.OrderStart</option>
+                                    <option value="@WC.OrderStatus">@WC.OrderStatus</option>
+                                    <option value="@WC.OrderEnd">@WC.OrderEnd</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="paymentStatus">Payment Status:</label>
+                                    <select class="form-control" id="paymentStatus" name="paymentStatus">
+                                        <option value="@WC.PaymentStart">@WC.PaymentStart</option>
+                                        <option value="@WC.PaymentStatus">@WC.PaymentStatus</option>
+                                        <option value="@WC.PaymentEnd">@WC.PaymentEnd</option>
+                                    </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Update Info</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Order Button -->
+    <div class="row justify-content-center">
+        <div class="col-md-6 mb-3 text-center">
+            <form method="post" asp-action="CancelOrder" asp-route-id="@Model.OrderHeader.Id">
+                <button class="btn btn-warning btn-lg">Cancel order</button>  
+            </form>
+        </div>
+    </div>
+</div>

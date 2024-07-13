@@ -23,9 +23,9 @@
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="billing-name">Name</label>
-                                                            <input asp-for="User.Login" type="text" class="form-control" id="billing-name" placeholder="Enter name">
-                                                            <span asp-validation-for="User.Login" class="text-danger"></span>
+                                                            <label class="form-label" for="billing-name">Full name</label>
+                                                            <input asp-for="FullName" type="text" class="form-control" id="billing-name" placeholder="@Model.User.Login">
+                                                            <span asp-validation-for="FullName" class="text-danger"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">
@@ -38,8 +38,8 @@
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-phone">Phone</label>
-                                                            <input asp-for="User.PhoneNumber" type="text" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
-                                                            <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+                                                            <input asp-for="@Model.PhoneNumber" type="text" class="form-control" id="billing-phone" placeholder="@Model.User.PhoneNumber">
+                                                            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,7 +77,7 @@
                                     <div>
                                         <div class="mb-3">
                                             <label class="form-label" for="shipping-method">Shipping Method</label>
-                                            <select class="form-control" id="shipping-method" onchange="showFields(this)">
+                                            <select class="form-control" id="shipping-method" name="ShippingMethod" onchange="showFields(this)" required="">
                                                 <option value="none">Choose delivery method</option>
                                                 <option value="pickup">Self-delivery</option>
                                                 <option value="nova-post">Nova Post</option>
@@ -96,10 +96,10 @@
                                     <div>
                                         <h5 class="font-size-14 mb-3">Payment method :</h5>
                                         <div class="row">
-                                            <div class="col-lg-3 col-sm-6">
+                                            <div class="col-lg-3 col-sm-6" id="card" style="display: none;">
                                                 <div data-bs-toggle="collapse">
                                                     <label class="card-radio-label">
-                                                        <input type="radio" name="pay-method" id="pay-methodoption1" class="card-radio-input">
+                                                        <input type="radio" name="PaymentMethod" id="pay-methodoption1" class="card-radio-input" value="card">
                                                         <span class="card-radio py-3 text-center text-truncate">
                                                             <i class="bx bx-credit-card d-block h2 mb-3 fa fa-cc-visa"></i>
                                                             Credit / Debit Card
@@ -108,22 +108,22 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-3 col-sm-6">
+                                            <div class="col-lg-3 col-sm-6" id="payInStore" style="display: none;">
                                                 <div>
                                                     <label class="card-radio-label">
-                                                        <input type="radio" name="pay-method" id="pay-methodoption2" class="card-radio-input">
+                                                        <input type="radio" name="PaymentMethod" id="pay-methodoption2" class="card-radio-input" value="payInStore">
                                                         <span class="card-radio py-3 text-center text-truncate">
                                                             <i class="bx bxl-paypal d-block h2 mb-3 fa fa-paypal"></i>
-                                                            Paypal
+                                                            Pay in Store
                                                         </span>
                                                     </label>
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-3 col-sm-6">
+                                            <div class="col-lg-3 col-sm-6" id="cashOnDelivery" style="display: none;">
                                                 <div>
                                                     <label class="card-radio-label">
-                                                        <input type="radio" name="pay-method" id="pay-methodoption3" class="card-radio-input" checked="">
+                                                        <input type="radio" name="PaymentMethod" id="pay-methodoption3" class="card-radio-input" value="cashOnDelivery">
                                                         <span class="card-radio py-3 text-center text-truncate">
                                                             <i class="bx bx-money d-block h2 mb-3 fa fa-money"></i>
                                                             <span>Cash on Delivery</span>
@@ -200,7 +200,6 @@
                                                 <input type="hidden" asp-for="ProductList[i].Product.Model"/>
                                                 <small class="text-muted">@(Model.ProductList[i].Product.Price * Model.ProductList[i].Count)</small>
                                             }
-
                                         </td>
                                     </tr>
                                     <tr class="bg-light">
@@ -220,22 +219,64 @@
             </div>
         </div>
     </div>
+    <input type="hidden" name="PaymentMethod" id="PaymentMethodHidden" />
+    <input type="hidden" name="ShippingMethod" id="ShippingMethodHidden" />
 </form>
+
 @section Scripts{
     <script src="~/js/novaposhta.js"></script>
     <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            var selectedPaymentMethod = document.querySelector('input[name="PaymentMethod"]:checked');
+            var selectedShippingMethod = document.getElementById('shipping-method').value;
+
+            var isValidPayment = true;
+  
+            if (!selectedPaymentMethod) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Please choose a shipping method and payment method',
+                    icon: 'error',
+                });
+                isValidPayment = false;
+            }
+
+            if (!isValidPayment) {
+                event.preventDefault();
+            } else {
+                document.getElementById('PaymentMethodHidden').value = selectedPaymentMethod.value;
+                document.getElementById('ShippingMethodHidden').value = selectedShippingMethod;
+            }
+        });
+
         function showFields(element) {
             var shippingDetails = document.getElementById('shippingDetails');
-            var shippingInfo = document.getElementById('shippingInfo');
-            if (element.value === 'pickup' || element.value === 'nova-post') {
+            var card = document.getElementById('card');
+            var payInStore = document.getElementById('payInStore');
+            var cashOnDelivery = document.getElementById('cashOnDelivery');
+
+            if (element.value === 'nova-post') {
                 shippingDetails.style.display = 'block';
-                shippingInfo.style.display = 'block';
+                card.style.display = 'block';
+                payInStore.style.display = 'none';
+                cashOnDelivery.style.display = 'block';
+            } else if (element.value === 'pickup') {
+                shippingDetails.style.display = 'none';
+                card.style.display = 'block';
+                payInStore.style.display = 'block';
+                cashOnDelivery.style.display = 'none';
             } else {
                 shippingDetails.style.display = 'none';
-                shippingInfo.style.display = 'none';
+                card.style.display = 'none';
+                payInStore.style.display = 'none';
+                cashOnDelivery.style.display = 'none';
             }
         }
     </script>
-    <partial name="_ValidationScriptsPartial" />
+
+    <partial name="_ValidationScriptsPartial"/>
 }
+
+
+
 

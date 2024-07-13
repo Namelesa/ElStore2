@@ -133,6 +133,10 @@
       "PackagePath": "staticwebassets/css/Login.css"
     },
     {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/OrderDetails.css",
+      "PackagePath": "staticwebassets/css/OrderDetails.css"
+    },
+    {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/Test.css",
       "PackagePath": "staticwebassets/css/Test.css"
     },
@@ -159,6 +163,10 @@
     {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/js/Order.js",
+      "PackagePath": "staticwebassets/js/Order.js"
     },
     {
       "Id": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/js/home-index.js",

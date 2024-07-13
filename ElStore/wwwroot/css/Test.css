@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /* Стили для body */
@@ -192,27 +193,6 @@ a {
     appearance: none;
     border-radius: 0.75rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
-.edit-btn {
-    width: 35px;
-    height: 35px;
-    line-height: 40px;
-    text-align: center;
-    position: absolute;
-    right: 25px;
-    margin-top: -50px;
-}
-
-.ribbon {
-    position: absolute;
-    right: -26px;
-    top: 20px;
-    transform: rotate(45deg);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 1px 22px;
 }
 
 /* Медиа-запросы для адаптивной верстки */

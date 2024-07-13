@@ -24,6 +24,8 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IDescriptionPcRepository, DescriptionPcRepository>();
 builder.Services.AddScoped<IHeadphoneDescriptionRepository, HeadphoneDescriptionRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
+builder.Services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
+builder.Services.AddScoped<IOrderDetailsRepository, OrderDetailsRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddScoped<IUserStore<AllUser>, UserStore<AllUser, IdentityRole, ApplicationDbContext>>();

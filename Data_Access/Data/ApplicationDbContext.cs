@@ -20,5 +20,7 @@ namespace Data_Access.Data
         public DbSet<HearphoneDescriptions> HearphoneDescriptions { get; set; }
         public DbSet<Images> Images { get; set; }
         public DbSet<AllUser> AllUsers { get; set; }
+        public DbSet<OrderHeader> OrderHeaders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }

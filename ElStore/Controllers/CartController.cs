@@ -16,17 +16,20 @@ public class CartController : Controller
     private readonly AddressService _addressService;
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly IEmailSender _emailSender;
-    
     private readonly IProductRepository _prodRepo;
     private readonly IUserRepository _userRepo;
+    private readonly IOrderHeaderRepository _orderHeader;
+    private readonly IOrderDetailsRepository _orderDetails;
     
-    public CartController(AddressService addressService, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender,IProductRepository prodRepo, IUserRepository userRepo)
+    public CartController(AddressService addressService, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender,IProductRepository prodRepo, IUserRepository userRepo, IOrderHeaderRepository orderHeader, IOrderDetailsRepository orderDetails)
     {
         _addressService = addressService;
         _webHostEnvironment = webHostEnvironment;
         _emailSender = emailSender;
         _userRepo = userRepo;
         _prodRepo = prodRepo;
+        _orderDetails = orderDetails;
+        _orderHeader = orderHeader;
     }
     
     [BindProperty] private ProductUserVM ProductUserVm { get; set; }
@@ -53,7 +56,6 @@ public class CartController : Controller
 
         return View(productVMs);
     }
-
     
     //Remove from Cart
     public IActionResult Remove(int id)
@@ -94,7 +96,6 @@ public class CartController : Controller
 
         return RedirectToAction(nameof(Summary));
     }
-
     
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -133,7 +134,7 @@ public class CartController : Controller
                     Image = product.Images.Image,
                     Count = shoppingCartList.FirstOrDefault(x => x.ProductId == product.Id)?.Count ?? 1
                 }).ToList();
-
+                
                 double totalSum = productVMs.Sum(p => p.Product.Price * p.Count);
                 ViewBag.TotalSum = totalSum;
 
@@ -156,8 +157,10 @@ public class CartController : Controller
     [Authorize]
     [ValidateAntiForgeryToken]
     [ActionName("Summary")]
-    public async Task<IActionResult> SummaryPost(ProductUserVM productUserVm)
+    public async Task<IActionResult> SummaryPost(ProductUserVM productUserVm, string paymentMethod, string shippingMethod)
     {
+        var claimUser = User.Identity as ClaimsIdentity;
+        var claim = claimUser?.FindFirst(ClaimTypes.NameIdentifier);
         var pathToTemplate = Path.Combine(_webHostEnvironment.WebRootPath, "templates", "Inquiry.html");
         string htmlBody;
         string subject = "New Inquiry";
@@ -167,10 +170,6 @@ public class CartController : Controller
             htmlBody = await sr.ReadToEndAsync();
         }
         
-        string userName = productUserVm.User?.Login ?? "N/A";
-        string userEmail = productUserVm.User?.Email ?? "N/A";
-        string userPhone = productUserVm.User?.PhoneNumber ?? "N/A";
-
         StringBuilder productListSb = new StringBuilder();
         double total = 0;
 
@@ -185,18 +184,63 @@ public class CartController : Controller
                     <span>Subtotal: ${productSubtotal}</span>
                 </div>");
         }
+        
+        
+        htmlBody = htmlBody.Replace("{0}", productUserVm.FullName)
+                .Replace("{1}", productUserVm.User.Email)
+                .Replace("{2}", productUserVm.PhoneNumber)
+                .Replace("{3}", productListSb.ToString())
+                .Replace("{4}", total.ToString());
+            
+        if (productUserVm.User is { Email: not null })
+            await _emailSender.SendEmailAsync(productUserVm.User.Email, subject, htmlBody);
+        await _emailSender.SendEmailAsync(WC.AdminEmail, subject, htmlBody);
+        
 
-        htmlBody = htmlBody.Replace("{0}", userName)
-                        .Replace("{1}", userEmail)
-                        .Replace("{2}", userPhone)
-                        .Replace("{3}", productListSb.ToString())
-                        .Replace("{4}", total.ToString());
+        if (claim != null)
+        {
+            OrderHeader orderHeader = new OrderHeader()
+            {
+                UserId = claim.Value,
+                FullName = productUserVm.FullName,
+                PhoneNumber = productUserVm.PhoneNumber,
+                OrderDate = DateTime.UtcNow,
+                PaymentType = paymentMethod,
+                DeliveryType = shippingMethod,
+                OrderStatus = WC.OrderStart,
+                PaymentStatus = WC.PaymentStart,
+                Total = total
+            };
+            if (orderHeader.DeliveryType == "nova-post")
+            {
+                orderHeader.City = productUserVm.City;
+                orderHeader.Warehouse = productUserVm.NumberOffice;
+            }
+            else
+            {
+                orderHeader.City = WC.City;
+                orderHeader.Warehouse = WC.Number;
+            }
+            _orderHeader.Add(orderHeader);
+            _orderHeader.Save();
+            
+            foreach (var product in productUserVm.ProductList)
+            {
+                OrderDetails orderDetails = new OrderDetails()
+                {
+                    OrderHeaderId = orderHeader.Id,
+                    ProductId = product.Product.Id,
+                };
+                _orderDetails.Add(orderDetails);
+                
+            }
+            _orderDetails.Save();
+        }
+        
 
-            // Send email
-            if (productUserVm.User is { Email: not null })
-                await _emailSender.SendEmailAsync(productUserVm.User.Email, subject, htmlBody);
-
-            return RedirectToAction(nameof(InquiryConfirmation));
+        
+        
+        return RedirectToAction(nameof(InquiryConfirmation));
         
     }
 
@@ -205,7 +249,6 @@ public class CartController : Controller
         HttpContext.Session.Clear();
         return View();
     }
-    
     
     [HttpGet]
     public IActionResult SearchCities(string query)

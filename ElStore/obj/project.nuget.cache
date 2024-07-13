@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/k/invAwwogs3/8AE9d/7923c/v5qUOwe8Ggn6jaWDN5x210FeSt5G5S7dNBEok3M3MR0sWIKgsf3y59+ZJOcQ==",
+  "dgSpecHash": "h31Tg9qYuizUw1Ck1tA9+opG4xY9b0IRNQtrdILYMHiAo5XX7EH6ch+cXNo8pLNMSaLOZBp8O+a3ghl5SIaXcQ==",
   "success": true,
   "projectFilePath": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/ElStore.csproj",
   "expectedPackageFiles": [
@@ -210,6 +210,8 @@
     "/Users/maksimbilyk/.nuget/packages/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/maksimbilyk/.nuget/packages/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/maksimbilyk/.nuget/packages/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "/Users/maksimbilyk/.nuget/packages/syncfusion.ej2.aspnet.core/25.1.40/syncfusion.ej2.aspnet.core.25.1.40.nupkg.sha512",
+    "/Users/maksimbilyk/.nuget/packages/syncfusion.licensing/25.1.40/syncfusion.licensing.25.1.40.nupkg.sha512",
     "/Users/maksimbilyk/.nuget/packages/system.appcontext/4.3.0/system.appcontext.4.3.0.nupkg.sha512",
     "/Users/maksimbilyk/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
     "/Users/maksimbilyk/.nuget/packages/system.codedom/7.0.0/system.codedom.7.0.0.nupkg.sha512",

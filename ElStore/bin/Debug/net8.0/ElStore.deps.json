@@ -31,6 +31,7 @@
           "NovaPoshtaApi": "2.1.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0",
           "RestSharp": "111.3.0",
+          "Syncfusion.EJ2.AspNet.Core": "25.1.40",
           "System.IdentityModel.Tokens.Jwt": "7.6.0",
           "System.Linq": "4.3.0",
           "System.Linq.Expressions": "4.3.0",
@@ -2440,6 +2441,26 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
+      "Syncfusion.EJ2.AspNet.Core/25.1.40": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "Syncfusion.Licensing": "25.1.40"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.EJ2.dll": {
+            "assemblyVersion": "25.1.40.0",
+            "fileVersion": "25.1.40.0"
+          }
+        }
+      },
+      "Syncfusion.Licensing/25.1.40": {
+        "runtime": {
+          "lib/net8.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "25.1.40.0",
+            "fileVersion": "25.1.40.0"
+          }
+        }
+      },
       "System.AppContext/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -5004,6 +5025,20 @@
       "sha512": "sha512-VB5cn/7OzUfzdnC8tqAIMQciVLiq2epm2NrAm1E9OjNRyG4lVhfR61SMcLizejzQP8R8Uf/0l5qOIbUEi+RdEg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
+    },
+    "Syncfusion.EJ2.AspNet.Core/25.1.40": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6AOyrbk6qAxx+Nk4EuaC6y4qUxrewa9JVpf0ayyd/TFnR8cxuA9sX+o/EsmpjUEbOzsSTw7O/Eq6L8URhG4vbg==",
+      "path": "syncfusion.ej2.aspnet.core/25.1.40",
+      "hashPath": "syncfusion.ej2.aspnet.core.25.1.40.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/25.1.40": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7JTbApWFw1hIsdKPZnNeBmhCwgw2YteoIj6jIO+7MqO0H7Vn1mZiwfPdk9/xUTiphGamebH7s0i8xCh6pz4dBw==",
+      "path": "syncfusion.licensing/25.1.40",
+      "hashPath": "syncfusion.licensing.25.1.40.nupkg.sha512"
     },
     "System.AppContext/4.3.0": {
       "type": "package",

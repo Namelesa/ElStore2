@@ -303,3 +303,5 @@
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/System.Security.Cryptography.Xml.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Syncfusion.EJ2.dll
+/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/Syncfusion.Licensing.dll

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YTdUmwiUO1Ilxvb3n1f8XvZC6yj8V34pbObG1gJO2F0=",
+  "Hash": "bIynFF5dobC4m5N14T40Iza+VufAjv5HkhF5il7knlw=",
   "Source": "ElStore",
   "BasePath": "_content/ElStore",
   "Mode": "Default",
@@ -1271,6 +1271,25 @@
       "OriginalItemSpec": "wwwroot/css/Login.css"
     },
     {
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/OrderDetails.css",
+      "SourceId": "ElStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
+      "BasePath": "_content/ElStore",
+      "RelativePath": "css/OrderDetails.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/OrderDetails.css"
+    },
+    {
       "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/css/shopping_cart.css",
       "SourceId": "ElStore",
       "SourceType": "Discovered",
@@ -1953,6 +1972,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/novaposhta.js"
+    },
+    {
+      "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/js/Order.js",
+      "SourceId": "ElStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/",
+      "BasePath": "_content/ElStore",
+      "RelativePath": "js/Order.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/Order.js"
     },
     {
       "Identity": "/Users/maksimbilyk/RiderProjects/ElStore/ElStore/wwwroot/js/site.js",
