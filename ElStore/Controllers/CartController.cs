@@ -9,6 +9,7 @@ using Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Newtonsoft.Json.Linq;
 
 namespace ElStore.Controllers;
 public class CartController : Controller
@@ -157,7 +158,7 @@ public class CartController : Controller
     [Authorize]
     [ValidateAntiForgeryToken]
     [ActionName("Summary")]
-    public async Task<IActionResult> SummaryPost(ProductUserVM productUserVm, string paymentMethod, string shippingMethod)
+    public async Task<IActionResult> SummaryPost(ProductUserVM productUserVm, string paymentMethod, string shippingMethod, [FromBody] JObject paymentData)
     {
         var claimUser = User.Identity as ClaimsIdentity;
         var claim = claimUser?.FindFirst(ClaimTypes.NameIdentifier);
@@ -221,6 +222,32 @@ public class CartController : Controller
                 orderHeader.City = WC.City;
                 orderHeader.Warehouse = WC.Number;
             }
+
+            if (paymentMethod == "card")
+            {
+                try
+                {
+                    /*var apiVersion = (int)paymentData.apiVersion;
+                    var apiVersionMinor = (int)paymentData.apiVersionMinor;
+                    var paymentMethodData = paymentData.paymentMethodData;
+                    var description = (string)paymentMethodData.description;
+                    var cardDetails = (string)paymentMethodData.info.cardDetails;
+                    var cardNetwork = (string)paymentMethodData.info.cardNetwork;
+                    var token = (string)paymentMethodData.tokenizationData.token;*/
+
+                    // Здесь добавьте логику для обработки платежа с использованием полученных данных
+                    // Пример:
+                    //PaymentService.ProcessPayment(apiVersion, apiVersionMinor, description, cardDetails, cardNetwork, token);
+
+                    orderHeader.PaymentStatus = WC.PaymentEnd;
+                }
+                catch (Exception ex)
+                {
+                    // Обработка ошибок
+                    return BadRequest(new { success = false, message = ex.Message });
+                }
+            }
+            
             _orderHeader.Add(orderHeader);
             _orderHeader.Save();
             
@@ -236,9 +263,6 @@ public class CartController : Controller
             }
             _orderDetails.Save();
         }
-        
-
-        
         
         return RedirectToAction(nameof(InquiryConfirmation));
         
