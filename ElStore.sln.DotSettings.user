@@ -3,4 +3,5 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/Users/maksimbilyk/RiderProjects/ElStore/ElStore/bin/Debug/net8.0/NuGet.Configuration.dll" /&gt;
   &lt;Assembly Path="/Users/maksimbilyk/.nuget/packages/novaposhtaapi/2.1.0/lib/netcoreapp1.0/NovaPoshtaApi.dll" /&gt;
+  &lt;Assembly Path="/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/8.0.3/ref/net8.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

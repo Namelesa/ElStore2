@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using Baroque.NovaPoshta.Client.Domain.Address;
 using Baroque.NovaPoshta.Client.Services.Address;
 using Data_Access.Repository.IRepository;
@@ -9,7 +10,7 @@ using Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Newtonsoft.Json.Linq;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace ElStore.Controllers;
 public class CartController : Controller
@@ -34,6 +35,7 @@ public class CartController : Controller
     }
     
     [BindProperty] private ProductUserVM ProductUserVm { get; set; }
+    private static string _token = "test";
 
     //Index get
     public IActionResult Index()
@@ -146,11 +148,10 @@ public class CartController : Controller
                 {
                     User = user,
                     ProductList = productVMs,
-                    Total = totalSum
+                    Total = totalSum,
                 };
             }
         }
-
         return View(ProductUserVm);
     }
 
@@ -158,7 +159,7 @@ public class CartController : Controller
     [Authorize]
     [ValidateAntiForgeryToken]
     [ActionName("Summary")]
-    public async Task<IActionResult> SummaryPost(ProductUserVM productUserVm, string paymentMethod, string shippingMethod, [FromBody] JObject paymentData)
+    public async Task<IActionResult> SummaryPost(ProductUserVM productUserVm, string paymentMethod, string shippingMethod)
     {
         var claimUser = User.Identity as ClaimsIdentity;
         var claim = claimUser?.FindFirst(ClaimTypes.NameIdentifier);
@@ -197,7 +198,6 @@ public class CartController : Controller
             await _emailSender.SendEmailAsync(productUserVm.User.Email, subject, htmlBody);
         await _emailSender.SendEmailAsync(WC.AdminEmail, subject, htmlBody);
         
-
         if (claim != null)
         {
             OrderHeader orderHeader = new OrderHeader()
@@ -227,23 +227,19 @@ public class CartController : Controller
             {
                 try
                 {
-                    /*var apiVersion = (int)paymentData.apiVersion;
-                    var apiVersionMinor = (int)paymentData.apiVersionMinor;
-                    var paymentMethodData = paymentData.paymentMethodData;
-                    var description = (string)paymentMethodData.description;
-                    var cardDetails = (string)paymentMethodData.info.cardDetails;
-                    var cardNetwork = (string)paymentMethodData.info.cardNetwork;
-                    var token = (string)paymentMethodData.tokenizationData.token;*/
-
-                    // Здесь добавьте логику для обработки платежа с использованием полученных данных
-                    // Пример:
-                    //PaymentService.ProcessPayment(apiVersion, apiVersionMinor, description, cardDetails, cardNetwork, token);
-
-                    orderHeader.PaymentStatus = WC.PaymentEnd;
+                    productUserVm.PaymentToken = _token;
+                    var paymentGatewayResponse = await ProcessPaymentWithGatewayAsync(productUserVm.PaymentToken);
+                    if (paymentGatewayResponse.IsSuccess)
+                    {
+                        orderHeader.PaymentStatus = WC.PaymentEnd;
+                    }
+                    else
+                    {
+                        return BadRequest(new { success = false, message = "Payment failed" });
+                    }
                 }
                 catch (Exception ex)
                 {
-                    // Обработка ошибок
                     return BadRequest(new { success = false, message = ex.Message });
                 }
             }
@@ -268,6 +264,63 @@ public class CartController : Controller
         
     }
 
+    [HttpPost]
+    [Route("Cart/CheckPayment")]
+    public async Task<IActionResult> CheckPayment([FromBody] JsonElement paymentData)
+    {
+        try
+        {
+            if (!paymentData.TryGetProperty("paymentMethodData", out JsonElement paymentMethodData))
+            {
+                return BadRequest("paymentMethodData is missing");
+            }
+
+            if (!paymentMethodData.TryGetProperty("tokenizationData", out JsonElement tokenizationData))
+            {
+                return BadRequest("tokenizationData is missing");
+            }
+
+            if (!tokenizationData.TryGetProperty("token", out JsonElement tokenElement))
+            {
+                return BadRequest("Payment token is missing");
+            }
+
+            var paymentToken = tokenElement.GetString();
+            if (string.IsNullOrEmpty(paymentToken))
+            {
+                return BadRequest("Payment token is empty");
+            }
+            
+            _token = paymentToken;
+            
+            var paymentGatewayResponse = await ProcessPaymentWithGatewayAsync(paymentToken);
+
+            if (paymentGatewayResponse.IsSuccess)
+            {
+                return RedirectToAction(nameof(Summary));
+            }
+            else
+            {
+                return BadRequest(new { success = false, message = "Payment failed" });
+            }
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { success = false, message = ex.Message });
+        }
+    }
+    
+    private async Task<PaymentGatewayResponse> ProcessPaymentWithGatewayAsync(string paymentToken)
+    {
+        /*var httpClient = new HttpClient();
+        var content = new StringContent(JsonSerializer.Serialize(new { token = paymentToken }), Encoding.UTF8, "application/json");
+        */
+
+        bool response = true;
+
+        return new PaymentGatewayResponse { IsSuccess = response};
+    }
+    
     public IActionResult InquiryConfirmation()
     {
         HttpContext.Session.Clear();

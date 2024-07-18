@@ -326,7 +326,7 @@
                         ],
                         transactionInfo: {
                             totalPriceStatus: 'FINAL',
-                            totalPrice: '1.00',
+                            totalPrice: '@Model.Total',
                             currencyCode: 'USD'
                         },
                         merchantInfo: {
@@ -340,7 +340,7 @@
                             console.log(paymentData);
                     
                             // Send payment data to server
-                            fetch('Cart/Summary', {
+                            fetch('/Cart/CheckPayment', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -364,6 +364,5 @@
 
     <partial name="_ValidationScriptsPartial"/>
 }
-
 
 

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.ViewModel;
 
@@ -18,4 +19,5 @@ public class ProductUserVM
     [Required] public string FullName { get; set; }
     [Required] public string PhoneNumber { get; set; }
     [Required] public string Email { get; set; }
+    [NotMapped]public string? PaymentToken { get; set; }
 }
